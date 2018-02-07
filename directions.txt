@@ -1,0 +1,27 @@
+The commands immma need to get by in battlesnake:
+
+(inside battlesnake folder)
+
+To add changes to spoder-snek
+
+1) 
+$ heroku login
+-> email is: cbmathieson@outlook.com
+-> password: the usual
+
+2)
+
+$ git add .
+$ git commit -m " something here "
+$ git push heroku master
+
+---------------------------
+run the server:
+
+1) To start the server, 
+$ docker run -it -p 3000:3000 battlesnake/battle_snake
+
+2) Go to localhost:3000
+
+3) enter url of your snake:
+	https://spoder-snek.herokuapp.com

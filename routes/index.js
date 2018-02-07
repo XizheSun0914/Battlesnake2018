@@ -9,7 +9,7 @@ router.post('/start', function (req, res) {
   var data = {
     color: '#DFFF00',
     name: 'Node Snake',
-    head_url: 'http://www.placecage.com/c/200/200', // optional, but encouraged!
+    head_url: 'https://apprecs.org/gp/images/app-icons/300/08/com.aesir.bouncyspoderman.jpg', // optional, but encouraged!
     taunt: "Let's do thisss thang!", // optional, but encouraged!
   }
 
