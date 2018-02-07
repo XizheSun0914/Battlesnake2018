@@ -27,7 +27,7 @@ router.post('/move', function (req, res) {
 
   // Response data
   var data = {
-    move: 'up', // one of: ['up','down','left','right']
+    move: 'down', // one of: ['up','down','left','right']
     taunt: 'Outta my way, snake!', // optional, but encouraged!
   }
 

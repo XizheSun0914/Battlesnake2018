@@ -19,7 +19,7 @@ $ git push heroku master
 run the server:
 
 1) To start the server, 
-$ docker run -it -p 3000:3000 battlesnake/battle_snake
+$ docker run -it --rm -p 3000:3000 sendwithus/battlesnake-server
 
 2) Go to localhost:3000
 
