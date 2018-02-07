@@ -1,6 +1,5 @@
 var express = require('express')
 var router  = express.Router()
-var count = 0;
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
@@ -24,34 +23,13 @@ router.post('/start', function (req, res) {
 router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
 
-  var input = req.body;
-
   // Response data
   var data = {
-    move: 'down', // one of: ['up','down','left','right']
+    move: 'up', // one of: ['up','down','left','right']
     taunt: 'Outta my way, snake!', // optional, but encouraged!
-  }
-
-  console.log(req.body.height);
-  console.log(req.input.width);
-
-  if(input.you.health < 99){
-    data.move = 'right';
   }
 
   return res.json(data)
 })
 
 module.exports = router
-
-
-
-
-
-
-
-
-
-
-
-
