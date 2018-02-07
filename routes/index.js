@@ -1,5 +1,6 @@
 var express = require('express')
 var router  = express.Router()
+var count = 0;
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
@@ -24,11 +25,16 @@ router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
 
   console.log(req.body.world);
+  count++;
 
   // Response data
   var data = {
     move: 'down', // one of: ['up','down','left','right']
     taunt: 'Outta my way, snake!', // optional, but encouraged!
+  }
+
+  if(count % 3 == 0) {
+    data.move = 'left';
   }
 
   return res.json(data)
