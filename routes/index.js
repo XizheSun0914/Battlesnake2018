@@ -7,10 +7,13 @@ router.post('/start', function (req, res) {
 
   // Response data
   var data = {
-    color: '#DFFF00',
-    name: 'Node Snake',
-    head_url: 'https://apprecs.org/gp/images/app-icons/300/08/com.aesir.bouncyspoderman.jpg', // optional, but encouraged!
-    taunt: "Let's do thisss thang!", // optional, but encouraged!
+    color: 'rgb(255,5,12)',
+    secondary_color: 'rgb(0,5,6)',
+    name: 'spoder snek',
+    head_url: 'https://apprecs.org/gp/images/app-icons/300/08/com.aesir.bouncyspoderman.jpg',
+    taunt: "giv me an snep bek",
+    head_type: 'pixel',
+    tail_type: 'pixel'
   }
 
   return res.json(data)
