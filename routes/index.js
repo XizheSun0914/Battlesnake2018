@@ -32,7 +32,7 @@ router.post('/move', function (req, res) {
     taunt: 'Outta my way, snake!', // optional, but encouraged!
   }
 
-  if(input.snakes[0].length == 3){
+  if(input.snakes[0].health == 97){
     data.move = 'right';
   }
 
