@@ -24,7 +24,7 @@ router.post('/start', function (req, res) {
 router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
 
-  console.log(req.body.world);
+  console.info(req.body);
   count++;
 
   // Response data
