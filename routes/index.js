@@ -24,8 +24,7 @@ router.post('/start', function (req, res) {
 router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
 
-  console.info(req.body);
-  count++;
+  var input = req.body
 
   // Response data
   var data = {
@@ -33,11 +32,23 @@ router.post('/move', function (req, res) {
     taunt: 'Outta my way, snake!', // optional, but encouraged!
   }
 
-  if(count % 3 == 0) {
-    data.move = 'left';
+  if(input.you.health == 97){
+    data.move = 'right';
   }
 
   return res.json(data)
 })
 
 module.exports = router
+
+
+
+
+
+
+
+
+
+
+
+
