@@ -32,7 +32,10 @@ router.post('/move', function (req, res) {
     taunt: 'Outta my way, snake!', // optional, but encouraged!
   }
 
-  if(input.height == 20){
+  console.log(req.body.height);
+  console.log(req.input.width);
+
+  if(input.you.health < 99){
     data.move = 'right';
   }
 
