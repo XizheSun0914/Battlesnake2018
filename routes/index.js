@@ -24,7 +24,7 @@ router.post('/start', function (req, res) {
 router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
 
-  var input = req.body
+  var input = req.body;
 
   // Response data
   var data = {
@@ -32,7 +32,7 @@ router.post('/move', function (req, res) {
     taunt: 'Outta my way, snake!', // optional, but encouraged!
   }
 
-  if(input.snakes[0].health == 97){
+  if(input.height == 20){
     data.move = 'right';
   }
 

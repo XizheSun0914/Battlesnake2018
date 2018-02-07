@@ -25,3 +25,15 @@ $ docker run -it --rm -p 3000:3000 sendwithus/battlesnake-server
 
 3) enter url of your snake:
 	https://spoder-snek.herokuapp.com
+
+--------------------------
+
+heres some example snakes to battle against
+(all of them go straight to their doom)
+
+http://battlesnake-dylan.herokuapp.com
+http://battlesnake-snaken.herokuapp.com
+http://battlesnake-will.herokuapp.com
+http://battlesnake-rando.herokuapp.com
+
+
