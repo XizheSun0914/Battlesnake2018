@@ -40,7 +40,7 @@ function printStats(input) {
 
   console.log(input.you.body.data);
 
-  var yoSnakeBod = Object.keys(input.you.body);
+  var yoSnakeBod = Object.keys(input.you.body.data);
   var allSnakes = Object.keys(input.snakes);
   var food = Object.keys(input.food);
 
