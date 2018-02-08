@@ -23,7 +23,11 @@ router.post('/move', function (req, res) {
 
   var input = req.body;
   var board = new GameBoard(input.id, input.height, input.width, input.turn. input.food);
+  console.log("success making board");
+  console.log(board);
   var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
+  console.log("success making mySnake")
+  console.log(mySnake)
   var enemies = [];
 
   for(var i = 0; i < Object.keys(input.snakes.data).length; i++) {
@@ -33,7 +37,8 @@ router.post('/move', function (req, res) {
     }
   }
 
-  printStats(board, mySnake, enemies);
+  console.log("success making enemies");
+  console.log(enemies);
 
   // Response data
   var data = {
@@ -65,17 +70,6 @@ function GameBoard(id, height, width, turn, foods) {
   this.food = [];
   for(var i = 0; i < Object.keys(foods.data).length; i++){
     food.push(foods.data[i]);
-  }
-}
-
-function printStats(board, mySnake, enemies) {
-  console.log(board);
-  console.log();
-  console.log(mySnake);
-  console.log();
-  for(var i = 0; i < enemies.length; i++) {
-    console.log(enemies[i]);
-    console.log();
   }
 }
 
