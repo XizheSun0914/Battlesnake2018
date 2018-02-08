@@ -57,7 +57,7 @@ function Snake(name, length, id, health, bodys) {
 
   this.body = [];
   for(var i = 0; i < Object.keys(bodys.data).length; i++) {
-    body.push(body.data[i]);
+    body.push(bodys.data[i]);
   }
 }
 
