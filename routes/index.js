@@ -38,11 +38,9 @@ router.post('/move', function (req, res) {
 
 function printStats(input) {
 
-  console.log(input.you.body.data);
-
   var yoSnakeBod = Object.keys(input.you.body.data);
   var allSnakes = Object.keys(input.snakes);
-  var food = Object.keys(input.food);
+  var allFood = Object.keys(input.food);
 
   console.log("My Snake:");
   console.log("name: " + input.you.name);
@@ -50,7 +48,7 @@ function printStats(input) {
   console.log("snake id: " + input.you.id);
   console.log("health: " + input.you.health);
   for(var i = 0; i < yoSnakeBod.length; i++){
-    console.log("limb #" + (i+1) + ": " + input.you.body.data[i].x + " " + input.you.body.data[i].y);
+    console.log("Body Part #" + (i+1) + ": " + input.you.body.data[i].x + " " + input.you.body.data[i].y);
   }
   console.log();
 
@@ -65,13 +63,13 @@ function printStats(input) {
 
   for(var k = 0; k < allSnakes.length; k++){
     console.log("snake #" + k);
-    console.log("health: " + allSnakes[k].health);
-    console.log("id: " + allSnakes[k].id);
-    console.log("length: " + allSnakes[k].length);
-    console.log("name: " + allSnakes[k].name);
-    var thisSnakeBod = Object.keys(allSnakes[k].body);
+    console.log("health: " + input.snakes[k].health);
+    console.log("id: " + input.snakes[k].id);
+    console.log("length: " + input.snakes[k].length);
+    console.log("name: " + input.snakes[k].name);
+    var thisSnakeBod = Object.keys(input.snakes.body.data);
     for(var j = 0; j < thisSnakeBod.length; j++){
-      console.log("limb #" + j + ": " + thisSnakeBod[j].x + " " + thisSnakeBod[j].y);
+      console.log("Body Part #" + (j+1) + ": " + input.snakes[k].body.data.x + " " + input.snakes[j].body.data.y);
     }
     console.log();
   }
@@ -79,8 +77,8 @@ function printStats(input) {
   console.log();
 
   console.log("Food Locations:");
-  for(var p = 0; p < food.length; p++) {
-    console.log("Food item #" + p + ": " + food[p].x + " " + food[p].y);
+  for(var p = 0; p < allFood.length; p++) {
+    console.log("Food item #" + p + ": " + input.food[p].data.x + " " + input.food[p].body.data.y);
   }
 }
 
