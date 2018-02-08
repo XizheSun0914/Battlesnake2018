@@ -43,5 +43,5 @@ function GameBoard(id, height, width, turn, foods) {
 }
 
 export default makeEnemies;
-exports.Snake = Snake;
-exports.GameBoard = GameBoard;
+module.exports = Snake;
+module.exports = GameBoard;

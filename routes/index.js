@@ -1,6 +1,6 @@
 import makeEnemies from "init.js"
-var GameBoard = require('./init.js').GameBoard
-var Snake = require('./init.js').Snake
+var GameBoard = require('./init.js');
+var Snake = require('./init.js');
 
 var express = require('express')
 var router  = express.Router()
