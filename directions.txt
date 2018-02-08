@@ -15,6 +15,10 @@ $ git add .
 $ git commit -m " something here "
 $ git push heroku master
 
+3)
+-> for debugging
+$ heroku logs --tail
+
 ---------------------------
 run the server:
 
