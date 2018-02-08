@@ -42,7 +42,7 @@ function printStats(input) {
   console.log("length: " + input.you.length);
   console.log("snake id: " + input.you.id);
   console.log("health: " + input.you.health);
-  for(var i = 0; i < Object.keys(input.you.body).length; i++){
+  for(var i = 0; i < input.you.body.length; i++){
     console.log("limb #" + i + ": " + input.you.body[i].x + " " + input.you.body[i].y);
   }
   console.log();
@@ -62,7 +62,7 @@ function printStats(input) {
     console.log("id: " + input.snakes[k].id);
     console.log("length: " + input.snakes[k].length);
     console.log("name: " + input.snakes[k].name);
-    for(var j = 0; j < Object.keys(input.snakes.body).length; j++){
+    for(var j = 0; j < input.snakes.body.length; j++){
       console.log("limb #" + j + ": " + input.snakes[j].body[j].x + " " + input.snakes[j].body[j].y);
     }
     console.log();
@@ -71,7 +71,7 @@ function printStats(input) {
   console.log();
 
   console.log("Food Locations:");
-  for(var p = 0; p < Object.keys(input.food).length; p++) {
+  for(var p = 0; p < input.food.length; p++) {
     console.log("Food item #" + p + ": " + input.food[p].x + " " + input.food[p].y);
   }
 }
