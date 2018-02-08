@@ -37,9 +37,7 @@ router.post('/move', function (req, res) {
     var snek = new Snake(input.snakes.data[p].name, input.snakes.data[p].length, input.snakes.data[p].id, input.snakes.data[p].health, input.snakes.data[p].body);
     console.log("made snake!...");
     console.log(snek);
-    console.log(snek.id);
-    console.log(mySnake.id);
-    if((snek.id).equals(mySnake.id)) {
+    if((input.you.id).equals(input.snakes.data[p].id)) {
       console.log("that's my snake!");
       continue;
     } else {
