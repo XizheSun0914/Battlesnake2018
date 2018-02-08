@@ -22,35 +22,16 @@ router.post('/start', function (req, res) {
 router.post('/move', function (req, res) {
 
   var input = req.body;
+
   var board = new GameBoard(input.id, input.height, input.width, input.turn, input.food);
-  console.log("Board Properties");
+  var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
+  var enemies = makeEnemies(mySnake, input);
+
   console.log(board);
   console.log();
-  var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
-  console.log("My snake: ");
   console.log(mySnake);
   console.log();
-  var enemies = new Array();
-
-  for(var p = 0; p < Object.keys(input.snakes.data).length; p++) {
-    console.log("snake being made...");
-    var snek = new Snake(input.snakes.data[p].name, input.snakes.data[p].length, input.snakes.data[p].id, input.snakes.data[p].health, input.snakes.data[p].body);
-    console.log("made snake!...");
-    console.log(snek);
-    if(JSON.stringify(snek) === JSON.stringify(mySnake)) {
-      console.log("that's my snake!");
-      continue;
-    } else {
-      console.log("that's not my snake!");
-      enemies.push(snek);
-      console.log("successfully added snake!");
-    }
-
-  }
-
-  console.log("success making enemies");
   console.log(enemies);
-  console.log();
 
   // Response data
   var data = {
@@ -85,6 +66,24 @@ function GameBoard(id, height, width, turn, foods) {
   for(var j = 0; j < Object.keys(foods.data).length; j++) {
     this.food.push(foods.data[j]);
   }
+}
+
+//builds enemy snake array
+function makeEnemies(mySnake, input) {
+  var enemies = new Array();
+
+  for(var p = 0; p < Object.keys(input.snakes.data).length; p++) {
+
+    var snek = new Snake(input.snakes.data[p].name, input.snakes.data[p].length, input.snakes.data[p].id, input.snakes.data[p].health, input.snakes.data[p].body);
+
+    if(JSON.stringify(snek) === JSON.stringify(mySnake)) {
+      continue;
+    } else {
+      enemies.push(snek);
+    }
+  }
+
+  return enemies;
 }
 
 /*function printStats(input) {
