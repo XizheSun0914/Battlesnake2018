@@ -3,7 +3,6 @@ var router  = express.Router()
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
-  // NOTE: Do something here to start the game
 
   // Response data
   var data = {
@@ -21,11 +20,20 @@ router.post('/start', function (req, res) {
 
 // Handle POST request to '/move'
 router.post('/move', function (req, res) {
-  // NOTE: Do something here to generate your move
 
   var input = req.body;
+  var board = new GameBoard(input.id, input.height, input.width, input.turn. input.food);
+  var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
+  var enemies = [];
 
-  printStats(input);
+  for(var i = 0; i < Object.keys(input.snakes.data).length; i++) {
+    var snek = new Snake(input.snakes.data[i].name, input.snakes.data[i].length, input.snakes.data[i].id, input.snakes.data[i].health, input.snakes.data[i].body);
+    if(!(snek.id).equals(mySnake.id)) {
+      enemies.push(snek);
+    }
+  }
+
+  printStats(board, mySnake, enemies);
 
   // Response data
   var data = {
@@ -36,28 +44,65 @@ router.post('/move', function (req, res) {
   return res.json(data)
 })
 
-function printStats(input) {
+function Snake(name, length, id, health, bodys) {
+  this.name = name;
+  this.length = length;
+  this.id = id;
+  this.health = health;
+
+  this.body = [];
+  for(var i = 0; i < Object.keys(bodys.data).length; i++) {
+    body.push(body.data[i]);
+  }
+}
+
+function GameBoard(id, height, width, turn, foods) {
+  this.id = id;
+  this.height = height;
+  this.width = width;
+  this.turn = turn;
+
+  this.food = [];
+  for(var i = 0; i < Object.keys(foods.data).length; i++){
+    food.push(foods.data[i]);
+  }
+}
+
+function printStats(board, mySnake, enemies) {
+  console.log(board);
+  console.log();
+  console.log(mySnake);
+  console.log();
+  for(var i = 0; i < enemies.length; i++) {
+    console.log(enemies[i]);
+    console.log();
+  }
+}
+
+/*function printStats(input) {
+
+  //will use this to pull game stats
 
   var yoSnakeBod = Object.keys(input.you.body.data);
   var allSnakes = Object.keys(input.snakes.data);
   var allFood = Object.keys(input.food.data);
 
-  console.log("My Snake:");
-  console.log("name: " + input.you.name);
-  console.log("length: " + input.you.length);
-  console.log("snake id: " + input.you.id);
-  console.log("health: " + input.you.health);
-  for(var i = 0; i < yoSnakeBod.length; i++){
-    console.log("Body Part #" + (i+1) + ": " + input.you.body.data[i].x + " " + input.you.body.data[i].y);
-  }
-  console.log();
+  //console.log("My Snake:");
+  //console.log("name: " + input.you.name);
+  //console.log("length: " + input.you.length);
+  //console.log("snake id: " + input.you.id);
+  //console.log("health: " + input.you.health);
+  //for(var i = 0; i < yoSnakeBod.length; i++){
+  //  console.log("Body Part #" + (i+1) + ": " + input.you.body.data[i].x + " " + input.you.body.data[i].y);
+  //}
+  //console.log();
 
-  console.log("Board Stats:");
-  console.log("Game id: " + input.id);
-  console.log("width: " + input.width);
-  console.log("height: " + input.height);
-  console.log("turn: " + input.turn);
-  console.log();
+  //console.log("Board Stats:");
+  //console.log("Game id: " + input.id);
+  //console.log("width: " + input.width);
+  //console.log("height: " + input.height);
+  //console.log("turn: " + input.turn);
+  //console.log();
 
   console.log("Snake List:");
 
@@ -74,12 +119,12 @@ function printStats(input) {
     console.log();
   }
 
-  console.log();
+  //console.log();
 
-  console.log("Food Locations:");
-  for(var p = 0; p < allFood.length; p++) {
-    console.log("Food item #" + p + ": " + input.food.data[p].x + " " + input.food.data[p].y);
-  }
-}
+  //console.log("Food Locations:");
+  //for(var p = 0; p < allFood.length; p++) {
+  //  console.log("Food item #" + (p+1) + ": " + input.food.data[p].x + " " + input.food.data[p].y);
+  //}
+}*/
 
 module.exports = router
