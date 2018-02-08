@@ -22,7 +22,7 @@ router.post('/start', function (req, res) {
 router.post('/move', function (req, res) {
 
   var input = req.body;
-  var board = new GameBoard(input.id, input.height, input.width, input.turn. input.food);
+  var board = new GameBoard(input.id, input.height, input.width, input.turn);
   console.log("success making board");
   console.log(board);
   var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
@@ -63,16 +63,16 @@ function Snake(name, length, id, health, bodys) {
 }
 
 //builds the gamebaord object
-function GameBoard(id, height, width, turn, foods) {
+function GameBoard(id, height, width, turn) {
   this.id = id;
   this.height = height;
   this.width = width;
   this.turn = turn;
 
-  this.food = [];
+  /*this.food = [];
   for(var i = 0; i < Object.keys(foods.data).length; i++){
     this.food.push(foods.data[i]);
-  }
+  }*/
 }
 
 /*function printStats(input) {
