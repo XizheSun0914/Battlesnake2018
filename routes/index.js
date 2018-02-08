@@ -23,7 +23,7 @@ router.post('/move', function (req, res) {
 
   var input = req.body;
 
-  var board = new GameBoard(input.id, input.height, input.width, input.turn, input.food);
+  var board = new GameStatus(input.id, input.height, input.width, input.turn, input.food);
   var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
   var enemies = makeEnemies(mySnake, input);
 
@@ -73,8 +73,8 @@ function makeEnemies(mySnake, input) {
   return enemies;
 }
 
-//builds the gameboard object
-function GameBoard(id, height, width, turn, foods) {
+//builds the GameStatus object
+function GameStatus(id, height, width, turn, foods) {
   this.id = id;
   this.height = height;
   this.width = width;
