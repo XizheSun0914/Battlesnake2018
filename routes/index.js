@@ -39,8 +39,8 @@ router.post('/move', function (req, res) {
 function printStats(input) {
 
   var yoSnakeBod = Object.keys(input.you.body.data);
-  var allSnakes = Object.keys(input.snakes);
-  var allFood = Object.keys(input.food);
+  var allSnakes = Object.keys(input.snakes.data);
+  var allFood = Object.keys(input.food.data);
 
   console.log("My Snake:");
   console.log("name: " + input.you.name);
@@ -62,14 +62,14 @@ function printStats(input) {
   console.log("Snake List:");
 
   for(var k = 0; k < allSnakes.length; k++){
-    console.log("snake #" + k);
-    console.log("health: " + input.snakes[k].health);
-    console.log("id: " + input.snakes[k].id);
-    console.log("length: " + input.snakes[k].length);
-    console.log("name: " + input.snakes[k].name);
-    var thisSnakeBod = Object.keys(input.snakes.body.data);
+    console.log("snake #" + (k+1));
+    console.log("health: " + input.snakes.data[k].health);
+    console.log("id: " + input.snakes.data[k].id);
+    console.log("length: " + input.snakes.data[k].length);
+    console.log("name: " + input.snakes.data[k].name);
+    var thisSnakeBod = Object.keys(input.snakes.data[k].body.data);
     for(var j = 0; j < thisSnakeBod.length; j++){
-      console.log("Body Part #" + (j+1) + ": " + input.snakes[k].body.data.x + " " + input.snakes[j].body.data.y);
+      console.log("Body Part #" + (j+1) + ": " + input.snakes.data[k].body.data[j].x + " " + input.snakes.data[k].body.data[j].y);
     }
     console.log();
   }
@@ -78,7 +78,7 @@ function printStats(input) {
 
   console.log("Food Locations:");
   for(var p = 0; p < allFood.length; p++) {
-    console.log("Food item #" + p + ": " + input.food[p].data.x + " " + input.food[p].body.data.y);
+    console.log("Food item #" + p + ": " + input.food.data[p].x + " " + input.food.data[p].y);
   }
 }
 
