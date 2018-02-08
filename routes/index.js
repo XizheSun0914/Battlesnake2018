@@ -23,6 +23,10 @@ router.post('/start', function (req, res) {
 router.post('/move', function (req, res) {
   // NOTE: Do something here to generate your move
 
+  var input = req.body;
+
+  console.log(input);
+
   // Response data
   var data = {
     move: 'right', // one of: ['up','down','left','right']

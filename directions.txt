@@ -22,6 +22,10 @@ run the server:
 $ docker run -it --rm -p 3000:3000 sendwithus/battlesnake-server
 
 2) Go to localhost:3000
+   
+-> supposed to replace localhost with your inter ip using the value from 'inet' when you prompt
+-> $ ifconfig
+BUT USE LOCALHOST (only way that seems to work)
 
 3) enter url of your snake:
 
@@ -32,9 +36,5 @@ https://spoder-snek.herokuapp.com
 heres some example snakes to battle against
 (all of them go straight to their doom)
 
-http://battlesnake-dylan.herokuapp.com
-http://battlesnake-snaken.herokuapp.com
-http://battlesnake-will.herokuapp.com
-http://battlesnake-rando.herokuapp.com
-
+https://enemy-snek.herokuapp.com
 
