@@ -33,17 +33,19 @@ router.post('/move', function (req, res) {
   var enemies = new Array();
 
   for(var p = 0; p < Object.keys(input.snakes.data).length; p++) {
-    if((input.snakes.data[p].id).equals(mySnake.id)) {
+    console.log("snake being made...");
+    var snek = new Snake(input.snakes.data[p].name, input.snakes.data[p].length, input.snakes.data[p].id, input.snakes.data[p].health, input.snakes.data[p].body);
+    console.log("made snake!...");
+    console.log(snek);
+    if((snek.id).equals(mySnake.id)) {
       console.log("that's my snake!");
       continue;
     } else {
-      console.log("snake being made...");
-      var snek = new Snake(input.snakes.data[p].name, input.snakes.data[p].length, input.snakes.data[p].id, input.snakes.data[p].health, input.snakes.data[p].body);
-      console.log("made snake!...");
-      console.log(snek);
+      console.log("that's not my snake!");
       enemies.push(snek);
       console.log("successfully added snake!");
     }
+
   }
 
   console.log("success making enemies");
