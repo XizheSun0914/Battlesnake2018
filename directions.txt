@@ -24,7 +24,8 @@ $ docker run -it --rm -p 3000:3000 sendwithus/battlesnake-server
 2) Go to localhost:3000
 
 3) enter url of your snake:
-	https://spoder-snek.herokuapp.com
+
+https://spoder-snek.herokuapp.com
 
 --------------------------
 
