@@ -62,7 +62,7 @@ function printStats(input) {
     console.log("id: " + input.snakes[k].id);
     console.log("length: " + input.snakes[k].length);
     console.log("name: " + input.snakes[k].name);
-    for(var j = 0; j < input.you.body.length; j++){
+    for(var j = 0; j < input.snakes.body.length; j++){
       console.log("limb #" + j + ": " + input.snakes[j].body[j].x + " " + input.snakes[j].body[j].y);
     }
     console.log();
