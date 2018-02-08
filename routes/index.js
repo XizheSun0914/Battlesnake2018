@@ -25,9 +25,11 @@ router.post('/move', function (req, res) {
   var board = new GameBoard(input.id, input.height, input.width, input.turn);
   console.log("success making board");
   console.log(board);
+  console.log();
   var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
-  console.log("success making mySnake")
-  console.log(mySnake)
+  console.log("success making mySnake");
+  console.log(mySnake);
+  console.log();
   var enemies = [];
 
   for(var i = 0; i < Object.keys(input.snakes.data).length; i++) {
@@ -62,7 +64,7 @@ function Snake(name, length, id, health, bodys) {
   }
 }
 
-//builds the gamebaord object
+//builds the gameboard object
 function GameBoard(id, height, width, turn) {
   this.id = id;
   this.height = height;
