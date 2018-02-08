@@ -37,13 +37,18 @@ router.post('/move', function (req, res) {
 })
 
 function printStats(input) {
+
+  var yoSnakeBod = Object.keys(input.you.body);
+  var allSnakes = Object.keys(input.snakes);
+  var food = Object.keys(input.food);
+
   console.log("My Snake:");
   console.log("name: " + input.you.name);
   console.log("length: " + input.you.length);
   console.log("snake id: " + input.you.id);
   console.log("health: " + input.you.health);
-  for(var i = 0; i < input.you.body.length; i++){
-    console.log("limb #" + i + ": " + input.you.body[i].x + " " + input.you.body[i].y);
+  for(var i = 0; i < yoSnakeBod.length; i++){
+    console.log("limb #" + i + ": " + yoSnakeBod[i].x + " " + yoSnakeBod[i].y);
   }
   console.log();
 
@@ -56,14 +61,15 @@ function printStats(input) {
 
   console.log("Snake List:");
 
-  for(var k = 0; k < Object.keys(input.snakes).length; k++){
+  for(var k = 0; k < allSnakes.length; k++){
     console.log("snake #" + k);
-    console.log("health: " + input.snakes[k].health);
-    console.log("id: " + input.snakes[k].id);
-    console.log("length: " + input.snakes[k].length);
-    console.log("name: " + input.snakes[k].name);
-    for(var j = 0; j < input.snakes.body.length; j++){
-      console.log("limb #" + j + ": " + input.snakes[j].body[j].x + " " + input.snakes[j].body[j].y);
+    console.log("health: " + allSnakes[k].health);
+    console.log("id: " + allSnakes[k].id);
+    console.log("length: " + allSnakes[k].length);
+    console.log("name: " + allSnakes[k].name);
+    var thisSnakeBod = Object.keys(allSnakes[k].body);
+    for(var j = 0; j < thisSnakeBod.length; j++){
+      console.log("limb #" + j + ": " + thisSnakeBod[j].x + " " + thisSnakeBod[j].y);
     }
     console.log();
   }
@@ -71,8 +77,8 @@ function printStats(input) {
   console.log();
 
   console.log("Food Locations:");
-  for(var p = 0; p < input.food.length; p++) {
-    console.log("Food item #" + p + ": " + input.food[p].x + " " + input.food[p].y);
+  for(var p = 0; p < food.length; p++) {
+    console.log("Food item #" + p + ": " + food[p].x + " " + food[p].y);
   }
 }
 
