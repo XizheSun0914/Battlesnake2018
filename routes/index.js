@@ -71,7 +71,7 @@ function printStats(input) {
   console.log();
 
   console.log("Food Locations:");
-  for(var p = 0; p < input.food.length; p++) {
+  for(var p = 0; p < Object.keys(input.food).length; p++) {
     console.log("Food item #" + p + ": " + input.food[p].x + " " + input.food[p].y);
   }
 }
