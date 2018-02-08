@@ -23,24 +23,27 @@ router.post('/move', function (req, res) {
 
   var input = req.body;
   var board = new GameBoard(input.id, input.height, input.width, input.turn, input.food);
-  console.log("success making board");
+  console.log("Board Properties");
   console.log(board);
   console.log();
   var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
-  console.log("success making mySnake");
+  console.log("My snake: ");
   console.log(mySnake);
   console.log();
   var enemies = [];
 
-  for(var i = 0; i < Object.keys(input.snakes.data).length; i++) {
-    var snek = new Snake(input.snakes.data[i].name, input.snakes.data[i].length, input.snakes.data[i].id, input.snakes.data[i].health, input.snakes.data[i].body);
+  for(var p = 0; p < Object.keys(input.snakes.data).length; p++) {
+    console.log("snake being made...");
+    var snek = new Snake(input.snakes.data[p].name, input.snakes.data[p].length, input.snakes.data[p].id, input.snakes.data[p].health, input.snakes.data[p].body);
     if(!(snek.id).equals(mySnake.id)) {
       enemies.push(snek);
+      console.log("successfully made snake!");
     }
   }
 
   console.log("success making enemies");
   console.log(enemies);
+  console.log();
 
   // Response data
   var data = {
