@@ -1,4 +1,4 @@
-import makeEnemies from from "init.js"
+import makeEnemies from "init.js"
 var GameBoard = require('./init.js').GameBoard
 var Snake = require('./init.js').Snake
 
