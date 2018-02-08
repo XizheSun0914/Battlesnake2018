@@ -50,7 +50,7 @@ function printStats(input) {
   console.log("snake id: " + input.you.id);
   console.log("health: " + input.you.health);
   for(var i = 0; i < yoSnakeBod.length; i++){
-    console.log("limb #" + (i+1) + ": " + input.you.body[i].data.x + " " + input.you.body[i].data.y);
+    console.log("limb #" + (i+1) + ": " + input.you.body.data[i].x + " " + input.you.body.data[i].y);
   }
   console.log();
 
