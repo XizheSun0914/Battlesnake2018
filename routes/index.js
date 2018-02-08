@@ -38,6 +38,8 @@ router.post('/move', function (req, res) {
 
 function printStats(input) {
 
+  console.log(input.you.body.data);
+
   var yoSnakeBod = Object.keys(input.you.body);
   var allSnakes = Object.keys(input.snakes);
   var food = Object.keys(input.food);
