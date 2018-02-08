@@ -25,13 +25,7 @@ router.post('/move', function (req, res) {
 
   var input = req.body;
 
-  console.log(input.you);
-  console.log(input.width);
-  console.log(input.height);
-  console.log(input.turn);
-  console.log(input.snakes);
-  console.log(input.world);
-  console.log(input.food);
+  printStats(input);
 
   // Response data
   var data = {
@@ -42,12 +36,44 @@ router.post('/move', function (req, res) {
   return res.json(data)
 })
 
-/*function Board(height, width) {
-  this.height = height;
-  this.width = width;
-  this.food = food;
-  this.snakes = snakes;
-  this.turn = turn;
-}*/
+function printStats(input) {
+  console.log("My Snake:");
+  console.log("name: " + input.you.name);
+  console.log("length: " + input.you.length);
+  console.log("snake id: " + input.you.id);
+  console.log("health: " + input.you.health);
+  for(var i = 0; i < input.you.body.length; i++){
+    console.log("limb #" + i + ": " + input.you.body[i].x + " " + input.you.body[i].y);
+  }
+  console.log();
+
+  console.log("Board Stats:");
+  console.log("Game id: " + input.id);
+  console.log("width: " + input.width);
+  console.log("height: " + input.height);
+  console.log("turn: " + input.turn);
+  console.log();
+
+  console.log("Snake List:");
+
+  for(var k = 0; k < input.snakes.length; k++){
+    console.log("snake #" + k);
+    console.log("health: " + input.snakes[k].health);
+    console.log("id: " + input.snakes[k].id);
+    console.log("length: " + input.snakes[k].length);
+    console.log("name: " + input.snakes[k].name);
+    for(var j = 0; j < input.you.body.length; j++){
+      console.log("limb #" + j + ": " + input.snakes[j].body[j].x + " " + input.snakes[j].body[j].y);
+    }
+    console.log();
+  }
+
+  console.log();
+
+  console.log("Food Locations:");
+  for(var p = 0; p < input.food.length; p++) {
+    console.log("Food item #" + p + ": " + input.food[p].x + " " + input.food[p].y);
+  }
+}
 
 module.exports = router
