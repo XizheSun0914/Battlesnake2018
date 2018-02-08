@@ -25,7 +25,13 @@ router.post('/move', function (req, res) {
 
   var input = req.body;
 
-  console.log(input);
+  console.log(input.you);
+  console.log(input.width);
+  console.log(input.height);
+  console.log(input.turn);
+  console.log(input.snakes);
+  console.log(input.world);
+  console.log(input.food);
 
   // Response data
   var data = {
@@ -35,5 +41,13 @@ router.post('/move', function (req, res) {
 
   return res.json(data)
 })
+
+/*function Board(height, width) {
+  this.height = height;
+  this.width = width;
+  this.food = food;
+  this.snakes = snakes;
+  this.turn = turn;
+}*/
 
 module.exports = router
