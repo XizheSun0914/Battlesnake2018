@@ -49,6 +49,7 @@ router.post('/move', function (req, res) {
   return res.json(data)
 })
 
+//builds a snake object
 function Snake(name, length, id, health, bodys) {
   this.name = name;
   this.length = length;
@@ -57,10 +58,11 @@ function Snake(name, length, id, health, bodys) {
 
   this.body = [];
   for(var i = 0; i < Object.keys(bodys.data).length; i++) {
-    body.push(bodys.data[i]);
+    this.body.push(bodys.data[i]);
   }
 }
 
+//builds the gamebaord object
 function GameBoard(id, height, width, turn, foods) {
   this.id = id;
   this.height = height;
@@ -69,7 +71,7 @@ function GameBoard(id, height, width, turn, foods) {
 
   this.food = [];
   for(var i = 0; i < Object.keys(foods.data).length; i++){
-    food.push(foods.data[i]);
+    this.food.push(foods.data[i]);
   }
 }
 
