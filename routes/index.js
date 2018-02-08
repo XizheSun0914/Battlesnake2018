@@ -35,9 +35,10 @@ router.post('/move', function (req, res) {
   for(var p = 0; p < Object.keys(input.snakes.data).length; p++) {
     console.log("snake being made...");
     var snek = new Snake(input.snakes.data[p].name, input.snakes.data[p].length, input.snakes.data[p].id, input.snakes.data[p].health, input.snakes.data[p].body);
+    console.log("made snake!...");
     if(!(snek.id).equals(mySnake.id)) {
       enemies.push(snek);
-      console.log("successfully made snake!");
+      console.log("successfully added snake!");
     }
   }
 
