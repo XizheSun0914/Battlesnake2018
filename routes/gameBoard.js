@@ -6,12 +6,12 @@ module.exports = exports = function (board, mySnake, enemies) {
 
 	// Empty space = 0 on the board
 	// Walls = 5
-	for(var i = 0; i < (board.height+1); i++) {
+	for(var i = -1; i < (board.width+1); i++) {
 		arr.push([]);
-		arr[i].push( new Array(board.width+1));
+		arr[i].push( new Array(board.height+2));
 
-		for(var j = 0; j < (board.width+1); j++){
-			if(i == board.width || i == 0 || j == 0 || j == board.height){
+		for(var j = -1; j < (board.height+1); j++){
+			if(i == board.width || i == -1 || j == -1 || j == board.height){
 				arr[i][j] = 5;
 			} else {
 				arr[i][j] = 0;
