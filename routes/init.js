@@ -9,7 +9,7 @@ var Snake = function (names, lengths, ids, healths, bodys) {
 
   var body = [];
   for(var i = 0; i < Object.keys(bodys.data).length; i++) {
-    this.body.push(bodys.data[i]);
+    body.push(bodys.data[i]);
   }
 
   Object.defineProperties(this, {
@@ -31,7 +31,7 @@ var GameStatus = function (ids, heights, widths, turns, foods) {
 
   var food = [];
   for(var j = 0; j < Object.keys(foods.data).length; j++) {
-    this.food.push(foods.data[j]);
+    food.push(foods.data[j]);
   }
 
   Object.defineProperties(this, {
