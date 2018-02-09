@@ -13,7 +13,7 @@ var Snake = function (names, lengths, ids, healths, bodys) {
   }
 
   Object.defineProperties(this, {
-    "name": {"get": function () { return names; }},
+    "name": {"get": function () { return name; }},
     "length": {"get": function () { return length; }},
     "id": {"get": function () { return id; }},
     "health": {"get": function () { return health; }},
