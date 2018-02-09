@@ -1,5 +1,6 @@
 var express = require('express')
 var router  = express.Router()
+var gameBoard = require('./gameBoard.js');
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
@@ -23,11 +24,15 @@ router.post('/move', function (req, res) {
 
   var input = req.body;
 
-  var board = new GameStatus(input.id, input.height, input.width, input.turn, input.food);
+  var stats = new GameStatus(input.id, input.height, input.width, input.turn, input.food);
   var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
   var enemies = makeEnemies(mySnake, input);
 
+  var board = gameBoard(stats, mySnake, enemies);
+
   console.log(board);
+  console.log();
+  console.log(stats);
   console.log();
   console.log(mySnake);
   console.log();
