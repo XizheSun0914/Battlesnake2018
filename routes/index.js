@@ -39,7 +39,7 @@ router.post('/move', function (req, res) {
   // Response data
   var data = {
     move: 'right', // one of: ['up','down','left','right']
-    taunt: 'moar snep bek plz', // optional, but encouraged!
+    taunt: 'moar sweg plz', // optional, but encouraged!
   }
 
   return res.json(data)

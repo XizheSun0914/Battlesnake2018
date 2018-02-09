@@ -1,18 +1,29 @@
-//builds a snake object
-var Snake = function (name, length, id, health, bodys) {
-  this.name = name;
-  this.length = length;
-  this.id = id;
-  this.health = health;
 
-  this.body = [];
+//builds a snake object
+var Snake = function (names, lengths, ids, healths, bodys) {
+
+  var name = names;
+  var length = lengths;
+  var id = ids;
+  var health = healths;
+
+  var body = [];
   for(var i = 0; i < Object.keys(bodys.data).length; i++) {
     this.body.push(bodys.data[i]);
   }
+
+  Object.defineProperties(this, {
+    "name": {"get": function () { return names; }},
+    "length": {"get": function () { return length; }},
+    "id": {"get": function () { return id; }},
+    "health": {"get": function () { return health; }},
+    "body": {"get": function () { return body; }}
+  });
 }
 
 //builds the GameStatus object
 var GameStatus = function (ids, heights, widths, turns, foods) {
+
   var id = ids;
   var height = heights;
   var width = widths;
@@ -24,12 +35,13 @@ var GameStatus = function (ids, heights, widths, turns, foods) {
   }
 
   Object.defineProperties(this, {
-    "you": {"get": function () { return you; }},
-    "turn": {"get": function () { return turn; }},
-    "width": {"get": function () { return width; }},
+    "id": {"get": function () { return id; }},
     "height": {"get": function () { return height; }},
-    "food": {"get": function () { return food; }},
-    "dead_snakes": {"get": function () { return dead_snakes; }},
-    "snakes": {"get": function () { return snakes; }}
+    "width": {"get": function () { return width; }},
+    "turn": {"get": function () { return turn; }},
+    "food": {"get": function () { return food; }}
   });
 }
+
+exports.GameStatus = GameStatus
+exports.Snake = Snake
