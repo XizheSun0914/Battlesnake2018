@@ -1,7 +1,7 @@
-/*
+
 //Creates an array for the gameBoard to specify items on it
 
-var GameBoard = function (board, mySnake, enemies) {
+module.exports = exports = function (board, mySnake, enemies) {
 	var arr = [];
 
 	// Empty space = 0 on the board
@@ -44,4 +44,4 @@ var GameBoard = function (board, mySnake, enemies) {
 
 
 	return arr;
-}*/
+}
