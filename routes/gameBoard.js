@@ -1,5 +1,6 @@
 
 //Creates an array for the gameBoard to specify items on it
+//MUST FIX EDGE CASES FOR WALLS!!!
 
 module.exports = exports = function (board, mySnake, enemies) {
 	var arr = [];
