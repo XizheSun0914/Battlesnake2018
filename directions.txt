@@ -42,3 +42,8 @@ heres some example snakes to battle against
 
 https://enemy-snek.herokuapp.com
 
+--------------------------
+
+Heads up, push to origin master (GitHub) AND heroku master (heroku)
+->this just updates what my GitHub looks like while heroku lets us run the app
+

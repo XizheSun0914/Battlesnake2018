@@ -40,7 +40,7 @@ router.post('/move', function (req, res) {
 
   // Response data
   var data = {
-    move: 'right', // one of: ['up','down','left','right']
+    move: 'left', // one of: ['up','down','left','right']
     taunt: 'moar snep bek plz', // optional, but encouraged!
   }
 
