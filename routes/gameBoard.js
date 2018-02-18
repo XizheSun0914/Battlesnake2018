@@ -13,7 +13,7 @@ module.exports = exports = function (board, mySnake, enemies) {
 
 		for(var j = 0; j < (board.height+2); j++){
 			if(i == board.width+1 || i == 0 || j == 0 || j == board.height+1){
-				arr[i][j] = 5;
+				arr[i][j] = 6;
 			} else {
 				arr[i][j] = 0;
 			}
@@ -38,9 +38,13 @@ module.exports = exports = function (board, mySnake, enemies) {
 		}
 	}
 
-	// friendly body parts = 4;
+	// friendly body parts = 4, head = 5
 	for(var i = 0; i < mySnake.body.length; i++) {
-		arr[mySnake.body[i].y+1][mySnake.body[i].x+1] = 4;
+		if(j==0) {
+			arr[mySnake.body[i].y+1][mySnake.body[i].x+1] = 5;
+		} else {
+			arr[mySnake.body[i].y+1][mySnake.body[i].x+1] = 4;
+		}
 	}
 
 
