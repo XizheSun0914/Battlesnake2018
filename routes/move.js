@@ -10,8 +10,10 @@ Key:
 module.exports = exports = function (currentBoard) {
 	var decision = 'up';
 	var board = findValues(currentBoard);
+	console.log("yeet-1");
 
 	if(board.myH.x == 1 || board.myH.x == board.width-1 || board.myH.y == 1 || board.myH.y == baord.height-1){
+		console.log("yeet");
 		decision = checkWalls(board);
 	}
 
@@ -59,11 +61,13 @@ var checkWalls = function (board) {
 }
 
 var contains = function (list, x, y) {
+	console.log("yeet2")
 	for(var i = 0; i < list.length; i++) {
 		if(list[i].x == x && list[i].y == y) {		//added this so might break
 			return true;
 		}
 	}
+	console.log("yeet3");
 	return false;
 } 
 
@@ -108,7 +112,7 @@ var findValues = function (currentBoard) {
 		myB: myBody, 
 		myH: myHead, 
 		walls: wall,
-		height: height,			//added these so might break
+		height: height,
 		width: width
 	};
 }
