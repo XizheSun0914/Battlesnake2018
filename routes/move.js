@@ -48,7 +48,7 @@ var checkWalls = function (board) {
 		}
 	}
 	//bottom right corner
-	if(board.myH.x == 1 && board.myH.y == board.height) {
+	if(board.myH.x == board.width && board.myH.y == board.height) {
 		console.log("bottom right!");
 		if(contains(board.myB, 1, board.height-1)) {
 			return 'right';
@@ -125,7 +125,6 @@ var checkWalls = function (board) {
 		return 'left';	//FIXXX
 	}
 	//bottom
-	console.log(board.myH.y + " " + board.height);
 	if(board.myH.y == board.height) {
 		console.log("at bottom!");
 		// v
