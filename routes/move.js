@@ -125,6 +125,7 @@ var checkWalls = function (board) {
 		return 'left';	//FIXXX
 	}
 	//bottom
+	console.log(board.myH.y + " " + board.height);
 	if(board.myH.y == board.height) {
 		console.log("at bottom!");
 		// v
