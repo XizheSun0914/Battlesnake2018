@@ -27,16 +27,10 @@ router.post('/move', function (req, res) {
   var stats = new GameStatus(input.id, input.height, input.width, input.turn, input.food);
   var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
   var enemies = makeEnemies(mySnake, input);
-
   var board = gameBoard(stats, mySnake, enemies);
 
-  console.log(board);
-  console.log();
-  console.log(stats);
-  console.log();
-  console.log(mySnake);
-  console.log();
-  console.log(enemies);
+  printStats(board, stats, mySnake, enemies);
+
 
   // Response data
   var data = {
@@ -46,6 +40,23 @@ router.post('/move', function (req, res) {
 
   return res.json(data)
 })
+
+
+
+
+
+
+//-------------------------- Functions to build our environment ---------------------------//
+
+var printStats = function (board, stats, mySnake, enemies) {
+  console.log(board);
+  console.log();
+  console.log(stats);
+  console.log();
+  console.log(mySnake);
+  console.log();
+  console.log(enemies);
+}
 
 var makeEnemies = function (mySnake, input) {
   var enemies = new Array();
