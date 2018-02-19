@@ -107,7 +107,7 @@ var findValues = function (currentBoard) {
 		enemyH: enHead, 
 		myB: myBody, 
 		myH: myHead, 
-		walls: wall
+		walls: wall,
 		height: height,			//added these so might break
 		width: width
 	};
