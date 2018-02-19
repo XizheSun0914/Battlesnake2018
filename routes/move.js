@@ -5,34 +5,55 @@ Key:
 1 = food		4 = my body
 2 = enemy body	5 = my head
 6 = wall
-USE THE ARRAY 1 BASED NOT 0 BASED
-board[y][x]
 */
 
 module.exports = exports = function (currentBoard) {
 
-	var head = findHead(currentBoard);
+	var board = findValues(currentBoard);
 
-	console.log(head);
+	console.log(board);
 
 	//return 'left', 'right', 'up', 'down'
 	return 'down';
 }
 
 /*var checkWall = function (currentBoard, head) {
-	
+	if(head[0] == 1)
 }*/
 
-var findHead = function (currentBoard) {
-	var head = [0,0];
+var findValues = function (currentBoard) {
+
+	var empty = [];
+	var food = [];
+	var enBody = [];
+	var enHead = [];
+	var myBody = [];
+	var wall = [];
+	var myHead;
 
 	for(var i = 0; i < currentBoard.length; i++) {
 		for(var j = 0; j < currentBoard[i].length; j++) {
-			if(currentBoard[i][j] == 5){
-				head[0] = i;
-				head[1] = j;
-				return head;
+			if(currentBoard[i][j] == 5) {
+				myHead = new Point(j,i);
+			} else if(currentBoard[i][j] == 4) {
+				myBody.push(new Point(j,i));
+			} else if(currentBoard[i][j] == 3) {
+				enHead.push(new Point(j,i));
+			} else if(currentBoard[i][j] == 2) {
+				enBody.push(new Point(j,i));
+			} else if(currentBoard[i][j] == 1) {
+				food.push(new Point(j,i));
+			} else if(currentBoard[i][j] == 0) {
+				empty.push(new Point(j,i));
+			} else {
+				wall.push(new Point(j,i));
 			}
 		}
 	}
+	return [empty, food, enBody, enHead, myBody, myHead, wall];
+}
+
+function Point(x,y) {
+	this.x = x;
+	this.y = y;
 }
