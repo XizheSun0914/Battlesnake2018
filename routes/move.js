@@ -21,8 +21,6 @@ module.exports = exports = function (currentBoard) {
 	return decision;
 }
 
-//------------UNDER CONSTRUCTION--------------//
-
 var checkWalls = function (board) {
 	//top left corner
 	if(board.myH.x == 1 && board.myH.y == 1){
@@ -56,6 +54,94 @@ var checkWalls = function (board) {
 			return "up";
 		}
 	}
+	//------------------construction---------------
+
+	//left side
+	if(board.myH.x == 1) {
+		// |<--
+		if(contains(board.myB, 2, board.myH.y)) {
+			if(contains(board.myB, 1, board.myH.y+1)){
+				return 'up';
+			} else {
+				return 'down';
+			}
+		}
+		// |^
+		if(contains(board.myB, 1, board.myH.y+1)) {
+			return 'up';
+		}
+		// |v
+		if(contains(board.myB, 1, board.myH.y-1)) {
+			return 'down';
+		}
+		//return best option if you can go left or right
+		return 'up'; //FIXXXX
+	}
+	// right side
+	if(board.myH.x == board.width-1) {
+		// -->|
+		if(contains(board.myB, board.width-2, board.myH.y)) {
+			if(contains(board.myB, board.width-1, board.myH.y+1)){
+				return 'up';
+			} else {
+				return 'down';
+			}
+		}
+		// ^|
+		if(contains(board.myB, board.width-1, board.myH.y+1)) {
+			return 'up';
+		}
+		// v|
+		if(contains(board.myB, board.width-1, board.myH.y-1)) {
+			return 'down';
+		}
+		//return best option if you can go up or down
+		return 'up'; //FIXXXX
+	}
+	// top
+	if(board.myH.y == 1) {
+		// ^
+		if(contains(board.myB, board.myH.x, 2)) {
+			if(contains(board.myB, board.myH.x-1, 1)) {
+				return 'right';
+			} else {
+				return 'left';
+			}
+		}
+		//-->
+		if(contains(board.myB, board.myH.x-1, 1)) {
+			return 'right';
+		}
+		// <--
+		if(contains(board.myB, board.myH.x+1, 1)) {
+			return 'left';
+		}
+		//return best option if you can go left or right
+		return 'left';	//FIXXX
+	}
+	//bottom
+	if(board.myH.y == board.height-1) {
+		// v
+		if(contains(board.myB, board.myH.x, board.height-2)) {
+			if(contains(board.myB, board.myH.x-1, board.height-1)) {
+				return 'right';
+			} else {
+				return 'left';
+			}
+		}
+		//-->
+		if(contains(board.myB, board.myH.x-1, board.height-1)) {
+			return 'right';
+		}
+		// <--
+		if(contains(board.myB, board.myH.x+1, board.height-1)) {
+			return 'left';
+		}
+		//return best option between left or right otherwise
+		return 'left'; //FIXXXX
+	}
+
+	//--------------------------------------------
 
 	return 'down';
 }
@@ -63,15 +149,13 @@ var checkWalls = function (board) {
 var contains = function (list, x, y) {
 	console.log("yeet2")
 	for(var i = 0; i < list.length; i++) {
-		if(list[i].x == x && list[i].y == y) {		//added this so might break
+		if(list[i].x == x && list[i].y == y) {
 			return true;
 		}
 	}
 	console.log("yeet3");
 	return false;
 } 
-
-//-------------------------------------------//
 
 var findValues = function (currentBoard) {
 
