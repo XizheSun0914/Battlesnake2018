@@ -25,8 +25,8 @@ module.exports = exports = function (board, mySnake, enemies) {
 	}
 
 	// Enemy body parts 
-	for(var i = enemies.length-1; i >= 0; i--){
-		for(var j = 0; j < enemies[i].body.length; j++) {
+	for(var i = 0; i < enemies.length; i++){
+		for(var j = enemies[i].body.length-1; j >= 0; j--) {
 			if(j==0) {
 				// head = 3
 				arr[enemies[i].body[j].y+1][enemies[i].body[j].x+1] = 3;
