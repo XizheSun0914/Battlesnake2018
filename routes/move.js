@@ -22,15 +22,16 @@ module.exports = exports = function (currentBoard) {
 var checkWalls = function (board) {
 	//top left corner
 	if(board.myH.x == 1 && board.myH.y == 1){
+		console.log("top left!");
 		if(contains(board.myB, 2, 1)) {
 			return 'down';							//added this so might break
 		} else {
 			return 'right';
 		}
 	}
-	console.log(board.height + " " + board.myH.y);
 	//bottom left corner
 	if(board.myH.x == 1 && board.myH.y == board.height) {
+		console.log("bottom left!");
 		if(contains(board.myB, 1, board.height-1)) {
 			return 'right';
 		} else {
@@ -39,6 +40,7 @@ var checkWalls = function (board) {
 	}
 	//top right corner
 	if(board.myH.x == board.width && board.myH.y == 1) {
+		console.log("top right!");
 		if(contains(board.myB, board.width-1, 1)) {
 			return 'down';
 		} else {
@@ -47,6 +49,7 @@ var checkWalls = function (board) {
 	}
 	//bottom right corner
 	if(board.myH.x == 1 && board.myH.y == board.height) {
+		console.log("bottom right!");
 		if(contains(board.myB, 1, board.height-1)) {
 			return 'right';
 		} else {
@@ -57,6 +60,7 @@ var checkWalls = function (board) {
 
 	//left side
 	if(board.myH.x == 1) {
+		console.log("left side!");
 		// |<--
 		if(contains(board.myB, 2, board.myH.y)) {
 			if(contains(board.myB, 1, board.myH.y+1)){
@@ -78,6 +82,7 @@ var checkWalls = function (board) {
 	}
 	// right side
 	if(board.myH.x == board.width) {
+		console.log("right side!");
 		// -->|
 		if(contains(board.myB, board.width-1, board.myH.y)) {
 			if(contains(board.myB, board.width, board.myH.y+1)){
@@ -99,6 +104,7 @@ var checkWalls = function (board) {
 	}
 	// top
 	if(board.myH.y == 1) {
+		console.log("at top!");
 		// ^
 		if(contains(board.myB, board.myH.x, 2)) {
 			if(contains(board.myB, board.myH.x-1, 1)) {
@@ -120,6 +126,7 @@ var checkWalls = function (board) {
 	}
 	//bottom
 	if(board.myH.y == board.height) {
+		console.log("at bottom!");
 		// v
 		if(contains(board.myB, board.myH.x, board.height-1)) {
 			if(contains(board.myB, board.myH.x-1, board.height)) {
@@ -142,7 +149,7 @@ var checkWalls = function (board) {
 
 	//--------------------------------------------
 
-	return 'down';
+	return 'up';
 }
 
 var contains = function (list, x, y) {
