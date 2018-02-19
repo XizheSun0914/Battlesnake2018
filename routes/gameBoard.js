@@ -25,7 +25,7 @@ module.exports = exports = function (board, mySnake, enemies) {
 	}
 
 	// Enemy body parts 
-	for(var i = 0; i < enemies.length; i++){
+	for(var i = enemies.length-1; i >= 0; i--){
 		for(var j = 0; j < enemies[i].body.length; j++) {
 			if(j==0) {
 				// head = 3
@@ -38,7 +38,7 @@ module.exports = exports = function (board, mySnake, enemies) {
 	}
 
 	// friendly body parts = 4, head = 5
-	for(var i = 0; i < mySnake.body.length; i++) {
+	for(var i = mySnake.body.length-1; i >= 0; i--) {
 		if(i==0) {
 			arr[mySnake.body[i].y+1][mySnake.body[i].x+1] = 5;
 		} else {
