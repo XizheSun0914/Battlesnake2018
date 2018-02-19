@@ -1,13 +1,26 @@
 var gameBoard = require('./gameBoard.js');
 /*
 Key:
-0 = empty		3 = enemy head
-1 = food		4 = my body
-2 = enemy body	5 = my head
-6 = wall
+
+board.empty[] = empty coordinates
+board.food[] = food coordinates
+board.enemyH = enemy head coordinates
+board.enemyB = enemy body coordinates
+board.myH = my head coordinates
+board.myB = my body parts
+board.walls = wall coordinates
+board.height = height of gameboard
+board.width = width of gameboard
+
+board.myH.x = x coordinate for my head
+board.myB[2].y = y coordinate for my third body part
+
+can check if a spot contains something via contains(board.enemyB, x, y);
+--> returns true or false
+
 */
 
-module.exports = exports = function (currentBoard) {
+module.exports = exports = function (currentBoard, health) {
 	var decision = 'up';
 	var board = findValues(currentBoard);
 
@@ -24,7 +37,7 @@ var checkWalls = function (board) {
 	if(board.myH.x == 1 && board.myH.y == 1){
 		console.log("top left!");
 		if(contains(board.myB, 2, 1)) {
-			return 'down';							//added this so might break
+			return 'down';
 		} else {
 			return 'right';
 		}
@@ -50,13 +63,12 @@ var checkWalls = function (board) {
 	//bottom right corner
 	if(board.myH.x == board.width && board.myH.y == board.height) {
 		console.log("bottom right!");
-		if(contains(board.myB, 1, board.height-1)) {
-			return 'right';
+		if(contains(board.myB, board.width, board.height-1)) {
+			return 'left';
 		} else {
 			return "up";
 		}
 	}
-	//------------------construction---------------
 
 	//left side
 	if(board.myH.x == 1) {
