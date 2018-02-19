@@ -78,6 +78,8 @@ var findValues = function (currentBoard) {
 	var myBody = [];
 	var wall = [];
 	var myHead;
+	var height = currentBoard.length;
+	var width = currentBoard[0].length;
 
 	for(var i = 0; i < currentBoard.length; i++) {
 		for(var j = 0; j < currentBoard[i].length; j++) {
@@ -106,8 +108,8 @@ var findValues = function (currentBoard) {
 		myB: myBody, 
 		myH: myHead, 
 		walls: wall
-		height: currentBoard.length,			//added these so might break
-		width: currentBoard[0].length
+		height: height,			//added these so might break
+		width: width
 	};
 }
 
