@@ -16,7 +16,7 @@ module.exports = exports = function (currentBoard) {
 	console.log("enemy Body: " + board[2]);
 	console.log("enemy Head: " + board[3]);
 	console.log("my Body: " + board[4]);
-	console.log("my Head: " + board[5].x + " " board[5].y);
+	console.log("my Head: " + board[5].x + " " + board[5].y);
 	console.log("wall: " + board[6]);
 
 	//return 'left', 'right', 'up', 'down'
