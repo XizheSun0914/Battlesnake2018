@@ -11,7 +11,7 @@ module.exports = exports = function (board, mySnake, enemies) {
 		arr[i].push( new Array(board.width+2));
 
 		for(var j = 0; j < (board.width+2); j++){
-			if(i == board.width+1 || i == 0 || j == 0 || j == board.height+1){
+			if(j == board.width+1 || i == 0 || j == 0 || i == board.height+1){
 				arr[i][j] = 6;
 			} else {
 				arr[i][j] = 0;
