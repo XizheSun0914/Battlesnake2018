@@ -26,8 +26,8 @@ module.exports = exports = function (currentBoard) {
 var findHead = function (currentBoard) {
 	var head = [0,0];
 
-	for(int i = 0; i < currentBoard.length; i++) {
-		for(int j = 0; j < currentBoard[i].length; j++) {
+	for(var i = 0; i < currentBoard.length; i++) {
+		for(var j = 0; j < currentBoard[i].length; j++) {
 			if(currentBoard[i][j] == 5){
 				head[0] = i;
 				head[1] = j;
