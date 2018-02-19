@@ -1,6 +1,7 @@
 var express = require('express')
 var router  = express.Router()
 var gameBoard = require('./gameBoard.js');
+var move = require('./move.js');
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
@@ -34,7 +35,7 @@ router.post('/move', function (req, res) {
 
   // Response data
   var data = {
-    move: 'left', // one of: ['up','down','left','right']
+    move: move(board), // one of: ['up','down','left','right']
     taunt: 'moar snep bek plz', // optional, but encouraged!
   }
 
