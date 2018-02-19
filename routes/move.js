@@ -12,7 +12,7 @@ module.exports = exports = function (currentBoard) {
 	var board = findValues(currentBoard);
 	console.log("yeet-1");
 
-	if(board.myH.x == 1 || board.myH.x == board.width-1 || board.myH.y == 1 || board.myH.y == baord.height-1){
+	if(board.myH.x == 1 || board.myH.x == board.width-1 || board.myH.y == 1 || board.myH.y == board.height-1){
 		console.log("yeet");
 		decision = checkWalls(board);
 	}
