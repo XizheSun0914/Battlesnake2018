@@ -11,7 +11,13 @@ module.exports = exports = function (currentBoard) {
 
 	var board = findValues(currentBoard);
 
-	console.log(board);
+	console.log("empty: " + board[0]);
+	console.log("food: " + board[1]);
+	console.log("enemy Body: " + board[2]);
+	console.log("enemy Head: " + board[3]);
+	console.log("my Body: " + board[4]);
+	console.log("my Head: " + board[5]);
+	console.log("wall: " + board[6]);
 
 	//return 'left', 'right', 'up', 'down'
 	return 'down';
