@@ -11,7 +11,7 @@ module.exports = exports = function (currentBoard) {
 	var decision = 'up';
 	var board = findValues(currentBoard);
 
-	if(board.myH.x == 1 || board.myH.x == board.width-1 || board.myH.y == 1 || board.myH.y == board.height-1){
+	if(board.myH.x == 1 || board.myH.x == board.width || board.myH.y == 1 || board.myH.y == board.height){
 		decision = checkWalls(board);
 	}
 
