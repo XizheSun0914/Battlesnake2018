@@ -28,26 +28,26 @@ var checkWalls = function (board) {
 			return 'right';
 		}
 	}
-	console.log(board.height-1 + " " + board.myH.y);
+	console.log(board.height + " " + board.myH.y);
 	//bottom left corner
-	if(board.myH.x == 1 && board.myH.y == board.height-1) {
-		if(contains(board.myB, 1, board.height-2)) {
+	if(board.myH.x == 1 && board.myH.y == board.height) {
+		if(contains(board.myB, 1, board.height-1)) {
 			return 'right';
 		} else {
 			return 'up';
 		}
 	}
 	//top right corner
-	if(board.myH.x == board.width-1 && board.myH.y == 1) {
-		if(contains(board.myB, board.width-2, 1)) {
+	if(board.myH.x == board.width && board.myH.y == 1) {
+		if(contains(board.myB, board.width-1, 1)) {
 			return 'down';
 		} else {
 			return 'left';
 		}
 	}
 	//bottom right corner
-	if(board.myH.x == 1 && board.myH.y == board.height-1) {
-		if(contains(board.myB, 1, board.height-2)) {
+	if(board.myH.x == 1 && board.myH.y == board.height) {
+		if(contains(board.myB, 1, board.height-1)) {
 			return 'right';
 		} else {
 			return "up";
@@ -77,21 +77,21 @@ var checkWalls = function (board) {
 		return 'up'; //FIXXXX
 	}
 	// right side
-	if(board.myH.x == board.width-1) {
+	if(board.myH.x == board.width) {
 		// -->|
-		if(contains(board.myB, board.width-2, board.myH.y)) {
-			if(contains(board.myB, board.width-1, board.myH.y+1)){
+		if(contains(board.myB, board.width-1, board.myH.y)) {
+			if(contains(board.myB, board.width, board.myH.y+1)){
 				return 'up';
 			} else {
 				return 'down';
 			}
 		}
 		// ^|
-		if(contains(board.myB, board.width-1, board.myH.y+1)) {
+		if(contains(board.myB, board.width, board.myH.y+1)) {
 			return 'up';
 		}
 		// v|
-		if(contains(board.myB, board.width-1, board.myH.y-1)) {
+		if(contains(board.myB, board.width, board.myH.y-1)) {
 			return 'down';
 		}
 		//return best option if you can go up or down
@@ -119,21 +119,21 @@ var checkWalls = function (board) {
 		return 'left';	//FIXXX
 	}
 	//bottom
-	if(board.myH.y == board.height-1) {
+	if(board.myH.y == board.height) {
 		// v
-		if(contains(board.myB, board.myH.x, board.height-2)) {
-			if(contains(board.myB, board.myH.x-1, board.height-1)) {
+		if(contains(board.myB, board.myH.x, board.height-1)) {
+			if(contains(board.myB, board.myH.x-1, board.height)) {
 				return 'right';
 			} else {
 				return 'left';
 			}
 		}
 		//-->
-		if(contains(board.myB, board.myH.x-1, board.height-1)) {
+		if(contains(board.myB, board.myH.x-1, board.height)) {
 			return 'right';
 		}
 		// <--
-		if(contains(board.myB, board.myH.x+1, board.height-1)) {
+		if(contains(board.myB, board.myH.x+1, board.height)) {
 			return 'left';
 		}
 		//return best option between left or right otherwise
@@ -146,7 +146,6 @@ var checkWalls = function (board) {
 }
 
 var contains = function (list, x, y) {
-	console.log("yeet2")
 	for(var i = 0; i < list.length; i++) {
 		if(list[i].x == x && list[i].y == y) {
 			return true;
