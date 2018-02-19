@@ -1,6 +1,5 @@
 
 //Creates an array for the gameBoard to specify items on it
-//MUST FIX EDGE CASES FOR WALLS!!!
 
 module.exports = exports = function (board, mySnake, enemies) {
 	var arr = [];
@@ -40,7 +39,7 @@ module.exports = exports = function (board, mySnake, enemies) {
 
 	// friendly body parts = 4, head = 5
 	for(var i = 0; i < mySnake.body.length; i++) {
-		if(j==0) {
+		if(i==0) {
 			arr[mySnake.body[i].y+1][mySnake.body[i].x+1] = 5;
 		} else {
 			arr[mySnake.body[i].y+1][mySnake.body[i].x+1] = 4;
