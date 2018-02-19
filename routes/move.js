@@ -8,17 +8,66 @@ Key:
 */
 
 module.exports = exports = function (currentBoard) {
+	var decision = 'up';
 	var board = findValues(currentBoard);
 
-	console.log(board.myH.x + board.myH.y);
+	if(board.myH.x == 1 || board.myH.x == board.width-1 || board.myH.y == 1 || board.myH.y == baord.height-1){
+		decision = checkWalls(board);
+	}
 
 	//return 'left', 'right', 'up', 'down'
+	return decision;
+}
+
+//------------UNDER CONSTRUCTION--------------//
+
+var checkWalls = function (board) {
+	//top left corner
+	if(board.myH.x == 1 && board.myH.y == 1){
+		if(contains(board.myB, 2, 1)) {
+			return 'down';							//added this so might break
+		} else {
+			return 'right';
+		}
+	}
+	//bottom left corner
+	if(board.myH.x == 1 && board.myH.y == board.height-1) {
+		if(contains(board.myB, 1, board.height-2)) {
+			return 'right';
+		} else {
+			return 'up';
+		}
+	}
+	//top right corner
+	if(board.myH.x == board.width-1 && board.myH.y == 1) {
+		if(contains(board.myB, board.width-2, 1)) {
+			return 'down';
+		} else {
+			return 'left';
+		}
+	}
+	//bottom right corner
+	if(board.myH.x == 1 && board.myH.y == board.height-1) {
+		if(contains(board.myB, 1, board.height-2)) {
+			return 'right';
+		} else {
+			return "up";
+		}
+	}
+
 	return 'down';
 }
 
-var checkWall = function (currentBoard, board) {
-	board[]
-}
+var contains = function (list, x, y) {
+	for(var i = 0; i < list.length; i++) {
+		if(list[i].x == x && list[i].y == y) {		//added this so might break
+			return true;
+		}
+	}
+	return false;
+} 
+
+//-------------------------------------------//
 
 var findValues = function (currentBoard) {
 
@@ -57,6 +106,8 @@ var findValues = function (currentBoard) {
 		myB: myBody, 
 		myH: myHead, 
 		walls: wall
+		height: currentBoard.length,			//added these so might break
+		width: currentBoard[0].length
 	};
 }
 
