@@ -30,7 +30,7 @@ router.post('/move', function (req, res) {
   var enemies = makeEnemies(mySnake, input);
   var board = gameBoard(stats, mySnake, enemies);
 
-  printStats(board, stats, mySnake, enemies);
+  console.log(board);
 
 
   // Response data
@@ -48,16 +48,6 @@ router.post('/move', function (req, res) {
 
 
 //-------------------------- Functions to build our environment ---------------------------//
-
-var printStats = function (board, stats, mySnake, enemies) {
-  console.log(board);
-  console.log();
-  console.log(stats);
-  console.log();
-  console.log(mySnake);
-  console.log();
-  console.log(enemies);
-}
 
 var makeEnemies = function (mySnake, input) {
   var enemies = new Array();

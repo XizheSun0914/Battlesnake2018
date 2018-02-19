@@ -10,7 +10,7 @@ Key:
 module.exports = exports = function (currentBoard) {
 	var board = findValues(currentBoard);
 
-
+	console.log(board.myH.x + board.myH.y);
 
 	//return 'left', 'right', 'up', 'down'
 	return 'down';
