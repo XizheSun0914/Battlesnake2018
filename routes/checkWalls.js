@@ -1,3 +1,5 @@
+//This fella makes sure we aren't running into any walls based on our decisions!
+//tries to not get up in other functions grills, only redirects if absolutely necessary
 
 module.exports = exports = function (mySnake, board, original)  {
 	//top left corner

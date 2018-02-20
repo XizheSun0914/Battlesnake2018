@@ -1,6 +1,6 @@
 var express = require('express')
 var router  = express.Router()
-var move = require('./move.js');
+var move = require('./move.js')
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
