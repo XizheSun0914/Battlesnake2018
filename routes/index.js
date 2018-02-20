@@ -32,7 +32,7 @@ router.post('/move', function (req, res) {
   console.log();
   console.log(enemies);
   console.log();
-  console.log(stats);
+  console.log(board);
 
 
   // Response data
