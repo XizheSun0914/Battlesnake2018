@@ -20,19 +20,16 @@ module.exports = exports = function (mySnake, enemies, board) {
 	};
 
 	findFood(mySnake, enemies, board, decision);
-	var move = decision.move;
 	console.log(decision);
-	console.log(move);
+	console.log(decision.move());
 	watchYoSelf(mySnake, decision);
-	var move = decision.move;
 	console.log(decision);
-	console.log(move);
+	console.log(decision.move());
 	checkWalls(mySnake, board, decision.move, decision);
-	var move = decision.move;
 	console.log(decision);
-	console.log(move);
+	console.log(decision.move());
 	//returns 'left', 'right', 'up', 'down'
-	return decision.move;
+	return decision.move();
 }
 
 var findFood = function(mySnake, enemies, board, decision) {
