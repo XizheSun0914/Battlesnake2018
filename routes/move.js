@@ -13,13 +13,13 @@ module.exports = exports = function (mySnake, enemies, board) {
 }
 
 var findFood = function(mySnake, enemies, board) {
-	var topFoods = [];
-	for(var i = 0; i < board.food.length; i++) {
-		if((Math.abs(mySnake.body[0].x - board.food[i].x)/(board.width+1)) + (Math.abs(mySnake.body[0].y - board.food[i].y)/(board.height+1)) <= 1) {
-			topFoods.push(board.food[i]);
-		}
-	}
+	//change to BFS later
+	var topFoods = board.food.sort(function(a,b){return Math.abs(board.food[a].x - board.food[b].x) + Math.abs(board.food[a].y - board.food[b].y)});
 	console.log(topFoods);
+	return 'down';
+}
+
+var keepAlive = function(mySnake, enemies, board) {
 	return 'down';
 }
 
