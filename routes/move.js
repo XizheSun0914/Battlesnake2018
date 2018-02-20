@@ -15,11 +15,11 @@ module.exports = exports = function (mySnake, enemies, board) {
 var findFood = function(mySnake, enemies, board) {
 	//change to BFS later
 	var food = board.food;
-	console.log("pre sort: " + food);
+	console.log("pre sort: " + food[0]);
 	food.sort(function(a,b) {
 		return (Math.abs(a.x - b.x) + Math.abs(a.y - b.y));
 	});
-	console.log("post-sort: " + food);
+	console.log("post-sort: " + food[0]);
 	return 'down';
 }
 
