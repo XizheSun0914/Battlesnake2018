@@ -17,7 +17,7 @@ var findFood = function(mySnake, enemies, board) {
 	var food = board.food;
 	console.log("pre sort: " + food);
 	var topFoods = food.sort(function(a,b) {
-		return Math.abs(parseInt(a.x) - parseInt(b.x)) + Math.abs(parseInt(a.y) - parseInt(b.y))
+		return Math.abs(parseInt(a.x) - parseInt(b.x)) + Math.abs(parseInt(a.y) - parseInt(b.y));
 	});
 	console.log("post-sort: " + topFoods);
 	return 'down';
