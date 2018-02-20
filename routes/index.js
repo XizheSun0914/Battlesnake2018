@@ -9,9 +9,9 @@ router.post('/start', function (req, res) {
   var data = {
     color: 'rgb(255,5,12)',
     secondary_color: 'rgb(0,5,6)',
-    name: 'spoder snek',
-    head_url: 'https://apprecs.org/gp/images/app-icons/300/08/com.aesir.bouncyspoderman.jpg',
-    taunt: "giv me an snep bek",
+    name: 'stevie snake',
+    head_url: 'http://interactive.nydailynews.com/project/trump-100-days/img/cutouts/steve-bannon.png',
+    taunt: "treasonous!",
     head_type: 'pixel',
     tail_type: 'pixel'
   }
@@ -34,11 +34,10 @@ router.post('/move', function (req, res) {
   console.log();
   console.log(board);
 
-
   // Response data
   var data = {
     move: move(mySnake, enemies, board), // one of: ['up','down','left','right']
-    taunt: 'moar snep bek plz', // optional, but encouraged!
+    taunt: 'you are unpatriotic!',
   }
 
   return res.json(data)

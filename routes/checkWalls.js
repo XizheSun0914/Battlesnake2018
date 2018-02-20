@@ -1,7 +1,9 @@
+var contains = require('./contains.js')
+
 //This fella makes sure we aren't running into any walls based on our decisions!
 //tries to not get up in other functions grills, only redirects if absolutely necessary
 
-module.exports = exports = function (mySnake, board, original, decision)  {
+module.exports = exports = function (mySnake, board, decision)  {
 	//top left corner
 	if(mySnake.body[0].x == 0 && mySnake.body[0].y == 0){
 		if(contains(mySnake.body, 1, 0)) {
@@ -49,16 +51,7 @@ module.exports = exports = function (mySnake, board, original, decision)  {
 	}
 	//bottom
 	if(mySnake.body[0].y == board.height) {
-			decision.down -= 99999;
+		decision.down -= 99999;
 	}
 	return;
 }
-
-var contains = function (list, x, y) {
-	for(var i = 0; i < list.length; i++) {
-		if(list[i].x == x && list[i].y == y) {
-			return true;
-		}
-	}
-	return false;
-} 
