@@ -16,7 +16,9 @@ var findFood = function(mySnake, enemies, board) {
 	//change to BFS later
 	var food = board.food;
 	console.log("pre sort: " + food);
-	var topFoods = food.sort(function(a,b){return (Math.abs(food[a].x - food[b].x) + Math.abs(food[a].y - food[b].y))});
+	var topFoods = food.sort(function(a,b) {
+		return Math.abs(parseInt(a.x) - parseInt(b.x)) + Math.abs(parseInt(a.y) - parseInt(b.y))
+	});
 	console.log("post-sort: " + topFoods);
 	return 'down';
 }
@@ -33,3 +35,5 @@ var contains = function (list, x, y) {
 	}
 	return false;
 }
+
+var
