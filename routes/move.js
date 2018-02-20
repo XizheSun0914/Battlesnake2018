@@ -96,7 +96,7 @@ var checkWalls = function (mySnake, enemies, stats, original) {
 		console.log("at bottom!");
 		// v
 		if(contains(mySnake.body, mySnake.body[0].x, board.height-1)) {
-			if(contains(mySnake.body, board.myH.x-1, board.height)) {
+			if(contains(mySnake.body, mySnake.body[0].x-1, board.height)) {
 				return 'right';
 			} else {
 				return 'left';
