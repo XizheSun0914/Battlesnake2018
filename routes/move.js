@@ -11,7 +11,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 	return decision;
 }
 
-var checkWalls = function (mySnake, enemies, stats, original) {
+var checkWalls = function (mySnake, enemies, board, original) {
 	//top left corner
 	if(mySnake.body[0].x == 0 && mySnake.body[0].y == 0){
 		console.log("top left!");
@@ -104,8 +104,6 @@ var checkWalls = function (mySnake, enemies, stats, original) {
 		}
 		return original;
 	}
-
-	//--------------------------------------------
 
 	return original;
 }
