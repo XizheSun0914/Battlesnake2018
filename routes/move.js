@@ -1,69 +1,48 @@
-var gameBoard = require('./gameBoard.js');
-/*
-Key:
 
-board.empty[] = empty coordinates
-board.food[] = food coordinates
-board.enemyH = enemy head coordinates
-board.enemyB = enemy body coordinates
-board.myH = my head coordinates
-board.myB = my body parts
-board.walls = wall coordinates
-board.height = height of gameboard
-board.width = width of gameboard
-
-board.myH.x = x coordinate for my head
-board.myB[2].y = y coordinate for my third body part
-
-can check if a spot contains something via contains(board.enemyB, x, y);
---> returns true or false
-
-*/
-
-module.exports = exports = function (currentBoard, health) {
+module.exports = exports = function (mySnake, enemies, board) {
 	var decision = 'up';
-	var board = findValues(currentBoard);
+	//var board = findValues(currentBoard);
 
-	if(board.myH.x == 1 || board.myH.x == board.width || board.myH.y == 1 || board.myH.y == board.height){
-		decision = checkWalls(board);
+	if(mySnake.body[0].x == 0 || mySnake.body[0].x == stats.width || mySnake.body[0].y == 0 || mySnake.body[0].y == stats.height){
+		decision = checkWalls(mySnake, enemies, board, decision);
 	}
 
 	//return 'left', 'right', 'up', 'down'
 	return decision;
 }
 
-var checkWalls = function (board) {
+var checkWalls = function (mySnake, enemies, stats, original) {
 	//top left corner
-	if(board.myH.x == 1 && board.myH.y == 1){
+	if(mySnake.body[0].x == 0 && mySnake.body[0].y == 0){
 		console.log("top left!");
-		if(contains(board.myB, 2, 1)) {
+		if(contains(mySnake.body, 1, 0)) {
 			return 'down';
 		} else {
 			return 'right';
 		}
 	}
 	//bottom left corner
-	if(board.myH.x == 1 && board.myH.y == board.height) {
+	if(mySnake.body[0].x == 0 && mySnake.body[0].y == board.height) {
 		console.log("bottom left!");
-		if(contains(board.myB, 1, board.height-1)) {
+		if(contains(mySnake.body, 0, board.height-1)) {
 			return 'right';
 		} else {
 			return 'up';
 		}
 	}
 	//top right corner
-	if(board.myH.x == board.width && board.myH.y == 1) {
+	if(mySnake.body[0].x == board.width && mySnake.body[0].y == 0) {
 		console.log("top right!");
-		if(contains(board.myB, board.width-1, 1)) {
+		if(contains(mySnake.body, board.width-1, 0)) {
 			return 'down';
 		} else {
 			return 'left';
 		}
 	}
 	//bottom right corner
-	if(board.myH.x == board.width && board.myH.y == board.height) {
+	if(mySnake.body[0].x == board.width && mySnake.body[0].y == board.height) {
 		console.log("bottom right!");
-		if(contains(board.myB, board.width, board.height-1)) {
+		if(contains(mySnake.body, board.width, board.height-1)) {
 			return 'left';
 		} else {
 			return "up";
@@ -71,97 +50,64 @@ var checkWalls = function (board) {
 	}
 
 	//left side
-	if(board.myH.x == 1) {
+	if(mySnake.body[0].x == 0) {
 		console.log("left side!");
-		// |<--
-		if(contains(board.myB, 2, board.myH.y)) {
-			if(contains(board.myB, 1, board.myH.y+1)){
+		// if |<--
+		if(contains(mySnake.body, 1, mySnake.body[0].y)) {
+			if(contains(mySnake.body, 0, mySnake.body[0].y+1)){
 				return 'up';
 			} else {
 				return 'down';
 			}
 		}
-		// |^
-		if(contains(board.myB, 1, board.myH.y+1)) {
-			return 'up';
-		}
-		// |v
-		if(contains(board.myB, 1, board.myH.y-1)) {
-			return 'down';
-		}
-		//return best option if you can go left or right
-		return 'up'; //FIXXXX
+
+		return original;
 	}
 	// right side
-	if(board.myH.x == board.width) {
+	if(mySnake.body[0].x == board.width) {
 		console.log("right side!");
 		// -->|
-		if(contains(board.myB, board.width-1, board.myH.y)) {
-			if(contains(board.myB, board.width, board.myH.y+1)){
+		if(contains(mySnake.body, board.width-1, mySnake.body[0].y)) {
+			if(contains(mySnake.body, board.width, mySnake.body[0].y+1)){
 				return 'up';
 			} else {
 				return 'down';
 			}
 		}
-		// ^|
-		if(contains(board.myB, board.width, board.myH.y+1)) {
-			return 'up';
-		}
-		// v|
-		if(contains(board.myB, board.width, board.myH.y-1)) {
-			return 'down';
-		}
-		//return best option if you can go up or down
-		return 'up'; //FIXXXX
+		
+		return original;
 	}
 	// top
-	if(board.myH.y == 1) {
+	if(mySnake.body[0].y == 0) {
 		console.log("at top!");
 		// ^
-		if(contains(board.myB, board.myH.x, 2)) {
-			if(contains(board.myB, board.myH.x-1, 1)) {
+		if(contains(mySnake.body, mySnake.body[0].x, 1)) {
+			if(contains(mySnake.body, mySnake.body[0].x-1, 0)) {
 				return 'right';
 			} else {
 				return 'left';
 			}
 		}
-		//-->
-		if(contains(board.myB, board.myH.x-1, 1)) {
-			return 'right';
-		}
-		// <--
-		if(contains(board.myB, board.myH.x+1, 1)) {
-			return 'left';
-		}
-		//return best option if you can go left or right
-		return 'left';	//FIXXX
+
+		return original;
 	}
 	//bottom
-	if(board.myH.y == board.height) {
+	if(mySnake.body[0].y == board.height) {
 		console.log("at bottom!");
 		// v
-		if(contains(board.myB, board.myH.x, board.height-1)) {
-			if(contains(board.myB, board.myH.x-1, board.height)) {
+		if(contains(mySnake.body, mySnake.body[0].x, board.height-1)) {
+			if(contains(mySnake.body, board.myH.x-1, board.height)) {
 				return 'right';
 			} else {
 				return 'left';
 			}
 		}
-		//-->
-		if(contains(board.myB, board.myH.x-1, board.height)) {
-			return 'right';
-		}
-		// <--
-		if(contains(board.myB, board.myH.x+1, board.height)) {
-			return 'left';
-		}
-		//return best option between left or right otherwise
-		return 'left'; //FIXXXX
+		return original;
 	}
 
 	//--------------------------------------------
 
-	return 'up';
+	return original;
 }
 
 var contains = function (list, x, y) {
@@ -173,7 +119,7 @@ var contains = function (list, x, y) {
 	return false;
 } 
 
-var findValues = function (currentBoard) {
+/*var findValues = function (currentBoard) {
 
 	var empty = [];
 	var food = [];
@@ -220,4 +166,4 @@ var findValues = function (currentBoard) {
 function Point(x,y) {
 	this.x = x;
 	this.y = y;
-}
+}*/

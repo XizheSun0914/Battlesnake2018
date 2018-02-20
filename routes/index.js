@@ -1,6 +1,6 @@
 var express = require('express')
 var router  = express.Router()
-//var move = require('./move.js');
+var move = require('./move.js');
 
 // Handle POST request to '/start'
 router.post('/start', function (req, res) {
@@ -24,7 +24,7 @@ router.post('/move', function (req, res) {
 
   var input = req.body;
 
-  var stats = new GameStatus(input.id, input.height, input.width, input.turn, input.food);
+  var board = new GameStatus(input.id, input.height, input.width, input.turn, input.food);
   var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
   var enemies = makeEnemies(mySnake, input);
 
@@ -37,7 +37,7 @@ router.post('/move', function (req, res) {
 
   // Response data
   var data = {
-    move: 'right',//move(mySnake, enemies, stats), // one of: ['up','down','left','right']
+    move: move(mySnake, enemies, board), // one of: ['up','down','left','right']
     taunt: 'moar snep bek plz', // optional, but encouraged!
   }
 
@@ -83,8 +83,8 @@ function Snake(name, length, id, health, bodys) {
 //builds the GameStatus object
 function GameStatus(id, height, width, turn, foods) {
   this.id = id;
-  this.height = height;
-  this.width = width;
+  this.height = height-1;
+  this.width = width-1;
   this.turn = turn;
 
   this.food = [];
