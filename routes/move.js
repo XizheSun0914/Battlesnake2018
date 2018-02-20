@@ -21,10 +21,13 @@ module.exports = exports = function (mySnake, enemies, board) {
 
 	findFood(mySnake, enemies, board, decision);
 	console.log(decision);
+	console.log(decision.move);
 	watchYoSelf(mySnake, decision);
 	console.log(decision);
+	console.log(decision.move);
 	checkWalls(mySnake, board, decision.move, decision);
 	console.log(decision);
+	console.log(decision.move);
 	//returns 'left', 'right', 'up', 'down'
 	return decision.move;
 }
