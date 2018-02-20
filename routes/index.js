@@ -37,7 +37,7 @@ router.post('/move', function (req, res) {
 
   // Response data
   var data = {
-    move: 'right'//move(mySnake, enemies, stats), // one of: ['up','down','left','right']
+    move: 'right',//move(mySnake, enemies, stats), // one of: ['up','down','left','right']
     taunt: 'moar snep bek plz', // optional, but encouraged!
   }
 
