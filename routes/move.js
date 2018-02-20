@@ -35,5 +35,3 @@ var contains = function (list, x, y) {
 	}
 	return false;
 }
-
-var
