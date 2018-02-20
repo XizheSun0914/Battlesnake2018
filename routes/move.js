@@ -3,15 +3,15 @@ module.exports = exports = function (mySnake, enemies, board) {
 	var decision = 'up';
 	//var board = findValues(currentBoard);
 
-	if(mySnake.body[0].x == 0 || mySnake.body[0].x == stats.width || mySnake.body[0].y == 0 || mySnake.body[0].y == stats.height){
-		decision = checkWalls(mySnake, enemies, board, decision);
+	if(mySnake.body[0].x == 0 || mySnake.body[0].x == board.width || mySnake.body[0].y == 0 || mySnake.body[0].y == board.height){
+		decision = checkWalls(mySnake, board, decision);
 	}
 
 	//return 'left', 'right', 'up', 'down'
 	return decision;
 }
 
-var checkWalls = function (mySnake, enemies, board, original) {
+var checkWalls = function (mySnake, board, original) {
 	//top left corner
 	if(mySnake.body[0].x == 0 && mySnake.body[0].y == 0){
 		console.log("top left!");
