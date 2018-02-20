@@ -15,7 +15,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 var findFood = function(mySnake, enemies, board) {
 	var topFoods = [];
 	for(var i = 0; i < board.food.length; i++) {
-		if((Math.abs(mySnake.body[0].x - board.food[i].x)/(board.width+1)) + (Math.abs(mySnake.body[0].y - board.food[i].y)/(board.height+1)) <= .6) {
+		if((Math.abs(mySnake.body[0].x - board.food[i].x)/(board.width+1)) + (Math.abs(mySnake.body[0].y - board.food[i].y)/(board.height+1)) <= .7) {
 			topFoods.push(board.food[i]);
 		}
 	}
