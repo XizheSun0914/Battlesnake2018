@@ -61,7 +61,12 @@ var checkWalls = function (mySnake, board, original) {
 			}
 		}
 
-		return original;
+		if(original === 'left') {
+			return 'right';				//Change later to more dynamic decision
+		} else {
+			return original;
+		}
+
 	}
 	// right side
 	if(mySnake.body[0].x == board.width) {
@@ -75,7 +80,12 @@ var checkWalls = function (mySnake, board, original) {
 			}
 		}
 		
-		return original;
+		if(original === 'right') {
+			return 'left';				//Change later to more dynamic decision
+		} else {
+			return original;
+		}
+
 	}
 	// top
 	if(mySnake.body[0].y == 0) {
@@ -89,7 +99,11 @@ var checkWalls = function (mySnake, board, original) {
 			}
 		}
 
-		return original;
+		if(original === 'up') {
+			return 'down';				//Change later to more dynamic decision
+		} else {
+			return original;
+		}
 	}
 	//bottom
 	if(mySnake.body[0].y == board.height) {
@@ -102,7 +116,13 @@ var checkWalls = function (mySnake, board, original) {
 				return 'left';
 			}
 		}
-		return original;
+
+		if(original === 'down') {
+			return 'up';				//Change later to more dynamic decision
+		} else {
+			return original;
+		}
+
 	}
 
 	return original;
