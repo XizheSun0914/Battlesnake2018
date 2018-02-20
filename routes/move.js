@@ -16,10 +16,10 @@ var findFood = function(mySnake, enemies, board) {
 	//change to BFS later
 	var food = board.food;
 	console.log("pre sort: " + food);
-	var topFoods = food.sort(function(a,b) {
-		return Math.abs(parseInt(a.x) - parseInt(b.x)) + Math.abs(parseInt(a.y) - parseInt(b.y));
+	food.sort(function(a,b) {
+		return (Math.abs(a.x - b.x) + Math.abs(a.y - b.y));
 	});
-	console.log("post-sort: " + topFoods);
+	console.log("post-sort: " + food);
 	return 'down';
 }
 
