@@ -14,8 +14,10 @@ module.exports = exports = function (mySnake, enemies, board) {
 
 var findFood = function(mySnake, enemies, board) {
 	//change to BFS later
-	var topFoods = board.food.sort(function(a,b){return Math.abs(board.food[a].x - board.food[b].x) + Math.abs(board.food[a].y - board.food[b].y)});
-	console.log(topFoods);
+	var food = board.food;
+	console.log("pre sort: " + food);
+	var topFoods = food.sort(function(a,b){return (Math.abs(food[a].x - food[b].x) + Math.abs(food[a].y - food[b].y))});
+	console.log("post-sort: " + topFoods);
 	return 'down';
 }
 
