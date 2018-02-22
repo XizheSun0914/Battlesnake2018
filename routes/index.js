@@ -8,7 +8,7 @@ router.post('/start', function (req, res) {
   // Response data
   var data = {
     color: 'rgb(255,5,12)',
-    secondary_color: 'rgb(0,5,6)',
+    secondary_color: 'rgb(149, 165, 166)',
     name: 'stevie snake',
     head_url: 'http://interactive.nydailynews.com/project/trump-100-days/img/cutouts/steve-bannon.png',
     taunt: "treasonous!",
@@ -27,12 +27,6 @@ router.post('/move', function (req, res) {
   var board = new GameStatus(input.id, input.height, input.width, input.turn, input.food);
   var mySnake = new Snake(input.you.name, input.you.length, input.you.id, input.you.health, input.you.body);
   var enemies = makeEnemies(mySnake, input);
-
-  console.log(mySnake);
-  console.log();
-  console.log(enemies);
-  console.log();
-  console.log(board);
 
   // Response data
   var data = {

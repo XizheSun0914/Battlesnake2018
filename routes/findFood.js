@@ -12,6 +12,14 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 
+	console.log(routes.length);
+	for(var i = 0; i < routes.length; i++) {
+		console.log("weight: " + routes[i].f);
+		console.log(routes[i][1].x + " " + routes[i][1].y);
+		console.log(food[i]);
+		console.log();
+	}
+
 	routes.sort(function(a, b) {
 		return a[a.length-1].f - b[b.length-1].f;
 	});
@@ -33,6 +41,5 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	}
 
 	return;
-	
 
 }

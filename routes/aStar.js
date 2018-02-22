@@ -13,22 +13,32 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
+				//if we cant't move to that node, skip
 				if((i==0 && j==0) || (i==-1 && j==-1) || (i==1 && j==1) || (i==-1 && j==1) || (i==1 && j==-1)){
 					continue;
 				} else {
+
+					//if we can't go there, skip
 					if(!isValid(p.x+i, p.y+j, enemies, mySnake, board)){
 						continue;
+
 					} else {
+
+						//if we reached food, exit and return route
 						if(isDest(p.x+i, p.y+j, food)) {
 							var final = new aNode(p.x+i, p.y+j, p.f, p, food);
 							closedList.push(final);
 							return closedList;
+
+						//if not on our closedList or openList, add
+						//OR
+						//if not on closedList but on openList with higher value, add
 						} else if (!contains(closedList, p.x+i, p.y+j)) {
 							var check = true;
 							var tempNode = new aNode(p.x+i, p.y+j, p.f, p, food);
-							for(var k = 0; k < openList.length; k++) {							//INCREDIBLY SLOW: FIX IF TIME PERMITS
-								if(openList[k].x == p.x+i && openList[k].y == p.y+j) {	
-									check = false;	
+							for(var k = 0; k < openList.length; k++) {							//INCREDIBLY SLOW: Doesn't affect performance
+								if(openList[k].x == p.x+i && openList[k].y == p.y+j) {			//too much on a realistic gameboard though.
+									check = false;												//fix if time permits
 									if(openList[k].f > tempNode.f) {
 										openList.push(tempNode);
 									}
@@ -42,11 +52,11 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				}
 			}
 		}
-		openList.sort(function(a,b) {
+		openList.sort(function(a,b) {	//sort openList based on total cost
 			return a.f - b.f;
 		});
 	}
-	var sadness = [];
+	var sadness = [];	//return empty list if search failed
 	return sadness;
 }
 
@@ -81,6 +91,7 @@ function isValid(x, y, enemies, mySnake, board) {
 	}
 }
 
+//creates h based on cost to start and to finish from node
 function calc_h(x, y, dest) {
 	return (Math.abs(x - dest.x) + Math.abs(y - dest.y));
 }
