@@ -18,7 +18,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	for(var j = 0; j < routes.length; j++){
 		console.log(routes[j][routes[j].length-1].f);
-		console.log(routes[j][1].x + routes[j][1].y + routes[j][2].x + routes[j][2].y + routes[j][3].x + routes[0][3].y);
+		console.log(routes[j][0].x + routes[j][0].y + routes[j][1].x + routes[j][1].y + routes[j][2].x + routes[j][2].y + routes[j][3].x + routes[0][3].y);
 		console.log();
 
 	}
@@ -36,7 +36,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		decision.up += 2000;
 	}
 
-	console.print(decision);
+	console.print(decision.move());
 
 	return;
 	
