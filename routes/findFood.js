@@ -18,8 +18,9 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	for(var j = 0; j < routes.length; j++){
 		console.log(routes[j][routes[j].length-1].f);
-		console.log(routes[j]);
+		console.log(routes[j][1] + routes[j][1] + routes[j][2] + routes[j][3] + routes[j][4]);
 		console.log();
+
 	}
 
 	if(routes[0][1].x > mySnake.body[0].x) {
