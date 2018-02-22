@@ -42,10 +42,12 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				}
 			}
 		}
-		/*openList.sort(function(a,b) {
+		openList.sort(function(a,b) {
 			return a.f - b.f;
-		});*/
+		});
 	}
+	var sadness = [];
+	return sadness;
 }
 
 //Checks if we've reached our destination
