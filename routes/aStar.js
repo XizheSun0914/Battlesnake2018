@@ -42,9 +42,9 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				}
 			}
 		}
-		openList.sort(function(a,b) {
+		/*openList.sort(function(a,b) {
 			return a.f - b.f;
-		});
+		});*/
 	}
 }
 
@@ -58,7 +58,7 @@ function isDest(x, y, dest) {
 }
 
 //checks if node is already covered by enemy or 
-//friendly snakes or if outside board
+//friendly snake or if outside board
 function isValid(x, y, enemies, mySnake, board) {
 	for(var i = 1; i < mySnake.body.length; i++) {
 		if(contains(mySnake.body, x, y)) {

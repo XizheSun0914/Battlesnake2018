@@ -23,7 +23,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	}
 
-	/*if(routes[0][1].x > mySnake.body[0].x) {
+	if(routes[0][1].x > mySnake.body[0].x) {
 		decision.right += 2000;
 	}
 	if(routes[0][1].x < mySnake.body[0].x) {
@@ -34,7 +34,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	}
 	if(routes[0][1].y < mySnake.body[0].y) {
 		decision.up += 2000;
-	}*/
+	}
 
 	console.print(decision.move());
 
