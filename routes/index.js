@@ -43,11 +43,6 @@ router.post('/move', function (req, res) {
   return res.json(data)
 })
 
-
-
-
-
-
 //-------------------------- Functions to build our environment ---------------------------//
 
 var makeEnemies = function (mySnake, input) {

@@ -1,13 +1,50 @@
-var contains = require('./contains.js')
+var aStar = require('./aStar.js')
 
 module.exports = exports = function(mySnake, enemies, board, decision) {
-	//change to BFS later
+	
 	var food = board.food;
-	food.sort(function(a,b) {
-		return (Math.abs(mySnake.body[0].x - a.x) + Math.abs(mySnake.body[0].y - a.y) - (Math.abs(mySnake.body[0].x - b.x) + Math.abs(mySnake.body[0].y - b.y)));
+	var routes = [];
+
+	for(var i = 0; i < food.length; i++) {
+		var temp = aStar(board, mySnake, enemies, food[i]);
+		if(temp.length > 0) {
+			routes.push(temp);
+		}
+	}
+
+	routes.sort(function(a, b) {
+		return a[a.length-1].f - b[b.length-1].f;
 	});
 
-	if(Math.abs(mySnake.body[0].x - food[0].x) > Math.abs(mySnake.body[0].y - food[0].y)) {
+	for(var j = 0; j < routes.length; j++){
+		console.log(routes[j][routes[j].length-1].f);
+		console.log(routes[j]);
+		console.log();
+	}
+
+	if(routes[0][1].x > mySnake.body[0].x) {
+		decision.right += 2000;
+	}
+	if(routes[0][1].x < mySnake.body[0].x) {
+		decision.left += 2000;
+	}
+	if(routes[0][1].y > mySnake.body[0].y) {
+		decision.down += 2000;
+	}
+	if(routes[0][1].y < mySnake.body[0].y) {
+		decision.up += 2000;
+	}
+
+	console.print(decision);
+
+	return;
+	
+
+}
+
+/*
+
+if(Math.abs(mySnake.body[0].x - food[0].x) > Math.abs(mySnake.body[0].y - food[0].y)) {
 		//if x val further choose direction (high priority)
 		//then an y direction at a lower priority
 		if(mySnake.body[0].x - food[0].x > 0) {
@@ -57,13 +94,4 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 	return;
-}
-
-var contains = function (list, x, y) {
-	for(var i = 0; i < list.length; i++) {
-		if(list[i].x == x && list[i].y == y) {
-			return true;
-		}
-	}
-	return false;
-}
+	*/

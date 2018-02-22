@@ -37,8 +37,8 @@ https://spoder-snek.herokuapp.com
 
 --------------------------
 
-heres some example snakes to battle against
-(all of them go straight to their doom)
+heres an example snakes to battle against
+(just a little worse than my snake)
 
 https://enemy-snek.herokuapp.com
 
