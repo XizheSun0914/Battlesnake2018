@@ -1,6 +1,9 @@
-var checkWalls = require('./checkWalls.js')
+var checkWalls = require('functions/checkWalls.js')
 var findFood = require('./findFood.js')
-var contains = require('./contains.js')
+var keepAlive = require('./keepAlive.js')
+var watchYoSelf = require('functions/watchYoSelf.js')
+
+// This function is the shell for deciding the move
 
 module.exports = exports = function (mySnake, enemies, board) {
 	var decision = {
@@ -21,34 +24,25 @@ module.exports = exports = function (mySnake, enemies, board) {
 		}
 	};
 
-	findFood(mySnake, enemies, board, decision);
-	console.log(decision);
+	//edit these goals with testing
+	var goalLength = board.height*board.width/19;
+	var lowHealth = board.height*board.width/8;
+
+	if(mySnake.health < lowHealth || mySnake.length < goalLength) {
+		findFood(mySnake, enemies, board, decision);
+
+		//resorts to keepAlive if no routes to food
+		if(decision.up == 0 && decision.down == 0 && decision.left == 0 && decision.right == 0) {
+			console.log("failed to find a route to food");
+			keepAlive(mySnake, enemies, board, decision);
+		}
+	} else {
+		keepAlive(mySnake, enemies, board, decision);
+	}
+
+	// fairly redundant but makes sure we aren't accidentally killing ourselves
 	watchYoSelf(mySnake, decision);
-	console.log(decision);
 	checkWalls(mySnake, board, decision);
-	console.log(decision);
-	//returns 'left', 'right', 'up', 'down'
+
 	return decision.move();
-}
-
-var keepAlive = function(mySnake, enemies, board, decision) {
-	//UP NEXT, ACTUALLY DODGES ENEMIES!
-	return;
-}
-
-//makes sure we aren't going backward onto ourself
-var watchYoSelf = function(mySnake, decision) {
-	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y-1)) {
-		decision.up -= 99999;
-	}
-	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y+1)) {
-		decision.down -= 99999;
-	}
-	if(contains(mySnake.body, mySnake.body[0].x-1, mySnake.body[0].y)) {
-		decision.left -= 99999;
-	}
-	if(contains(mySnake.body, mySnake.body[0].x+1, mySnake.body[0].y)) {
-		decision.right -= 99999;
-	}
-	return;
 }

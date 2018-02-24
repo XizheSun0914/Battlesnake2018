@@ -4,7 +4,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 	var closedList = [];
 	var openList = [];
 	
-	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food);
+	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
 	openList.push(first);
 
 	while(openList.length != 0) {
@@ -26,7 +26,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 						//if we reached food, exit and return route
 						if(isDest(p.x+i, p.y+j, food)) {
-							var final = new aNode(p.x+i, p.y+j, p.f, p, food);
+							var final = new aNode(p.x+i, p.y+j, p.f, p, food, enemies, mySnake);
 							closedList.push(final);
 							return closedList;
 
@@ -35,7 +35,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 						//if not on closedList but on openList with higher value, add
 						} else if (!contains(closedList, p.x+i, p.y+j)) {
 							var check = true;
-							var tempNode = new aNode(p.x+i, p.y+j, p.f, p, food);
+							var tempNode = new aNode(p.x+i, p.y+j, p.f, p, food, enemies, mySnake);
 							for(var k = 0; k < openList.length; k++) {							//INCREDIBLY SLOW: Doesn't affect performance
 								if(openList[k].x == p.x+i && openList[k].y == p.y+j) {			//too much on a realistic gameboard though.
 									check = false;												//fix if time permits
@@ -91,32 +91,42 @@ function isValid(x, y, enemies, mySnake, board) {
 	}
 }
 
-//creates h based on cost to start and to finish from node
+//creates h based on cost to start and to finish from node along with dangers surrounding
 function calc_h(x, y, dest) {
 	return (Math.abs(x - dest.x) + Math.abs(y - dest.y));
 }
 
-function aNode(x, y, g, parent, dest) {
+function aNode(x, y, g, parent, dest, enemies, mySnake) {
 	this.x = x;
 	this.y = y;
 	this.g = g + 1.0;
-	this.h = calc_h(this.x, this.y, dest)
+	this.h = calc_h(this.x, this.y, dest) + checkSurround(x, y, enemies, mySnake);
 	this.parent = parent;
 	this.f = this.g + this.h;
 }
 
 //--------------------------CONSTRUCTION ZONE ----------------------------
-/*
-var checkSurround = function (x, y) {
+
+//this changes h (cost to destination) based on the dangerous stuff around the spot
+var checkSurround = function (x, y, enemies, mySnake) {
 	var price = 0;
-	for(var i = -2; i <= 2; i++) {
-		for(var j = -2; j <= 2; j++) {
-			//check if surroundings contain enemy bodies, food, your body etc.
-			if so {
-				price += whatever*a multiplier based on how far away;
+	for(var i = -1; i <= 1; i++) {
+		for(var j = -1; j <= 1; j++) {
+			//check if where we want to go has an ememy head beside with equal or larger length nearby
+			// or for my body and other enemy snakes
+			if(contains(mySnake.body, x+i, y+j) {
+				price++;
+			}
+			for(var k = 0; k < enemies.length; k++) {
+				if(contains(enemies[k].body, x+i, y+j)) {
+					price++;
+				}
+				if(enemies[k].body[0].x == x+i && enemies[k].body[0].y == y+j && enemies[k].length >= mySnake.length) {
+					//change price added in future when I get a better idea of how impactful it is
+					price += 5;
+				}
 			}
 		}
 	}
 	return price;
 }
-*/
