@@ -114,7 +114,7 @@ var checkSurround = function (x, y, enemies, mySnake) {
 		for(var j = -1; j <= 1; j++) {
 			//check if where we want to go has an ememy head beside with equal or larger length nearby
 			// or for my body and other enemy snakes
-			if(contains(mySnake.body, x+i, y+j) {
+			if(contains(mySnake.body, x+i, y+j)) {
 				price++;
 			}
 			for(var k = 0; k < enemies.length; k++) {
