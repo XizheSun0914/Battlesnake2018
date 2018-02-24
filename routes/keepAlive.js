@@ -1,5 +1,5 @@
-var aStar = require('functions/aStar.js')
-var contains = require('functions/contains.js')
+var aStar = require('./functions/aStar.js')
+var contains = require('./functions/contains.js')
 
 //does flood fill to find how large space is and the constraints
 

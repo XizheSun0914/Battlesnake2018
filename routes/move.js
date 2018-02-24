@@ -1,7 +1,7 @@
-var checkWalls = require('functions/checkWalls.js')
+var checkWalls = require('./functions/checkWalls.js')
 var findFood = require('./findFood.js')
 var keepAlive = require('./keepAlive.js')
-var watchYoSelf = require('functions/watchYoSelf.js')
+var watchYoSelf = require('./functions/watchYoSelf.js')
 
 // This function is the shell for deciding the move
 
