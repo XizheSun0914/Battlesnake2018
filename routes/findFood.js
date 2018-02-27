@@ -48,6 +48,8 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 		var space = floodFill(temp, enemies, board);
 
+		console.log("room: " + space.length);
+
 		//if theres more than enough space to fit go for it or if absolutely desparate for food
 		if(space.length*(3/4) > mySnake.length || (space.length > mySnake.length && mySnake.health < 15)) {
 
@@ -69,6 +71,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 			return;
 		}
 		console.log("direction: " + topRoute[1].x + " " + topRoute[1].y + " failed floodfill criteria");
+		console.log("my head is: " + temp.body[1].x + " " + temp.body[1].y);
 	}
 
 	//returns decision with no new direction values if all food options fail
