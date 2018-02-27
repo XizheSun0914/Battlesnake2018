@@ -1,4 +1,5 @@
 var contains = require('./functions/contains.js')
+var check = false;
 
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
@@ -15,6 +16,11 @@ module.exports = exports = function (mySnake, enemies, board) {
 }
 
 var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake) {
+
+	if(mySnake.body[0].x != node.x && mySnake.body[0].y != node.y) {
+		check = true;
+	}
+
 	//Base cases
 	if(node.x > boardWidth || node.y > boardHeight || node.x < 0 || node.y < 0) {
 		return false;
@@ -22,18 +28,17 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 	if(contains(openSpaces, node.x, node.y)) {
 		return false;
 	}
-	if(checkIfBlocked(node, enemies, mySnake) && !(node.x == mySnake.body[0].x && node.y == mySnake.body[0].y)) { 
+	if(checkIfBlocked(node, enemies, mySnake) && check) { 
 		return false;
 	}
 
 	console.log("checkpoint 3");
 
 	//push location onto our open space list if not head
-	if(node.x != mySnake.body[0].x && node.y != mySnake.body[0].y) {
-		var temp = new Point(node.x, node.y);
+	if(check) {
 		openSpaces.push(temp);
 	}
-
+	
 	console.log("checkpoint 4");
 
 	var caseOne = new Point(node.x+1, node.y);
