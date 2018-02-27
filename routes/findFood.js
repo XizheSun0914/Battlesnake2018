@@ -42,7 +42,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		var topRoute = routes.shift();
 
 		var temp = mySnake;
-		temp.body.push(topRoute[1]);
+		temp.body.unshift(topRoute[1]);
 
 		var space = floodFill(temp, enemies, board);
 
