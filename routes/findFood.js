@@ -22,7 +22,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	for(var i = 0; i < routes.length; i++) {
 		console.log("weight: " + routes[i][routes[i].length-1].f);
 		console.log("first move: " + routes[i][1].x + " " + routes[i][1].y);
-		console.log("dest: " + food[i]);
+		console.log("dest: " + food[i].x + " " + food[i].y);
 		console.log();
 	}
 

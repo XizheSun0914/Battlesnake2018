@@ -17,7 +17,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 
 var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake) {
 
-	if(mySnake.body[0].x != node.x || mySnake.body[0].y != node.y) {
+	if(!(mySnake.body[0].x == node.x && mySnake.body[0].y == node.y)) {
 		check = true;
 	}
 
