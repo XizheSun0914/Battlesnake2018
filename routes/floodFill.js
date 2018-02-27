@@ -20,7 +20,7 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 	}
 
 	console.log("check = " + check);
-	console.log("before base cases: " node.x + " " + node.y);
+	console.log("before base cases: " + node.x + " " + node.y);
 
 	//Base cases
 	if(node.x > boardWidth || node.y > boardHeight || node.x < 0 || node.y < 0) {
