@@ -3,6 +3,8 @@ var contains = require('./functions/contains.js')
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
 
+	console.log("checkpoint 2");
+
 	//find node that is neighbouring head that is not blocked in order to start
 
 	var head = new dNode(mySnake.body[0].x, mySnake.body[0].y);
@@ -24,11 +26,15 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 		return false;
 	}
 
+	console.log("checkpoint 3");
+
 	//push location onto our open space list if not head
 	if(node.x != mySnake.body[0].x && node.y != mySnake.body[0].y) {
 		var temp = new Point(node.x, node.y);
 		openSpaces.push(temp);
 	}
+
+	console.log("checkpoint 4");
 
 	node.visited = true;
 
@@ -49,6 +55,7 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 	if(dfs(openSpaces, caseFour, boardWidth, boardHeight, enemies, mySnake)) {
 		return true;
 	}
+	console.log("checkpoint 5");
 	return false;
 }
 
