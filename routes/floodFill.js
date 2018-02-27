@@ -36,7 +36,7 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 
 	//push location onto our open space list if not head
 	if(check) {
-		openSpaces.push(temp);
+		openSpaces.push(node);
 	}
 
 	console.log("checkpoint 4");
