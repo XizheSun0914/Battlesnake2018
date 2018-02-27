@@ -31,8 +31,6 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		return a[a.length-1].f - b[b.length-1].f;
 	});
 
-	console.log("checkpoint 1");
-
 	//checks before returning if there is enough room for the move.
 	//makes a variable (temp) equal mySnake and push the direction we want to go onto the head
 	//rotates through all options until success or failure
@@ -46,23 +44,22 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 		var space = floodFill(temp, enemies, board);
 
-		console.log("checkpoint 6");
-
 		//if theres more than enough space to fit go for it or if absolutely desparate for food
 		if(space.length*(3/4) > mySnake.length || (space.length > mySnake.length && mySnake.health < 15)) {
 
-			console.log("direction: " + topRoute[1].x + " " + topRoute[1].y + " passed floodfill criteria");
+			console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " passed floodfill criteria");
+			console.log("my head is: " + temp.body[1].x + " " + temp.body[1].y);
 
-			if(topRoute[1].x > mySnake.body[0].x) {
+			if(temp.body[0].x > temp.body[1].x) {
 				decision.right += 2000;
 			}
-			if(topRoute[1].x < mySnake.body[0].x) {
+			if(temp.body[0].x < temp.body[1].x) {
 				decision.left += 2000;
 			}
-			if(topRoute[1].y > mySnake.body[0].y) {
+			if(temp.body[0].y > temp.body[1].y) {
 				decision.down += 2000;
 			}
-			if(topRoute[1].y < mySnake.body[0].y) {
+			if(temp.body[0].y < temp.body[1].y) {
 				decision.up += 2000;
 			}
 			return;

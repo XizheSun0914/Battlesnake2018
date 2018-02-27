@@ -4,8 +4,6 @@ var check = false;
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
 
-	console.log("checkpoint 2");
-
 	//find node that is neighbouring head that is not blocked in order to start
 
 	var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
@@ -32,14 +30,11 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 		return false;
 	}
 
-	console.log("checkpoint 3");
-
 	//push location onto our open space list if not head
 	if(check) {
 		openSpaces.push(node);
 	}
 
-	console.log("checkpoint 4");
 	console.log("coords: " + node.x + " " + node.y);
 
 	var caseOne = new Point(node.x+1, node.y);
@@ -59,7 +54,6 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 	if(dfs(openSpaces, caseFour, boardWidth, boardHeight, enemies, mySnake)) {
 		return true;
 	}
-	console.log("checkpoint 5!!!");
 	return false;
 }
 
