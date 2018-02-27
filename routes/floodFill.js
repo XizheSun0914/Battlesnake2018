@@ -19,6 +19,8 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 		check = true;
 	}
 
+	console.log(check);
+
 	//Base cases
 	if(node.x > boardWidth || node.y > boardHeight || node.x < 0 || node.y < 0) {
 		return false;
