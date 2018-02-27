@@ -41,8 +41,10 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 		var topRoute = routes.shift();
 
+		//acts as if the head is one forward and the tail is too
 		var temp = Object.assign({}, mySnake);
 		temp.body.unshift(topRoute[1]);
+		temp.body.pop();
 
 		var space = floodFill(temp, enemies, board);
 

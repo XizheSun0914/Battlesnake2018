@@ -76,5 +76,5 @@ var checkIfBlocked = function(node, enemies, mySnake) {
 			return true;
 		}
 	}
-	return true;
+	return false;
 }
