@@ -35,11 +35,13 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	//makes a variable (temp) equal mySnake and push the direction we want to go onto the head
 	//rotates through all options until success or failure
 
-	for(var a = 0; a < routes.length; a++) {
+	//-----------------------------------------------------------------------
+
+	while(routes.length > 0) {
 
 		var topRoute = routes.shift();
 
-		var temp = mySnake;
+		var temp = Object.assign({}, mySnake);
 		temp.body.unshift(topRoute[1]);
 
 		var space = floodFill(temp, enemies, board);

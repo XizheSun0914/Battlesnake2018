@@ -46,8 +46,6 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 	if(dfs(openSpaces, caseOne, boardWidth, boardHeight, enemies, mySnake)) {
 		return true;
 	}
-
-	console.log("reached 2nd case");
 	if(dfs(openSpaces, caseTwo, boardWidth, boardHeight, enemies, mySnake)) {
 		return true;
 	}
