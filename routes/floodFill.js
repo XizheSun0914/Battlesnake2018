@@ -30,12 +30,13 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 		return false;
 	}
 
+	console.log("coords: " + node.x + " " + node.y);
+
 	//push location onto our open space list if not head
 	if(check) {
 		openSpaces.push(node);
+		console.log("added: " + node.x + " " + node.y + " to openSpaces");
 	}
-
-	console.log("coords: " + node.x + " " + node.y);
 
 	var caseOne = new Point(node.x+1, node.y);
 	var caseTwo = new Point(node.x-1, node.y);
@@ -45,6 +46,8 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 	if(dfs(openSpaces, caseOne, boardWidth, boardHeight, enemies, mySnake)) {
 		return true;
 	}
+
+	console.log("reached 2nd case");
 	if(dfs(openSpaces, caseTwo, boardWidth, boardHeight, enemies, mySnake)) {
 		return true;
 	}
