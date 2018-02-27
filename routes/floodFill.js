@@ -19,20 +19,22 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 		check = true;
 	}
 
-	console.log(check);
+	console.log("check = " + check);
+	console.log("before base cases: " node.x + " " + node.y);
 
 	//Base cases
 	if(node.x > boardWidth || node.y > boardHeight || node.x < 0 || node.y < 0) {
+		console.log("outside board");
 		return false;
 	}
 	if(contains(openSpaces, node.x, node.y)) {
+		console.log("visited already");
 		return false;
 	}
 	if(checkIfBlocked(node, enemies, mySnake) && check) { 
+		console.log("blocked");
 		return false;
 	}
-
-	console.log("coords: " + node.x + " " + node.y);
 
 	//push location onto our open space list if not head
 	if(check) {
