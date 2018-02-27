@@ -38,8 +38,9 @@ var dfs = function (openSpaces, node, boardWidth, boardHeight, enemies, mySnake)
 	if(check) {
 		openSpaces.push(temp);
 	}
-	
+
 	console.log("checkpoint 4");
+	console.log("coords: " + node.x + " " + node.y);
 
 	var caseOne = new Point(node.x+1, node.y);
 	var caseTwo = new Point(node.x-1, node.y);
