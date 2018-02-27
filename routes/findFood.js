@@ -1,4 +1,6 @@
 var aStar = require('./functions/aStar.js')
+var floodFill = require('./floodFill.js')
+var contains = require('./functions/contains.js')
 
 //uses A* algorithm to find good routes to food. Looks at best route to each peice of food
 // and decides which is the best based cost of route (lowest cost of destination.f)
@@ -19,8 +21,8 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	console.log(routes.length);
 	for(var i = 0; i < routes.length; i++) {
 		console.log("weight: " + routes[i][routes[i].length-1].f);
-		console.log(routes[i][1].x + " " + routes[i][1].y);
-		console.log(food[i]);
+		console.log("first move: " + routes[i][1].x + " " + routes[i][1].y);
+		console.log("dest: " + food[i]);
 		console.log();
 	}
 
@@ -29,35 +31,41 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		return a[a.length-1].f - b[b.length-1].f;
 	});
 
-	var topRoute = routes.shift();
-	console.log(topRoute[1].x + " " + topRoute[1].y);
+	//checks before returning if there is enough room for the move.
+	//makes a variable (temp) equal mySnake and push the direction we want to go onto the head
+	//rotates through all options until success or failure
 
-	//----------------------------------------------------
+	for(var a = 0; a < routes.length; a++) {
 
-	//IMPLEMENT A CHECK TO SEE IF THE NEXT COUPLE MOVES WOULD GET ME TRAPPED ( mySnake.length*(2/3) > area)
-	// -> flood fill past the point to check area
+		var topRoute = routes.shift();
 
-	//IF SO: check the other routes available and see if they work better.
+		var temp = mySnake;
+		temp.body.push(topRoute[1]);
 
-	//IF NONE WORK: return with all decision values at 0 (maybe make it A* to tail)
+		var space = floodFill(temp, enemies, board);
 
-	//----------------------------------------------------
+		//if theres more than enough space to fit go for it or if absolutely desparate for food
+		if(space.length*(3/4) > mySnake.length || (space.length > mySnake.length && mySnake.health < 15)) {
 
-	//picks the drection of the first move on the best route
+			console.log("direction: " + topRoute[1].x + " " + topRoute[1].y + " passed floodfill criteria");
 
-	if(topRoute[1].x > mySnake.body[0].x) {
-		decision.right += 2000;
+			if(topRoute[1].x > mySnake.body[0].x) {
+				decision.right += 2000;
+			}
+			if(topRoute[1].x < mySnake.body[0].x) {
+				decision.left += 2000;
+			}
+			if(topRoute[1].y > mySnake.body[0].y) {
+				decision.down += 2000;
+			}
+			if(topRoute[1].y < mySnake.body[0].y) {
+				decision.up += 2000;
+			}
+			return;
+		}
+		console.log("direction: " + topRoute[1].x + " " + topRoute[1].y + " failed floodfill criteria");
 	}
-	if(topRoute[1].x < mySnake.body[0].x) {
-		decision.left += 2000;
-	}
-	if(topRoute[1].y > mySnake.body[0].y) {
-		decision.down += 2000;
-	}
-	if(topRoute[1].y < mySnake.body[0].y) {
-		decision.up += 2000;
-	}
 
+	//returns decision with no new direction values if all food options fail
 	return;
-
 }

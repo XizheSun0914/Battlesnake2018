@@ -37,6 +37,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 			keepAlive(mySnake, enemies, board, decision);
 		}
 	} else {
+		//do some kind of predatory action
 		keepAlive(mySnake, enemies, board, decision);
 	}
 
