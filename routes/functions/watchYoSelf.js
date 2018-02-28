@@ -1,18 +1,92 @@
 var contains = require('./contains.js')
 
 //makes sure we aren't going backward onto ourself
-module.exports = exports = function(mySnake, decision) {
-	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y-1)) {
+//unless its our tail and we didnt just eat, cause itll move
+//and not to hit enemy snakes that are larger than us
+module.exports = exports = function(mySnake, enemies, decision) {
+	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y-1) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y-1) && mySnake.health != 100)) {
 		decision.up -= 99999;
 	}
-	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y+1)) {
+	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y+1) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y+1) && mySnake.health != 100)) {
 		decision.down -= 99999;
 	}
-	if(contains(mySnake.body, mySnake.body[0].x-1, mySnake.body[0].y)) {
+	if(contains(mySnake.body, mySnake.body[0].x-1, mySnake.body[0].y) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x-1 && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y) && mySnake.health != 100)) {
 		decision.left -= 99999;
 	}
-	if(contains(mySnake.body, mySnake.body[0].x+1, mySnake.body[0].y)) {
+	if(contains(mySnake.body, mySnake.body[0].x+1, mySnake.body[0].y) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x+1 && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y) && mySnake.health != 100)) {
 		decision.right -= 99999;
+	}
+
+	var desparate = false;
+
+	if(mySnake.health < 15) {
+		desparate = true;
+	}
+
+	//checks if another snakes head is one away from the direction I could go
+
+	var left = []
+	for(var k = -1; k <= 1; k++) {
+		for(var j = -1; j <= 1; j++) {
+			if(k != 0 && j != 0) {
+				continue;
+			}
+			var temp = new Point(mySnake.body[0].x-1+k, mySnake.body.y+j);
+			left.push(temp);
+		}
+	}
+	var right = []
+	for(var k = -1; k <= 1; k++) {
+		for(var j = -1; j <= 1; j++) {
+			if(k != 0 && j != 0) {
+				continue;
+			}
+			var temp = new Point(mySnake.body[0].x+1+k, mySnake.body.y+j);
+			right.push(temp);
+		}
+	}
+	var up = []
+	for(var k = -1; k <= 1; k++) {
+		for(var j = -1; j <= 1; j++) {
+			if(k != 0 && j != 0) {
+				continue;
+			}
+			var temp = new Point(mySnake.body[0].x+k, mySnake.body.y-1+j);
+			up.push(temp);
+		}
+	}
+	var down = []
+	for(var k = -1; k <= 1; k++) {
+		for(var j = -1; j <= 1; j++) {
+			if(k != 0 && j != 0) {
+				continue;
+			}
+			var temp = new Point(mySnake.body[0].x+k, mySnake.body.y+1+j);
+			left.push(temp);
+		}
+	}
+
+	for(var i = 0; i < enemies.length; i++) {
+		if(contains(left, enemies[i].body[0].x, enemies[i].body[0].y)) {
+			if(mySnake.length <= enemies[i].length && !desparate) {
+				decision.left -= 99999;
+			}
+		}
+		if(contains(right, enemies[i].body[0].x, enemies[i].body[0].y)) {
+			if(mySnake.length <= enemies[i].length && !desparate) {
+				decision.right -= 99999;
+			}
+		}
+		if(contains(up, enemies[i].body[0].x, enemies[i].body[0].y)) {
+			if(mySnake.length <= enemies[i].length && !desparate) {
+				decision.up -= 99999;
+			}
+		}
+		if(contains(down, enemies[i].body[0].x, enemies[i].body[0].y)) {
+			if(mySnake.length <= enemies[i].length && !desparate) {
+				decision.down -= 99999;
+			}
+		}
 	}
 	return;
 }

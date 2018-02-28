@@ -42,8 +42,8 @@ module.exports = exports = function (mySnake, enemies, board) {
 	}
 
 	// fairly redundant but makes sure we aren't accidentally killing ourselves
-	//watchYoSelf(mySnake, decision);
-	//checkWalls(mySnake, board, decision);
+	watchYoSelf(mySnake, enemies, decision);
+	checkWalls(mySnake, board, decision);
 
 	return decision.move();
 }
