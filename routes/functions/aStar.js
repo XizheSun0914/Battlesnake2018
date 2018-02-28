@@ -69,13 +69,13 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			}
 			//remove instances of successor that are worse
 			for(var k = 0; k < closedList.length; k++) {
-				if(closedList[k].x == successors[i].y && closedList[k].y == successors[i].y) {
+				if(closedList[k].x == successors[i].x && closedList[k].y == successors[i].y) {
 					closedList.splice(k,1);
 				}
 			}
 
 			for(var k = 0; k < openList.length; k++) {
-				if(openList[k].x == successors[i].y && openList[k].y == successors[i].y) {
+				if(openList[k].x == successors[i].x && openList[k].y == successors[i].y) {
 					openList.splice(k,1);
 				}
 			}
