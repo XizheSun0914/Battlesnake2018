@@ -27,7 +27,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 	};
 
 	//edit these goals with testing
-	var goalLength = board.height*board.width/6;
+	var goalLength = board.height*board.width/7;
 	var lowHealth = board.height*board.width/8;
 
 	if(mySnake.health < lowHealth || mySnake.length < goalLength) {

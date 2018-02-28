@@ -23,7 +23,9 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	console.log(routes.length);
 	for(var i = 0; i < routes.length; i++) {
 		console.log("weight: " + routes[i][routes[i].length-1].f);
-		console.log("first move: " + routes[i][1].x + " " + routes[i][1].y);
+		for(var j = 0; j < routes[i].length; j++) {
+			console.log("move #" + j + ": " + routes[i][j].x + " " + routes[i][j].y);
+		}
 		console.log("dest: " + food[i].x + " " + food[i].y);
 		console.log();
 	}
@@ -78,7 +80,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 				decreaseVal = decreaseVal*(1/3);
 			}
 			continue;
-		}
+		} 
 		console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " failed floodfill criteria");
 	}
 
