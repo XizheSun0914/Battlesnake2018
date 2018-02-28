@@ -29,43 +29,22 @@ module.exports = exports = function(mySnake, enemies, decision) {
 	//disallows move if there is and im smaller, unless hella hungry
 
 	var left = []
-	for(var k = -1; k <= 1; k++) {
-		for(var j = -1; j <= 1; j++) {
-			if(k != 0 && j != 0) {
-				continue;
-			}
-			var temp = new Point(mySnake.body[0].x-1+k, mySnake.body.y+j);
-			left.push(temp);
-		}
-	}
 	var right = []
-	for(var k = -1; k <= 1; k++) {
-		for(var j = -1; j <= 1; j++) {
-			if(k != 0 && j != 0) {
-				continue;
-			}
-			var temp = new Point(mySnake.body[0].x+1+k, mySnake.body.y+j);
-			right.push(temp);
-		}
-	}
 	var up = []
-	for(var k = -1; k <= 1; k++) {
-		for(var j = -1; j <= 1; j++) {
-			if(k != 0 && j != 0) {
-				continue;
-			}
-			var temp = new Point(mySnake.body[0].x+k, mySnake.body.y-1+j);
-			up.push(temp);
-		}
-	}
 	var down = []
 	for(var k = -1; k <= 1; k++) {
 		for(var j = -1; j <= 1; j++) {
 			if(k != 0 && j != 0) {
 				continue;
 			}
-			var temp = new Point(mySnake.body[0].x+k, mySnake.body.y+1+j);
-			left.push(temp);
+			var tempL = new Point(mySnake.body[0].x-1+k, mySnake.body.y+j);
+			var tempR = new Point(mySnake.body[0].x+1+k, mySnake.body.y+j);
+			var tempU = new Point(mySnake.body[0].x+k, mySnake.body.y-1+j);
+			var tempD = new Point(mySnake.body[0].x+k, mySnake.body.y+1+j);
+			left.push(tempL);
+			right.push(tempR);
+			up.push(tempU);
+			down.push(tempD);
 		}
 	}
 
