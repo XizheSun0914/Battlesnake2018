@@ -40,7 +40,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 		}
 	} else {
 		//do some kind of predatory action that isn't keep alive
-		keepAlive(mySnake, enemies, board, decision);
+		findFood(mySnake, enemies, board, decision);
 	}
 
 	// fairly redundant but makes sure we aren't accidentally killing ourselves
