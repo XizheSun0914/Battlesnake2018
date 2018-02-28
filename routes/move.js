@@ -45,5 +45,11 @@ module.exports = exports = function (mySnake, enemies, board) {
 	watchYoSelf(mySnake, enemies, decision);
 	checkWalls(mySnake, board, decision);
 
+	console.log("checkpoint 3");
+	console.log("left: " + decision.left);
+	console.log("right: " + decision.right);
+	console.log("down: " + decision.down);
+	console.log("up: " + decision.up);
+
 	return decision.move();
 }
