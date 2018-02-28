@@ -1,4 +1,4 @@
-//SEEMS TO BE WORKING RIGHT NOW, CHECK FOR A SITUATION THAT IS TRULY BEING TRAPPED
+//SEEMS TO BE WORKING
 
 var contains = require('./functions/contains.js')
 

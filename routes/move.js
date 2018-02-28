@@ -1,4 +1,4 @@
-//WORKS RIGHT NOW ASIDE FROM CHECKWALLS
+//WORKS RIGHT NOW , edit lowhealth and goallength based on testing
 
 var checkWalls = require('./functions/checkWalls.js')
 var findFood = require('./findFood.js')
@@ -27,7 +27,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 	};
 
 	//edit these goals with testing
-	var goalLength = board.height*board.width/8;
+	var goalLength = board.height*board.width/6;
 	var lowHealth = board.height*board.width/8;
 
 	if(mySnake.health < lowHealth || mySnake.length < goalLength) {
@@ -39,11 +39,12 @@ module.exports = exports = function (mySnake, enemies, board) {
 			keepAlive(mySnake, enemies, board, decision);
 		}
 	} else {
-		//do some kind of predatory action that isn't keep alive
+		console.log("now being a predator");
+		//do some kind of predatory action that isn't findfood()
 		findFood(mySnake, enemies, board, decision);
 	}
 
-	// fairly redundant but makes sure we aren't accidentally killing ourselves
+	//makes sure we aren't accidentally killing ourselves
 	watchYoSelf(mySnake, enemies, decision);
 	checkWalls(mySnake, board, decision);
 

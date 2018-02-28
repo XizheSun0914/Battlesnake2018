@@ -1,5 +1,6 @@
 var floodFill = require('./floodFill.js')
 var contains = require('./functions/contains.js')
+var aStar = require('./functions/aStar.js')
 
 //does flood fill to find how large the space is and where the walls are
 
@@ -14,9 +15,11 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	console.log(openSpace.length);
 
+	//adjust with testing to see if this size works, or completely different method
 	if(openSpace.length*(1/2) > mySnake.length) {
 
 		//go in circles filling the area and going to tail one behind
+		//hug wall and astar to tail once available?
 		console.log("lets do some circles!");
 
 	} else {
@@ -30,10 +33,11 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 
 		if(nearbyTails.length == 0) {
-			console.log("thats the game folks!");
+			console.log("uh oh!");
+			//try to hug wall
 		} else {
 			console.log("theres a tail!");
-			//A* to closest enemy tail
+			//A* to closest enemy tail (remember that my astar takes enemy bodies into account, so adjust)
 		}
 	}
 	return;
