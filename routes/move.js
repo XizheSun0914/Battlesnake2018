@@ -43,6 +43,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 
 	// fairly redundant but makes sure we aren't accidentally killing ourselves
 	watchYoSelf(mySnake, enemies, decision);
+	console.log(mySnake.body[0].x + " " + mySnake.body[0].y);
 	//checkWalls(mySnake, board, decision);
 
 	console.log("checkpoint 3");
