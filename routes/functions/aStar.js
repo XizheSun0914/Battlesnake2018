@@ -9,44 +9,34 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
 	openList.push(first);
 
-	console.log("checkpoint 1");
-
 	while(openList.length != 0) {
 
-		if(openList.length >= 2) {
-			openList.sort(function(a,b) {	//sort openList based on total cost
-				return b.f - a.f;
-			});
-		}
+		openList.sort(function(a,b) {	//sort openList based on total cost
+			return a.f - b.f;
+		});
 
 		var q = openList.shift();
 		var successors = [];
 
-		console.log("checkpoint 2");
 
 		//create successors
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
 				//if we cant reach, skip
 				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, enemies, mySnake, board))) {
-					console.log("checkpoint 2.5");
 					continue;
 				} else {
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
 					successors.push(successor);
-					console.log("checkpoint 2.75");
 				}
 			}
 		}
-
-		console.log("checkpoint 3");
 
 		for(var i = 0; i < successors.length; i++) {
 
 			//if at goal push to closedList and quit
 			if(isDest(successors[i].x, successors[i].y, food)) {
 				closedList.push(successors[i]);
-				console.log("checkpoint 5");
 				return closedList;
 			}
 
@@ -80,8 +70,6 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				}
 			}
 		}
-
-		console.log("checkpoint 4");
 
 		closedList.push(q);
 	}
