@@ -11,9 +11,11 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 	while(openList.length != 0) {
 
-		openList.sort(function(a,b) {	//sort openList based on total cost
-			return a.f - b.f;
-		});
+		if(openList.length >= 2) {
+			openList.sort(function(a,b) {	//sort openList based on total cost
+				return a.f - b.f;
+			});
+		}
 
 		var q = openList.shift();
 		var successors = [];
