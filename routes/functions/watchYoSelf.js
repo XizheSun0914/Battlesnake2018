@@ -42,9 +42,9 @@ module.exports = exports = function(mySnake, enemies, decision) {
 			var tempU = new Point(mySnake.body[0].x+k, mySnake.body[0].y-(1+j));
 			var tempD = new Point(mySnake.body[0].x+k, mySnake.body[0].y+(1+j));
 			console.log("left: " + tempL.x + " " + tempL.y);
-			console.log("right: " + tempR + " " + tempR.y);
-			console.log("up: " + tempU + " " + tempU.y);
-			console.log("down: " + tempD + " " + tempD.y);
+			console.log("right: " + tempR.x + " " + tempR.y);
+			console.log("up: " + tempU.x + " " + tempU.y);
+			console.log("down: " + tempD.x + " " + tempD.y);
 			left.push(tempL);
 			right.push(tempR);
 			up.push(tempU);
