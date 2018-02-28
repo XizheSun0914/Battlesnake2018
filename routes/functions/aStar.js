@@ -10,53 +10,66 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 	openList.push(first);
 
 	while(openList.length != 0) {
-		var p = openList.shift();
-		closedList.push(p);
 
-		for(var i = -1; i <= 1; i++) {
-			for(var j = -1; j <= 1; j++) {
-				//if we can't move to that node, skip
-				if((i==0 && j==0) || (i != 0 && j != 0)){
-					continue;
-				} else {
-
-					//if we can't go there, skip
-					if(!isValid(p.x+i, p.y+j, enemies, mySnake, board)){
-						continue;
-
-					} else {
-
-						//if we reached food, exit and return route
-						if(isDest(p.x+i, p.y+j, food)) {
-							var final = new aNode(p.x+i, p.y+j, p.f, p, food, enemies, mySnake);
-							closedList.push(final);
-							return closedList;
-
-						//if not on our closedList or openList, add
-						//OR
-						//if not on closedList but on openList with higher value, add
-						} else if (!contains(closedList, p.x+i, p.y+j)) {
-							var check = true;
-							var tempNode = new aNode(p.x+i, p.y+j, p.f, p, food, enemies, mySnake);
-							for(var k = 0; k < openList.length; k++) {							//INCREDIBLY SLOW: Doesn't affect performance
-								if(openList[k].x == p.x+i && openList[k].y == p.y+j) {			//too much on a realistic gameboard though.
-									check = false;												//fix if time permits
-									if(openList[k].f > tempNode.f) {
-										openList.push(tempNode);
-									}
-								}
-							}
-							if(check) {
-								openList.push(tempNode);
-							}
-						}
-					}
-				}
-			}
-		}
 		openList.sort(function(a,b) {	//sort openList based on total cost
 			return a.f - b.f;
 		});
+
+		var q = openList.shift();
+		var successors = [];
+
+		//create successors
+		for(var i = -1; i <= 1; i++) {
+			for(var j = -1; j <= 1; j++) {
+				//if we cant reach, skip
+				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(p.x+i, p.y+j, enemies, mySnake, board))){
+					continue;
+				} else {
+					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
+					successors.push(successor);
+				}
+			}
+		}
+
+		for(var i = 0; i < successors.length; i++) {
+
+			//if at goal push to closedList and quit
+			if(isDest(successors[i].x, successors[i].y, food)) {
+				closedList.push(successors[i]);
+				return closedList;
+			}
+
+			//if openList has a node cheaper than successor[i], continue
+			if(contains(openList, successors[i].x, successors[i].y)) {
+				var check = false;
+				for(var j = 0; j < openList.length; j++) {
+					if(openList[j].x == successors[i].x && openList[j].y == successors[i].y && openList[j].f < successors[i].f) {
+						check = true;
+					}
+				}
+				if(check) {
+					continue;
+				}
+			}
+
+			//if not on closedList or on closedList but has cheaper value, add to openList
+			if(!contains(closedList, successors[i].x, successors[i].y)) {
+				openList.push(successors[i]);
+			} else {
+				var check = false;
+				for(var j = 0; j < closedList.length; j++) {
+					if(closedList[j].x == successors[i].x && closedList[j].y == successors[i].y && closedList[j].f < successors[i].f) {
+						check = true;
+					}
+				}
+				if(check) {
+					continue;
+				} else {
+					openList.push(successors[i]);
+				}
+			}
+		}
+		closedList.push(q);
 	}
 	var sadness = [];	//return empty list if search failed
 	return sadness;
