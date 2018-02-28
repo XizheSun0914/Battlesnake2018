@@ -1,3 +1,5 @@
+//WORKS BUT TWEAK VALUES IN CONSTRUCTION ZONE
+
 var contains = require('./contains.js')
 
 module.exports = exports = function (board, mySnake, enemies, food) {

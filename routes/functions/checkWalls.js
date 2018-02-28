@@ -1,3 +1,5 @@
+//BROKEN AT TOP OF BOARD FOR SOME REASON, MAY OMIT IF CANT FIX
+
 var contains = require('./contains.js')
 
 //This fella makes sure we aren't running into any walls based on our decisions!
@@ -38,19 +40,19 @@ module.exports = exports = function (mySnake, board, decision)  {
 	}
 
 	//left side
-	if(mySnake.body[0].x == -1) {
+	if(mySnake.body[0].x == 0) {
 		decision.left -= 99999;
 	}
 	// right side
-	if(mySnake.body[0].x == board.width+1) {
+	if(mySnake.body[0].x == board.width) {
 		decision.right -= 99999;
 	}
 	// top
-	if(mySnake.body[0].y == -1) {
+	if(mySnake.body[0].y == 0) {
 		decision.up -= 99999;
 	}
 	//bottom
-	if(mySnake.body[0].y == board.height+1) {
+	if(mySnake.body[0].y == board.height) {
 		decision.down -= 99999;
 	}
 	return;

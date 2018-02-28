@@ -1,3 +1,5 @@
+//SEEMS TO BE WORKING RIGHT NOW, CHECK WITH WIFI IF DEINCREMENTING VALUES WORKS
+
 var aStar = require('./functions/aStar.js')
 var floodFill = require('./floodFill.js')
 var contains = require('./functions/contains.js')
@@ -37,6 +39,9 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	//-----------------------------------------------------------------------
 
+	//lowers value of each route in order of priority (if floodfill succeeds)
+	var decreaseVal = 0;
+
 	while(routes.length > 0) {
 
 		var topRoute = routes.shift();
@@ -50,25 +55,29 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 		console.log("room: " + space.length);
 
-		//if theres more than enough space to fit go for it or if absolutely desparate for food
-		if(space.length*(3/4) > mySnake.length || (space.length > mySnake.length && mySnake.health < 15)) {
+		//if theres more than enough space to fit; go for it or if absolutely desparate for food
+		if(space.length*(1/2) > mySnake.length || (space.length > mySnake.length && mySnake.health < 15)) {
 
 			console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " passed floodfill criteria");
 			console.log("my head is: " + temp.body[1].x + " " + temp.body[1].y);
 
 			if(temp.body[0].x > temp.body[1].x) {
-				decision.right += 2000;
+				decision.right += 2000 - decreaseVal;
+				decreaseVal += 500;
 			}
 			if(temp.body[0].x < temp.body[1].x) {
-				decision.left += 2000;
+				decision.left += 2000 - decreaseVal;
+				decreaseVal += 500;
 			}
 			if(temp.body[0].y > temp.body[1].y) {
-				decision.down += 2000;
+				decision.down += 2000 - decreaseVal;
+				decreaseVal += 500;
 			}
 			if(temp.body[0].y < temp.body[1].y) {
-				decision.up += 2000;
+				decision.up += 2000 - decreaseVal;
+				decreaseVal += 500;
 			}
-			return;
+			continue;
 		}
 		console.log("direction: " + topRoute[1].x + " " + topRoute[1].y + " failed floodfill criteria");
 		console.log("my head is: " + temp.body[1].x + " " + temp.body[1].y);

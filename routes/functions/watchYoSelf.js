@@ -1,3 +1,5 @@
+//SEEMS TO BE WORKING RIGHT NOW
+
 var contains = require('./contains.js')
 
 //makes sure we aren't going backward onto ourself
@@ -23,10 +25,8 @@ module.exports = exports = function(mySnake, enemies, decision) {
 		desparate = true;
 	}
 
-	console.log("checkpoint 1");
-
 	//checks if another snakes head is one away from the direction I could go
-	//disallows move if there is and im smaller, unless hella hungry
+	//disallows move if there is enemy head and im smaller, unless hella hungry
 
 	var left = []
 	var right = []
@@ -47,8 +47,6 @@ module.exports = exports = function(mySnake, enemies, decision) {
 			down.push(tempD);
 		}
 	}
-
-	console.log("checkpoint 2");
 
 	for(var i = 0; i < enemies.length; i++) {
 		if(contains(left, enemies[i].body[0].x, enemies[i].body[0].y)) {

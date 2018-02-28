@@ -31,7 +31,7 @@ router.post('/move', function (req, res) {
   // Response data
   var data = {
     move: move(mySnake, enemies, board), // one of: ['up','down','left','right']
-    taunt: 'you are unpatriotic!',
+    taunt: 'that was unpatriotic!',
   }
 
   return res.json(data)
@@ -39,6 +39,7 @@ router.post('/move', function (req, res) {
 
 //-------------------------- Functions to build our environment ---------------------------//
 
+//puts together a list of enemies
 var makeEnemies = function (mySnake, input) {
   var enemies = new Array();
 

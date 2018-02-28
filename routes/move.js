@@ -1,3 +1,5 @@
+//WORKS RIGHT NOW ASIDE FROM CHECKWALLS
+
 var checkWalls = require('./functions/checkWalls.js')
 var findFood = require('./findFood.js')
 var keepAlive = require('./keepAlive.js')
@@ -37,16 +39,15 @@ module.exports = exports = function (mySnake, enemies, board) {
 			keepAlive(mySnake, enemies, board, decision);
 		}
 	} else {
-		//do some kind of predatory action
+		//do some kind of predatory action that isn't keep alive
 		keepAlive(mySnake, enemies, board, decision);
 	}
 
 	// fairly redundant but makes sure we aren't accidentally killing ourselves
 	watchYoSelf(mySnake, enemies, decision);
-	console.log(mySnake.body[0].x + " " + mySnake.body[0].y);
-	//checkWalls(mySnake, board, decision);
 
-	console.log("checkpoint 3");
+	//checkWalls(mySnake, board, decision);		BROKEN, FIX IF POSSIBLE
+
 	console.log("left: " + decision.left);
 	console.log("right: " + decision.right);
 	console.log("down: " + decision.down);

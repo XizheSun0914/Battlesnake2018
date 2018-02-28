@@ -1,20 +1,23 @@
+//SEEMS TO BE WORKING RIGHT NOW, CHECK FOR A SITUATION THAT IS TRULY BEING TRAPPED
+
 var contains = require('./functions/contains.js')
 
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
 	var check = false;
 
-	//find node that is neighbouring head that is not blocked in order to start
-
+	//start floodfill at head
 	var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
 	dfs(check, openSpaces, head, board.width, board.height, enemies, mySnake);
 
+	//returns list of all coordinates in reach
 	return openSpaces;
 
 }
 
 var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, mySnake) {
 
+	//makes sure that we dont exit immediately due to head being a body part
 	if(!(mySnake.body[0].x == node.x && mySnake.body[0].y == node.y)) {
 		check = true;
 	}
@@ -35,6 +38,7 @@ var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, m
 		openSpaces.push(node);
 	}
 
+	//recursion
 	var caseOne = new Point(node.x+1, node.y);
 	var caseTwo = new Point(node.x-1, node.y);
 	var caseThree = new Point(node.x, node.y+1);
@@ -60,6 +64,7 @@ function Point(x, y) {
 	this.y = y;
 }
 
+//checks if any enemies or body parts are on the spot
 var checkIfBlocked = function(node, enemies, mySnake) {
 	if(contains(mySnake.body, node.x, node.y)) {
 		return true;
