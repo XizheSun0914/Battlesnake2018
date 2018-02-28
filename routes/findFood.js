@@ -59,28 +59,28 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		if(space.length*(1/2) > mySnake.length || (space.length > mySnake.length && mySnake.health < 15)) {
 
 			console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " passed floodfill criteria");
-			console.log("my head is: " + temp.body[1].x + " " + temp.body[1].y);
+			console.log("my head is: " + mySnake.body[0].x + " " + mySnake.body[0].y);
 
-			if(temp.body[0].x > temp.body[1].x) {
+			if(temp.body[0].x > mySnake.body[0].x) {
 				decision.right += 2000 - decreaseVal;
 				decreaseVal += 500;
 			}
-			if(temp.body[0].x < temp.body[1].x) {
+			if(temp.body[0].x < mySnake.body[0].x) {
 				decision.left += 2000 - decreaseVal;
 				decreaseVal += 500;
 			}
-			if(temp.body[0].y > temp.body[1].y) {
+			if(temp.body[0].y > mySnake.body[0].y) {
 				decision.down += 2000 - decreaseVal;
 				decreaseVal += 500;
 			}
-			if(temp.body[0].y < temp.body[1].y) {
+			if(temp.body[0].y < mySnake.body[0].y) {
 				decision.up += 2000 - decreaseVal;
 				decreaseVal += 500;
 			}
 			continue;
 		}
-		console.log("direction: " + topRoute[1].x + " " + topRoute[1].y + " failed floodfill criteria");
-		console.log("my head is: " + temp.body[1].x + " " + temp.body[1].y);
+		console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " failed floodfill criteria");
+		console.log("my head is: " + mySnake.body[0].x + " " + mySnake.body[0].y);
 	}
 
 	//returns decision with no new direction values if all food options fail
