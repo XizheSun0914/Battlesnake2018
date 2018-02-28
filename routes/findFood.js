@@ -1,4 +1,4 @@
-//SEEMS TO BE WORKING RIGHT NOW, CHECK WITH WIFI IF DEINCREMENTING VALUES WORKS
+//SEEMS TO BE WORKING RIGHT NOW
 
 var aStar = require('./functions/aStar.js')
 var floodFill = require('./floodFill.js')
@@ -40,7 +40,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	//-----------------------------------------------------------------------
 
 	//lowers value of each route in order of priority (if floodfill succeeds)
-	var decreaseVal = 0;
+	var decreaseVal = 2000;
 
 	while(routes.length > 0) {
 
@@ -62,25 +62,24 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 			console.log("my head is: " + mySnake.body[0].x + " " + mySnake.body[0].y);
 
 			if(temp.body[0].x > mySnake.body[0].x) {
-				decision.right += 2000 - decreaseVal;
-				decreaseVal += 500;
+				decision.right += decreaseVal;
+				decreaseVal = decreaseVal*(1/3);
 			}
 			if(temp.body[0].x < mySnake.body[0].x) {
-				decision.left += 2000 - decreaseVal;
-				decreaseVal += 500;
+				decision.left += decreaseVal;
+				decreaseVal = decreaseVal*(1/3);
 			}
 			if(temp.body[0].y > mySnake.body[0].y) {
-				decision.down += 2000 - decreaseVal;
-				decreaseVal += 500;
+				decision.down += decreaseVal;
+				decreaseVal = decreaseVal*(1/3);
 			}
 			if(temp.body[0].y < mySnake.body[0].y) {
-				decision.up += 2000 - decreaseVal;
-				decreaseVal += 500;
+				decision.up += decreaseVal;
+				decreaseVal = decreaseVal*(1/3);
 			}
 			continue;
 		}
 		console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " failed floodfill criteria");
-		console.log("my head is: " + mySnake.body[0].x + " " + mySnake.body[0].y);
 	}
 
 	//returns decision with no new direction values if all food options fail
