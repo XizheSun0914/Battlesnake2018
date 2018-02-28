@@ -41,6 +41,10 @@ module.exports = exports = function(mySnake, enemies, decision) {
 			var tempR = new Point(mySnake.body[0].x+(1+k), mySnake.body[0].y+j);
 			var tempU = new Point(mySnake.body[0].x+k, mySnake.body[0].y-(1+j));
 			var tempD = new Point(mySnake.body[0].x+k, mySnake.body[0].y+(1+j));
+			console.log("left: " + tempL.x + " " + tempL.y);
+			console.log("right: " + tempR + " " + tempR.y);
+			console.log("up: " + tempU + " " + tempU.y);
+			console.log("down: " + tempD + " " + tempD.y);
 			left.push(tempL);
 			right.push(tempR);
 			up.push(tempU);
@@ -49,6 +53,7 @@ module.exports = exports = function(mySnake, enemies, decision) {
 	}
 
 	for(var i = 0; i < enemies.length; i++) {
+		console.log("enemy head: " + enemies[i].body[0].x + " " + enemies[i].body[0].y);
 		if(contains(left, enemies[i].body[0].x, enemies[i].body[0].y)) {
 			console.log(mySnake.length + "    " + enemies[i].length);
 			console.log("desparate? " + desparate);
