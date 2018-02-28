@@ -51,6 +51,9 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		temp.body.unshift(topRoute[1]);
 		temp.body.pop();
 
+		console.log(mySnake);
+		console.log(temp);
+
 		var space = floodFill(temp, enemies, board);
 
 		console.log("room: " + space.length);
