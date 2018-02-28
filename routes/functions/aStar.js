@@ -1,4 +1,4 @@
-//WORKS BUT TWEAK VALUES IN CONSTRUCTION ZONE
+//DOESNT WORK AND TWEAK VALUES IN CONSTRUCTION ZONE
 
 var contains = require('./contains.js')
 
@@ -15,7 +15,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
-				//if we cant't move to that node, skip
+				//if we can't move to that node, skip
 				if((i==0 && j==0) || (i != 0 && j != 0)){
 					continue;
 				} else {
@@ -74,16 +74,12 @@ function isDest(x, y, dest) {
 //checks if node is already covered by enemy or 
 //friendly snake or if outside board
 function isValid(x, y, enemies, mySnake, board) {
-	for(var i = 1; i < mySnake.body.length; i++) {
-		if(contains(mySnake.body, x, y)) {
-			return false;
-		}
+	if(contains(mySnake.body, x, y)) {
+		return false;
 	}
 	for(var i = 0; i < enemies.length; i++) {
-		for(var j = 0; j < enemies[i].length; j++) {
-			if(contains(enemies[i].body, x, y)) {
-				return false;
-			}
+		if(contains(enemies[i].body, x, y)) {
+			return false;
 		}
 	}
 	if (x <= board.width && x >= 0 && y <= board.height && y >= 0) {
