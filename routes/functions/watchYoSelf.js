@@ -50,21 +50,29 @@ module.exports = exports = function(mySnake, enemies, decision) {
 
 	for(var i = 0; i < enemies.length; i++) {
 		if(contains(left, enemies[i].body[0].x, enemies[i].body[0].y)) {
+			console.log(mySnake.length + "    " + enemies[i].length);
+			console.log("desparate? " + desparate);
 			if(mySnake.length <= enemies[i].length && !desparate) {
 				decision.left -= 99999;
 			}
 		}
 		if(contains(right, enemies[i].body[0].x, enemies[i].body[0].y)) {
+			console.log(mySnake.length + "    " + enemies[i].length);
+			console.log("desparate? " + desparate);
 			if(mySnake.length <= enemies[i].length && !desparate) {
 				decision.right -= 99999;
 			}
 		}
 		if(contains(up, enemies[i].body[0].x, enemies[i].body[0].y)) {
+			console.log(mySnake.length + "    " + enemies[i].length);
+			console.log("desparate? " + desparate);
 			if(mySnake.length <= enemies[i].length && !desparate) {
 				decision.up -= 99999;
 			}
 		}
 		if(contains(down, enemies[i].body[0].x, enemies[i].body[0].y)) {
+			console.log(mySnake.length + "    " + enemies[i].length);
+			console.log("desparate? " + desparate);
 			if(mySnake.length <= enemies[i].length && !desparate) {
 				decision.down -= 99999;
 			}
