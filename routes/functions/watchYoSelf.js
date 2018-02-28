@@ -23,7 +23,10 @@ module.exports = exports = function(mySnake, enemies, decision) {
 		desparate = true;
 	}
 
+	console.log("checkpoint 1");
+
 	//checks if another snakes head is one away from the direction I could go
+	//disallows move if there is and im smaller, unless hella hungry
 
 	var left = []
 	for(var k = -1; k <= 1; k++) {
@@ -66,6 +69,8 @@ module.exports = exports = function(mySnake, enemies, decision) {
 		}
 	}
 
+	console.log("checkpoint 2");
+
 	for(var i = 0; i < enemies.length; i++) {
 		if(contains(left, enemies[i].body[0].x, enemies[i].body[0].y)) {
 			if(mySnake.length <= enemies[i].length && !desparate) {
@@ -88,5 +93,10 @@ module.exports = exports = function(mySnake, enemies, decision) {
 			}
 		}
 	}
+	console.log("checkpoint 3");
+	console.log("left: " + decision.left);
+	console.log("right: " + decision.right);
+	console.log("down: " + decision.down);
+	console.log("up: " + decision.up);
 	return;
 }
