@@ -37,10 +37,10 @@ module.exports = exports = function(mySnake, enemies, decision) {
 			if(k != 0 && j != 0) {
 				continue;
 			}
-			var tempL = new Point(mySnake.body[0].x-1+k, mySnake.body.y+j);
-			var tempR = new Point(mySnake.body[0].x+1+k, mySnake.body.y+j);
-			var tempU = new Point(mySnake.body[0].x+k, mySnake.body.y-1+j);
-			var tempD = new Point(mySnake.body[0].x+k, mySnake.body.y+1+j);
+			var tempL = new Point(mySnake.body[0].x-1+k, mySnake.body[0].y+j);
+			var tempR = new Point(mySnake.body[0].x+1+k, mySnake.body[0].y+j);
+			var tempU = new Point(mySnake.body[0].x+k, mySnake.body[0].y-1+j);
+			var tempD = new Point(mySnake.body[0].x+k, mySnake.body[0].y+1+j);
 			left.push(tempL);
 			right.push(tempR);
 			up.push(tempU);
