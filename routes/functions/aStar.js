@@ -16,7 +16,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
 				//if we cant't move to that node, skip
-				if((i==0 && j==0) || (i==-1 && j==-1) || (i==1 && j==1) || (i==-1 && j==1) || (i==1 && j==-1)){
+				if((i==0 && j==0) || (i != 0 && j != 0)){
 					continue;
 				} else {
 
