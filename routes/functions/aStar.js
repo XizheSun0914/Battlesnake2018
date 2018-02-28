@@ -15,7 +15,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		if(openList.length >= 2) {
 			openList.sort(function(a,b) {	//sort openList based on total cost
-				return a.f - b.f;
+				return b.f - a.f;
 			});
 		}
 
