@@ -58,7 +58,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		console.log("room: " + space.length);
 
 		//if theres more than enough space to fit; go for it or if absolutely desparate for food
-		if(space.length*(2/3) > mySnake.length || (space.length > mySnake.length && mySnake.health < 15)) {
+		if(space.length > mySnake.length || (space.length*(4/3) > mySnake.length && mySnake.health < 15)) {
 
 			console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " passed floodfill criteria");
 			console.log("my head is: " + mySnake.body[0].x + " " + mySnake.body[0].y);
