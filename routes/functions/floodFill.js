@@ -1,6 +1,6 @@
-//SEEMS TO BE WORKING
+var contains = require('./contains.js')
 
-var contains = require('./functions/contains.js')
+//performs floodfill, returning a list of open spaces in the constrained area
 
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];

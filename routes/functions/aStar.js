@@ -1,4 +1,4 @@
-//NOW WORKS BUT TWEAK VALUES IN CONSTRUCTION ZONE
+//just need to tweak values in checkSurround if it isn't getting the right results
 
 var contains = require('./contains.js')
 
@@ -18,6 +18,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		var q = openList.shift();
 		closedList.push(q);
 
+		//if at destination, build route and finish
 		if(q.x == food.x && q.y == food.y) {
 			return finishRoute(q, first);
 		}
@@ -49,7 +50,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				continue;
 			}
 
-			//if openList has same nodes cheaper than successor[i], continue
+			//if openList has same nodes cheaper than successor[i]: continue, else: push to openList
 			if(contains(openList, successors[i].x, successors[i].y)) {
 				var check = false;
 				for(var j = 0; j < openList.length; j++) {
@@ -114,11 +115,21 @@ var finishRoute = function (node, head) {
 	return route;
 }
 
-//--------------------------CONSTRUCTION ZONE ----------------------------
-
-//this changes h (cost to destination) based on the dangerous stuff around the spot
+//changes h (cost to destination) based on the dangerous stuff on the way to the food
 var checkSurround = function (x, y, enemies, mySnake) {
 	var price = 0;
+
+	//if early game, dont worry about enemies as much
+	var check = true;
+	for(var i = 0; i < enemies.length; i++) {
+		if(enemies[i].length > 7) {
+			check = false;
+		}
+	}
+	if(check) {
+		return price;
+	}
+
 	for(var i = -1; i <= 1; i++) {
 		for(var j = -1; j <= 1; j++) {
 			//check if where we want to go has an ememy head beside with equal or larger length nearby
@@ -128,10 +139,9 @@ var checkSurround = function (x, y, enemies, mySnake) {
 			}
 			for(var k = 0; k < enemies.length; k++) {
 				if(contains(enemies[k].body, x+i, y+j)) {
-					price++;
+					price += 2;
 				}
 				if(enemies[k].body[0].x == x+i && enemies[k].body[0].y == y+j && enemies[k].length >= mySnake.length) {
-					//change price added in future when I get a better idea of how impactful it is
 					price += 5;
 				}
 			}

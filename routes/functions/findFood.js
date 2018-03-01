@@ -1,8 +1,8 @@
-//SEEMS TO BE WORKING RIGHT NOW
+//test to figure what amount of openSpace works best
 
-var aStar = require('./functions/aStar.js')
+var aStar = require('./aStar.js')
 var floodFill = require('./floodFill.js')
-var contains = require('./functions/contains.js')
+var contains = require('./contains.js')
 
 //uses A* algorithm to find good routes to food. Looks at best route to each peice of food
 // and decides which is the best based cost of route (lowest cost of destination.f)
@@ -20,6 +20,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 
+	//debugging, prints out list of routes
 	console.log(routes.length);
 	for(var i = 0; i < routes.length; i++) {
 		console.log("weight: " + routes[i][routes[i].length-1].f);
@@ -41,7 +42,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	//-----------------------------------------------------------------------
 
-	//lowers value of each route in order of priority (if floodfill succeeds)
+	//lowers value of each decision in order of priority (if floodfill succeeds)
 	var decreaseVal = 2000;
 
 	while(routes.length > 0) {

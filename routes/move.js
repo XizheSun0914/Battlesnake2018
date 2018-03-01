@@ -1,7 +1,9 @@
-//WORKS RIGHT NOW , edit lowhealth and goallength based on testing
+//edit lowhealth and goallength based on testing
+//add predatory actions
+//improve keepAlive
 
 var checkWalls = require('./functions/checkWalls.js')
-var findFood = require('./findFood.js')
+var findFood = require('./functions/findFood.js')
 var keepAlive = require('./keepAlive.js')
 var watchYoSelf = require('./functions/watchYoSelf.js')
 

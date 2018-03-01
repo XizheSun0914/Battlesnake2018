@@ -1,5 +1,3 @@
-//WORKS!
-
 var contains = require('./contains.js')
 
 //This fella makes sure we aren't running into any walls based on our decisions!

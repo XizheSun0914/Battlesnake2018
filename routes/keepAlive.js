@@ -1,4 +1,4 @@
-var floodFill = require('./floodFill.js')
+var floodFill = require('./functions/floodFill.js')
 var contains = require('./functions/contains.js')
 var aStar = require('./functions/aStar.js')
 
@@ -26,6 +26,9 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 		var nearbyTails = [];
 
+		//find nearby tails by looking through open spaces and checking if any surrounding(4-ways)
+		//tiles have my tail or another enemy snakes
+
 		for(var i = 0; i < enemies.length; i++) {
 			if(contains(openSpaces, enemies[i].body[enemies[i].length-1].x, enemies[i].body[enemies[i].length-1].y)) {
 				nearbyTails.push(enemies[i].body[enemies[i].length-1]);
@@ -34,7 +37,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 		if(nearbyTails.length == 0) {
 			console.log("uh oh!");
-			//try to hug wall
+			//if over 1 wide, fill the area by squiggling back and forth
 		} else {
 			console.log("theres a tail!");
 			//A* to closest enemy tail (remember that my astar takes enemy bodies into account, so adjust)
