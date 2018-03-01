@@ -38,8 +38,18 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		}
 
 		for(var i = 0; i < successors.length; i++) {
+			//if on closedList, ignore
+			if(contains(closedList, successors[i].x, successors[i].y)) {
+				continue;
+			}
 
-			//if openList has a node cheaper than successor[i], continue
+			//if not in openList, add it
+			if(!contains(openList, successors[i].x, successors[i].y)) {
+				openList.push(successors[i]);
+				continue;
+			}
+
+			//if openList has same nodes cheaper than successor[i], continue
 			if(contains(openList, successors[i].x, successors[i].y)) {
 				var check = false;
 				for(var j = 0; j < openList.length; j++) {
@@ -49,50 +59,14 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				}
 				if(check) {
 					continue;
+				} else {
+					openList.push(successors[i]);
 				}
 			}
-
-			//if not on closedList or on closedList but has cheaper value, add to openList
-			if(!contains(closedList, successors[i].x, successors[i].y)) {
-				openList.push(successors[i]);
-			} else {
-				var check = false;
-				for(var j = 0; j < closedList.length; j++) {
-					if(closedList[j].x == successors[i].x && closedList[j].y == successors[i].y && closedList[j].f < successors[i].f) {
-						check = true;
-					}
-				}
-				if(check) {
-					continue;
-				}
-			}
-			//remove instances of successor that are worse
-			for(var k = 0; k < closedList.length; k++) {
-				if(closedList[k].x == successors[i].x && closedList[k].y == successors[i].y) {
-					closedList.splice(k,1);
-				}
-			}
-
-			for(var k = 0; k < openList.length; k++) {
-				if(openList[k].x == successors[i].x && openList[k].y == successors[i].y) {
-					openList.splice(k,1);
-				}
-			}
-			//add successor to openList
-			openList.push(successors[i]);
 		}
 	}
 	var sadness = [];	//return empty list if search failed
 	return sadness;
-}
-
-//Checks if we've reached our destination
-function isDest(x, y, dest) {
-	if(x == dest.x && y == dest.y) {
-		return true;
-	} else {
-		return false;
-	}
 }
 
 //checks if node is already covered by enemy or 
