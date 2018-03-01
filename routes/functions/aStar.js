@@ -106,7 +106,7 @@ var finishRoute = function (node) {
 	var temp = node;
 
 	while(node.parent != null) {
-		var route.unshift(temp);
+		route.unshift(temp);
 		temp = temp.parent;
 	}
 	return route;
