@@ -103,9 +103,9 @@ function aNode(x, y, g, parent, dest, enemies, mySnake) {
 
 var finishRoute = function (node) {
 	var route = [];
-	var temp = node;
+	var temp = JSON.parse(JSON.stringify(node));
 
-	while(node.parent != null) {
+	while(temp.parent != null) {
 		route.unshift(temp);
 		temp = temp.parent;
 	}
