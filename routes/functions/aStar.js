@@ -1,4 +1,4 @@
-//DOESNT WORK AND TWEAK VALUES IN CONSTRUCTION ZONE
+//NOW WORKS BUT TWEAK VALUES IN CONSTRUCTION ZONE
 
 var contains = require('./contains.js')
 
@@ -19,7 +19,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		closedList.push(q);
 
 		if(q.x == food.x && q.y == food.y) {
-			return finishRoute(q);
+			return finishRoute(q, first);
 		}
 
 		var successors = [];
@@ -101,7 +101,8 @@ function aNode(x, y, g, parent, dest, enemies, mySnake) {
 	this.f = this.g + this.h;
 }
 
-var finishRoute = function (node) {
+//retraces back the first node, building the route along the way
+var finishRoute = function (node, head) {
 	var route = [];
 	var temp = JSON.parse(JSON.stringify(node));
 
@@ -109,6 +110,7 @@ var finishRoute = function (node) {
 		route.unshift(temp);
 		temp = temp.parent;
 	}
+	route.unshift(head);
 	return route;
 }
 
