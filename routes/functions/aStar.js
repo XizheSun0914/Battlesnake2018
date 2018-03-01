@@ -19,7 +19,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		closedList.push(q);
 
 		if(q.x == food.x && q.y == food.y) {
-			return closedList;
+			return finishRoute(q);
 		}
 
 		var successors = [];
@@ -99,6 +99,17 @@ function aNode(x, y, g, parent, dest, enemies, mySnake) {
 	this.h = calc_h(this.x, this.y, dest); //+ checkSurround(x, y, enemies, mySnake);
 	this.parent = parent;
 	this.f = this.g + this.h;
+}
+
+var finishRoute = function (node) {
+	var route = [];
+	var temp = node;
+
+	while(node.parent != null) {
+		var route.unshift(temp);
+		temp = temp.parent;
+	}
+	return route;
 }
 
 //--------------------------CONSTRUCTION ZONE ----------------------------
