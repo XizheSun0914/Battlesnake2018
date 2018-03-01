@@ -16,8 +16,13 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		});
 
 		var q = openList.shift();
-		var successors = [];
+		closedList.push(q);
 
+		if(q.x == food.x && q.y == food.y) {
+			return closedList;
+		}
+
+		var successors = [];
 
 		//create successors
 		for(var i = -1; i <= 1; i++) {
@@ -33,12 +38,6 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		}
 
 		for(var i = 0; i < successors.length; i++) {
-
-			//if at goal push to closedList and quit
-			if(isDest(successors[i].x, successors[i].y, food)) {
-				closedList.push(successors[i]);
-				return closedList;
-			}
 
 			//if openList has a node cheaper than successor[i], continue
 			if(contains(openList, successors[i].x, successors[i].y)) {
@@ -82,8 +81,6 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			//add successor to openList
 			openList.push(successors[i]);
 		}
-
-		closedList.push(q);
 	}
 	var sadness = [];	//return empty list if search failed
 	return sadness;
