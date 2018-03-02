@@ -1,6 +1,7 @@
 //possibly change standard for low health based on testing
 
 var contains = require('./contains.js')
+var chooseDirection = require('./chooseDirection.js');
 
 //makes sure we aren't going backward onto ourself
 //unless its our tail and we didnt just eat, cause itll move
@@ -87,6 +88,11 @@ module.exports = exports = function(mySnake, enemies, decision) {
 		if(contains(enemies[i].body, mySnake.body[0].x, mySnake.body[0].y-1) && !((enemies[i].body[enemies[i].body.length-1].x == mySnake.body[0].x && enemies[i].body[enemies[i].body.length-1].y == mySnake.body[0].y-1) && enemies[i].health != 100)){
 			decision.up -= 99999;
 		}
+	}
+
+	//if not yet rendered dont go into tail
+	if(mySnake.length < 3) {
+		chooseDirection(mySnake, mySnake.body[1], decision, -99999);
 	}
 
 	return;
