@@ -33,10 +33,9 @@ module.exports = exports = function (mySnake, enemies, board) {
 	}
 
 	console.log(grid);
-	console.log(grid[7][8] + " " + grid[7][7]);
 
 	//start floodfill at head
-	//fill(enemies, mySnake, board, openSpaces);
+	fill(mySnake, grid, openSpaces);
 	//var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
 	//dfs(check, openSpaces, head, board.width, board.height, enemies, mySnake);
 
@@ -45,11 +44,10 @@ module.exports = exports = function (mySnake, enemies, board) {
 
 }
 
-var fill = function(enemies, mySnake, grid, openSpaces) {
+var fill = function(mySnake, grid, openSpaces) {
 	var queue = [];
 	queue.push(mySnake.body[0]);
 
-	//cuts early if ample room to slither around
 	while (queue.length > 0) {
 		var temp = queue.shift();
 		var x = temp.x;
@@ -58,22 +56,22 @@ var fill = function(enemies, mySnake, grid, openSpaces) {
 		if( (grid[x][y]) == 0 || (x == mySnake.body[0].x && y == mySnake.body[0].y)) {
 			openSpaces.push(temp);
 
-			if(x > 0) {
+			if(x >= 0) {
 				var left = new Point(x-1, y);
 				queue.push(left);
 			}
 
-			if(x < board.width) {
+			if(x =< board.width) {
 				var right = new Point(x+1, y);
 				queue.push(right);
 			}
 
-			if(y > 0) {
+			if(y >= 0) {
 				var up = new Point(x, y-1);
 				queue.push(left);
 			}
 
-			if(y < board.height) {
+			if(y <= board.height) {
 				var down = new Point(x, y+1);
 				queue.push(down);
 			}
