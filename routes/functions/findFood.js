@@ -34,10 +34,10 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		return a[a.length-1].f - b[b.length-1].f;
 	});
 
-	var leftRoute = new rPoint(mySnake.body[0].x-1, mySnake.body[0].y);
-	var rightRoute = new rPoint(mySnake.body[0].x+1, mySnake.body[0].y);
-	var upRoute = new rPoint(mySnake.body[0].x, mySnake.body[0].y-1);
-	var downRoute = new rPoint(mySnake.body[0].x, mySnake.body[0].y+1);
+	var leftRoute = new rPoint(mySnake.body[0].x-1, mySnake.body[0].y, left);
+	var rightRoute = new rPoint(mySnake.body[0].x+1, mySnake.body[0].y, right);
+	var upRoute = new rPoint(mySnake.body[0].x, mySnake.body[0].y-1, up);
+	var downRoute = new rPoint(mySnake.body[0].x, mySnake.body[0].y+1, down);
 
 	var counter = 1;
 
@@ -96,13 +96,22 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 			if(space.length > mySnake.length || (tailReachable.length > 0 && space.length > 1 && enemiesInSpace.length == 0) || (space.length*(4/3) > mySnake.length && mySnake.health < 15)) {
 				currentRoute.check = true;
 			}
-		}
-
-		for(var k = 0; k < currentRoute.routes.length; k++) {
-			decision.down += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+		} else {
+			currentRoute.check = true;
 		}
 	}
 	if(currentRoute.check == true) {
+		for(var k = 0; k < currentRoute.routes.length; k++) {
+			if(currentRoute.direction === "left"){
+				decision.left += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+			} else if (currentRoute.direction === "right"){
+				decision.right += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+			} else if (currentRoute.direction === "up"){
+				decision.up += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+			} else if (currentRoute.direction === "down"){
+				decision.down += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+			}
+		}
 		console.log(currentRoute.x + " " + currentRoute.y + " passed floodfill criteria");
 	} else {
 		console.log(currentRoute.x + " " + currentRoute.y + " failed floodfill criteria");
@@ -110,9 +119,10 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 	return;
 }
 
-function rPoint(x, y) {
+function rPoint(x, y, direction) {
 	this.x = x;
 	this.y = y;
 	this.routes = [];
 	this.check = false;
+	this.direction = direction;
 }
