@@ -59,6 +59,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		//checks if i can reach my tail after getting food, and no enemy heads coming into area
 		//-----------------------------
 		var tailReachable = aStar(board, temp, enemies, temp.body[temp.length-1]);
+		console.log("checkpoint 1");
 		var enemiesInSpace = [];
 		for(var i = 0; i < enemies.length; i++) {
 			var check = aStar(board, temp, enemies[i], enemies[i].body[0]);
@@ -66,6 +67,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 				enemiesInSpace.push(check);
 			}
 		}
+		console.log("checkpoint 2");
 		//-----------------------------
 
 		var space = floodFill(temp, enemies, board);
