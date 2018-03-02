@@ -18,7 +18,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	var firstChoice = aStar(board, mySnake, enemies, mySnake.body[mySnake.body.length-1]);
 
 	//A* to tail if available and not hungry
-	if(firstChoice.length != 0 && !(mySnake.health > 40)) {
+	if(firstChoice.length != 0 && (mySnake.health > 40)) {
 
 		console.log("lets do some circles!");
 		chooseDirection(mySnake, firstChoice[1], decision, 2000);
@@ -70,13 +70,3 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	}
 	return;
 }
-
-
-
-
-
-
-
-
-
-
