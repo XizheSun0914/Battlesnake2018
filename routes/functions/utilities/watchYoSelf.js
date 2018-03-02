@@ -92,7 +92,7 @@ module.exports = exports = function(mySnake, enemies, decision) {
 
 	//if not yet rendered dont go into tail
 	if(mySnake.length < 3) {
-		chooseDirection(mySnake, mySnake.body[1], decision, -99999);
+		chooseDirection(mySnake, mySnake.body[mySnake.body.length-1], decision, -99999);
 	}
 
 	return;
