@@ -82,7 +82,7 @@ var fill = function(mySnake, grid, openSpaces, board) {
 			}
 		}
 	}
-	console.log("checkpoint!");
+	console.log(grid);
 	return;
 }
 
