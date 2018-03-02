@@ -72,7 +72,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 //checks before returning if there is enough room for the move.
 //makes a variable (temp) equal mySnake and push the direction we want to go onto the head
-//rotates through all options until success or failure
+//finds if i can reach my tail(safe) or if an enemy head is in the space(dangerous)
 var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 	if(currentRoute.routes.length != 0) {
 		var temp = JSON.parse(JSON.stringify(mySnake));
@@ -102,7 +102,7 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 			decision.down += 2000*(Math.pow((1/3), currentRoute.routes[k]));
 		}
 	}
-	if(currentRoute.check = true) {
+	if(currentRoute.check == true) {
 		console.log(currentRoute.x + " " + currentRoute.y + " passed floodfill criteria");
 	} else {
 		console.log(currentRoute.x + " " + currentRoute.y + " failed floodfill criteria");
@@ -111,8 +111,8 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 }
 
 function rPoint(x, y) {
-	this.x;
-	this.y;
+	this.x = x;
+	this.y = y;
 	this.routes = [];
 	this.check = false;
 }
