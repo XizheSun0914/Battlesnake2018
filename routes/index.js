@@ -10,7 +10,7 @@ router.post('/start', function (req, res) {
     color: 'rgb(149,165,166)',
     secondary_color: 'rgb(255,5,12)',
     name: 'stevie snake',
-    head_url: 'http://interactive.nydailynews.com/project/trump-100-days/img/cutouts/steve-bannon.png',
+    head_url: './steve-bannon.png',
     taunt: "treasonous!",
     head_type: 'pixel',
     tail_type: 'pixel'
