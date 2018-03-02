@@ -6,6 +6,8 @@ var contains = require('./contains.js')
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
 
+	//should move this to its own function, and use grid globally so we never reuse
+	//------------------
 	var grid = new Array(board.width+1);
 	for (var i = 0; i < grid.length; i++) {
 	   grid[i] = new Array(board.height+1);
@@ -16,8 +18,6 @@ module.exports = exports = function (mySnake, enemies, board) {
 			grid[i][k] = 0;
 		}
 	}
-
-	console.log(grid);
 
 	for(var i = 0; i < grid.length; i++) {
 		for(var j = 0; j < grid[0].length; j++) {
@@ -31,13 +31,11 @@ module.exports = exports = function (mySnake, enemies, board) {
 			}
 		}
 	}
-
 	console.log(grid);
+	//-------------------
 
 	//start floodfill at head
 	fill(mySnake, grid, openSpaces);
-	//var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
-	//dfs(check, openSpaces, head, board.width, board.height, enemies, mySnake);
 
 	//returns list of all coordinates in reach
 	return openSpaces;
@@ -47,7 +45,8 @@ module.exports = exports = function (mySnake, enemies, board) {
 var fill = function(mySnake, grid, openSpaces) {
 	console.log("checkpoint 1");
 	var queue = [];
-	queue.push(mySnake.body[0]);
+	var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
+	queue.push(head);
 	console.log("checkpoint 2");
 
 	while (queue.length > 0) {
@@ -64,7 +63,9 @@ var fill = function(mySnake, grid, openSpaces) {
 			if(x > 0) {
 				console.log("x can get smaller");
 				var left = new Point((x-1), y);
+				console.log("made point");
 				queue.push(left);
+				console.log("pushed onto queue");
 			}
 
 			if(x < board.width) {
@@ -89,55 +90,13 @@ var fill = function(mySnake, grid, openSpaces) {
 	return;
 }
 
-/*var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, mySnake, stop) {
-
-	//makes sure that we dont exit immediately due to head being a body part
-	if(!(mySnake.body[0].x == node.x && mySnake.body[0].y == node.y)) {
-		check = true;
-	}
-
-	//Base cases
-	if(node.x > boardWidth || node.y > boardHeight || node.x < 0 || node.y < 0) {
-		return false;
-	}
-	if(contains(openSpaces, node.x, node.y)) {
-		return false;
-	}
-	if(checkIfBlocked(node, enemies, mySnake) && check) { 
-		return false;
-	}
-
-	//push location onto our open space list if not head
-	if(check) {
-		openSpaces.push(node);
-	}
-
-	//recursion
-	var caseOne = new Point(node.x+1, node.y);
-	var caseTwo = new Point(node.x-1, node.y);
-	var caseThree = new Point(node.x, node.y+1);
-	var caseFour = new Point(node.x, node.y-1);
-
-	if(dfs(check, openSpaces, caseOne, boardWidth, boardHeight, enemies, mySnake)) {
-		return true;
-	}
-	if(dfs(check, openSpaces, caseTwo, boardWidth, boardHeight, enemies, mySnake)) {
-		return true;
-	}
-	if(dfs(check, openSpaces, caseThree, boardWidth, boardHeight, enemies, mySnake)) {
-		return true;
-	}
-	if(dfs(check, openSpaces, caseFour, boardWidth, boardHeight, enemies, mySnake)) {
-		return true;
-	}
-	return false;
-}*/
-
 function Point(x, y) {
 	this.x = x;
 	this.y = y;
 }
 
+
+//move with grid function
 function CreateArray(rows) {
   var arr = [];
 
@@ -147,16 +106,3 @@ function CreateArray(rows) {
 
   return arr;
 }
-
-/*//checks if any enemies or body parts are on the spot
-var checkIfBlocked = function(node, enemies, mySnake) {
-	if(contains(mySnake.body, node.x, node.y)) {
-		return true;
-	}
-	for(var i = 0; i < enemies.length; i++) {
-		if(contains(enemies[i].body, node.x, node.y)) {
-			return true;
-		}
-	}
-	return false;
-}*/
