@@ -6,22 +6,60 @@ var contains = require('./contains.js')
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
 	var check = false;
-	var stop = false;
 
 	//start floodfill at head
-	var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
-	dfs(check, openSpaces, head, board.width, board.height, enemies, mySnake, stop);
+	fill(enemies, mySnake, board, openSpaces);
+	//var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
+	//dfs(check, openSpaces, head, board.width, board.height, enemies, mySnake);
 
 	//returns list of all coordinates in reach
 	return openSpaces;
 
 }
 
-var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, mySnake, stop) {
+var fill(enemies, mySnake, board, openSpaces) {
+	var queue = [];
+	queue.push(mySnake.body[0]);
 
-	if(stop) {
-		return false;
+	//cuts early if ample room to slither around
+	while (queue.length > 0 && openSpaces.length < board.width*board.height/3) {
+		var temp = queue.shift();
+		var x = temp.x;
+		var y = temp.y;
+		var check = true;
+		for(var i = 0; i < enemies.length; i++) {
+			if(contains(enemies[i], x, y)) {
+				check = false;
+			}
+		}
+		if(((!contains(mySnake, x, y)) && check) || (x == mySnake.body[0].x && y == mySnake.body[0].y)) {
+			openSpaces.push(temp);
+
+			if(x > 0) {
+				var left = new Point(x-1, y);
+				queue.push(left);
+			}
+
+			if(x < board.width) {
+				var right = new Point(x+1, y);
+				queue.push(right);
+			}
+
+			if(y > 0) {
+				var up = new Point(x, y-1);
+				queue.push(left);
+			}
+
+			if(y < board.height) {
+				var down = new Point(x, y+1);
+				queue.push(down);
+			}
+		}
 	}
+	return openSpaces;
+}
+
+/*var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, mySnake, stop) {
 
 	//makes sure that we dont exit immediately due to head being a body part
 	if(!(mySnake.body[0].x == node.x && mySnake.body[0].y == node.y)) {
@@ -44,11 +82,6 @@ var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, m
 		openSpaces.push(node);
 	}
 
-	//cuts out early if we've got ample space
-	if(openSpaces.length > boardWidth*boardHeight/3) {
-		stop = true;
-	}
-
 	//recursion
 	var caseOne = new Point(node.x+1, node.y);
 	var caseTwo = new Point(node.x-1, node.y);
@@ -68,14 +101,14 @@ var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, m
 		return true;
 	}
 	return false;
-}
+}*/
 
 function Point(x, y) {
 	this.x = x;
 	this.y = y;
 }
 
-//checks if any enemies or body parts are on the spot
+/*//checks if any enemies or body parts are on the spot
 var checkIfBlocked = function(node, enemies, mySnake) {
 	if(contains(mySnake.body, node.x, node.y)) {
 		return true;
@@ -86,4 +119,4 @@ var checkIfBlocked = function(node, enemies, mySnake) {
 		}
 	}
 	return false;
-}
+}*/
