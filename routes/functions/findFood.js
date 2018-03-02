@@ -54,19 +54,28 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		temp.body.unshift(topRoute[1]);
 		temp.body.pop();
 
+		//CONSTRUCTION
+		//make sure this is good
+		//checks if i can reach my tail after getting food, and no enemy heads coming into area
+		//-----------------------------
+		var tailReachable = aStar(board, temp, enemies, temp.body[temp.length-1]);
+		var enemiesInSpace = [];
+		for(var i = 0; i < enemies.length; i++) {
+			var check = aStar(board, temp, enemies[i], enemies[i].body[0])
+			if(check.length > 0) {
+				enemiesInSpace.push(check);
+			}
+		}
+		//-----------------------------
+
 		var space = floodFill(temp, enemies, board);
 
-		//debugging
-		console.log("OPEN SPACE:");
 		console.log("room: " + space.length);
-		for(var i = 0; i < space.length; i++) {
-			console.log(space[i].x + " " + space[i].y);
-		}
 
 		//CONSTRUCTION
 		//-----------------------------------------------
-		//if theres more than enough space to fit; go for it or if absolutely desparate for food
-		if(space.length > mySnake.length || (space.length*(4/3) > mySnake.length && mySnake.health < 15)) {
+		//if theres more than enough space to fit; go for it, if i can get back to tail; go for it, or if absolutely desparate for food
+		if(space.length*(2/3) > mySnake.length || (tailReachable.length > 0 && enemiesInSpace.length == 0) || (space.length*(4/3) > mySnake.length && mySnake.health < 10)) {
 		//-----------------------------------------------
 			console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " passed floodfill criteria");
 			console.log("my head is: " + mySnake.body[0].x + " " + mySnake.body[0].y);
