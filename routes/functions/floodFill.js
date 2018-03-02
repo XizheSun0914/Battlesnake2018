@@ -17,7 +17,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 
 }
 
-var fill(enemies, mySnake, board, openSpaces) {
+var fill = function(enemies, mySnake, board, openSpaces) {
 	var queue = [];
 	queue.push(mySnake.body[0]);
 
