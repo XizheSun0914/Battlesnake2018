@@ -16,8 +16,6 @@ var lastStand = require('./lastStand.js')
 module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	console.log("running keepAlive");
-	var openSpace = floodFill(mySnake, enemies, board);
-	console.log(openSpace.length);
 
 	var firstChoice = aStar(board, mySnake, enemies, mySnake.body[mySnake.body.length-1]);
 

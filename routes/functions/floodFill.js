@@ -1,6 +1,8 @@
 var contains = require('./contains.js')
+var stop = false;
 
 //performs floodfill, returning a list of open spaces in the constrained area
+//cuts out early if takes up more than 1/3 of board for performance reasons
 
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
@@ -16,6 +18,10 @@ module.exports = exports = function (mySnake, enemies, board) {
 }
 
 var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, mySnake) {
+
+	if(stop) {
+		return false;
+	}
 
 	//makes sure that we dont exit immediately due to head being a body part
 	if(!(mySnake.body[0].x == node.x && mySnake.body[0].y == node.y)) {
@@ -36,6 +42,11 @@ var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, m
 	//push location onto our open space list if not head
 	if(check) {
 		openSpaces.push(node);
+	}
+
+	//cuts out early if we've got ample space
+	if(openSpaces.length > boardWidth*boardHeight/3) {
+		stop = true;
 	}
 
 	//recursion
