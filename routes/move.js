@@ -1,10 +1,9 @@
 //edit lowhealth and goallength based on testing
 //add predatory actions
-//improve keepAlive
 
 var checkWalls = require('./functions/checkWalls.js')
 var findFood = require('./functions/findFood.js')
-var keepAlive = require('./keepAlive.js')
+var keepAlive = require('./functions/keepAlive.js')
 var watchYoSelf = require('./functions/watchYoSelf.js')
 
 // This function is the shell for deciding the move
@@ -28,9 +27,13 @@ module.exports = exports = function (mySnake, enemies, board) {
 		}
 	};
 
+	//CONSTRUCTION
+	//-----------------------------------------------
 	//edit these goals with testing
 	var goalLength = board.height*board.width/7;
 	var lowHealth = board.height*board.width/8;
+	//-----------------------------------------------
+
 
 	//if(mySnake.health < lowHealth || mySnake.length < goalLength) {
 		findFood(mySnake, enemies, board, decision);
@@ -40,11 +43,15 @@ module.exports = exports = function (mySnake, enemies, board) {
 			console.log("failed to find a route to food");
 			keepAlive(mySnake, enemies, board, decision);
 		}
+
+	//CONSTRUCTION
+	//-----------------------------------------------
 	/*} else {
 		console.log("now being a predator");
-		//do some kind of predatory action that isn't findfood()
-		keepAlive(mySnake, enemies, board, decision);
+
+		//DO SOMETHING AGGRESSIVE
 	}*/
+	//-----------------------------------------------
 
 	//makes sure we aren't accidentally killing ourselves
 	watchYoSelf(mySnake, enemies, decision);

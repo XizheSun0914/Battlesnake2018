@@ -1,3 +1,4 @@
+//adjust early game values
 //just need to tweak values in checkSurround if it isn't getting the right results
 
 var contains = require('./contains.js')
@@ -119,7 +120,7 @@ var finishRoute = function (node, head) {
 var checkSurround = function (x, y, enemies, mySnake) {
 	var price = 0;
 
-	//if early game, dont worry about enemies as much
+	//if early game, dont worry about enemies
 	var check = true;
 	for(var i = 0; i < enemies.length; i++) {
 		if(enemies[i].length > 7) {

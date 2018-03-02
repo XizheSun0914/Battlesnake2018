@@ -1,13 +1,17 @@
-var floodFill = require('./functions/floodFill.js')
-var contains = require('./functions/contains.js')
-var aStar = require('./functions/aStar.js')
-var chooseDirection = require('./functions/chooseDirection.js')
-var lastStand = require('./functions/lastStand.js')
+//JUST MAKE SURE LASTSTAND IS WORKING
+
+var floodFill = require('./floodFill.js')
+var contains = require('./contains.js')
+var aStar = require('./aStar.js')
+var chooseDirection = require('./chooseDirection.js')
+var lastStand = require('./lastStand.js')
 
 //does flood fill to find how large the space is and where the walls are
 
-//if large enough, chase tail one away. taking up as much space as possible 
-//if too small, search for enemy snake tail and A* to it. 
+//if i can reach my tail and im not hungry, a* to it.
+//if i cant reach, search for enemy snake tail and A* to it. 
+//if that fails too, go back to trying for my tail
+//finally, just try to move without trapping myself in a single spot (LastStand function)
 
 module.exports = exports = function(mySnake, enemies, board, decision) {
 
@@ -17,25 +21,18 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	var firstChoice = aStar(board, mySnake, enemies, mySnake.body[mySnake.body.length-1]);
 
-	//debugging
-	for(var j = 0; j < firstChoice.length; j++) {
-		console.log("move #" + j + ": " + firstChoice[j].x + " " + firstChoice[j].y);
-	}
-
 	//A* to tail if available and not hungry
-	if(firstChoice.length != 0 && (mySnake.health > 95)) {
+	if(firstChoice.length != 0 && (mySnake.health > 40)) {
 
 		console.log("lets do some circles!");
 		chooseDirection(mySnake, firstChoice[1], decision, 2000);
 
-		//seems good up to here!
-	//-----------------------------------------
-
+	//otherwise try to route to enemy tail
 	} else {
 
 		var nearbyTails = [];
 
-		//find tails to chase using astar
+		//find tails to chase using A*
 		for(var i = 0; i < enemies.length; i++) {
 			var temp = aStar(board, mySnake, enemies, enemies[i].body[enemies[i].body.length-1]);
 
@@ -50,26 +47,27 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 			console.log("uh oh! no enemy tails to chase!");
 
-			//if no options, just avoid trapping, but cant do much else
+			//if no options, just avoid trapping myself, but cant do much else
 			if(firstChoice.length == 0) {
 				console.log("my tail isnt available either! :(");
 				lastStand(mySnake, enemies, board, decision);
 
 			//if i can reach my tail, aStar to it
 			} else {
+				console.log("defaulting back to my tail")
 				chooseDirection(mySnake, firstChoice[1], decision, 2000);
 			}
 		//A* to best enemy tail 
 		} else {
-			//decreases value of each route based on weight vs other routes
+
 			console.log("theres a tail!");
 			
 			nearbyTails.sort(function(a, b) {
 				return a[a.length-1].f - b[b.length-1].f;
 			});
 
+			//decreases value of each route based on weight vs other routes
 			var deincrement = 2000;
-
 			for(var i = 0; i < nearbyTails.length; i++) {
 				chooseDirection(mySnake, nearbyTails[i][1], decision, deincrement);
 				deincrement = deincrement*(1/3);

@@ -21,7 +21,7 @@ module.exports = exports = function(mySnake, enemies, decision) {
 
 	var desparate = false;
 
-	if(mySnake.health < 15) {
+	if(mySnake.health < 10) {
 		desparate = true;
 	}
 
@@ -48,6 +48,7 @@ module.exports = exports = function(mySnake, enemies, decision) {
 		}
 	}
 
+	//if enemy head larger than me and i dont have low health, dont go there
 	for(var i = 0; i < enemies.length; i++) {
 		console.log("enemy head: " + enemies[i].body[0].x + " " + enemies[i].body[0].y);
 		if(contains(left, enemies[i].body[0].x, enemies[i].body[0].y)) {

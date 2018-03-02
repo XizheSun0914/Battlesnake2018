@@ -1,5 +1,4 @@
 //test to figure what amount of openSpace works best
-//maybe check how much of my body is in one plane ( ie x = 5 for 6 limbs so its okay to go in a smaller space)
 
 var aStar = require('./aStar.js')
 var floodFill = require('./floodFill.js')
@@ -57,11 +56,18 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 		var space = floodFill(temp, enemies, board);
 
+		//debugging
+		console.log("OPEN SPACE:");
 		console.log("room: " + space.length);
+		for(var i = 0; i < space.length; i++) {
+			console.log(space[i].x + " " + space[i].y);
+		}
 
+		//CONSTRUCTION
+		//-----------------------------------------------
 		//if theres more than enough space to fit; go for it or if absolutely desparate for food
 		if(space.length > mySnake.length || (space.length*(4/3) > mySnake.length && mySnake.health < 15)) {
-
+		//-----------------------------------------------
 			console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " passed floodfill criteria");
 			console.log("my head is: " + mySnake.body[0].x + " " + mySnake.body[0].y);
 

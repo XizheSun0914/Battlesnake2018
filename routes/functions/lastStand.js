@@ -1,5 +1,6 @@
 //discourages my snake from going into a space that has no next move
 //if there is a tail there, we (hopefully) shouldnt be in this function
+//MAKE SURE THIS WORKS
 
 module.exports = exports = function(mySnake, enemies, board, decision) {
 	var right = new NextPoint(mySnake.body[0].x+1, mySnake.body[0].y);
