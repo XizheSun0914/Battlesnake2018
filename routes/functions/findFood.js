@@ -80,9 +80,9 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 		temp.body.pop();
 
 		var space = floodFill(temp, enemies, board);
-		console.log("down room: " + space.length);
+		console.log("down room: " + space.length + "/" + board.height*board.width/3);
 
-		if(!(space.length > temp.body.length*4)) {
+		if(!(space.length > board.width*board.height/3)) {
 			//checks if i can reach my tail after getting food, and no enemy heads coming into area
 			var tailReachable = aStar(board, temp, enemies, temp.body[temp.length-1]);
 			var enemiesInSpace = [];
