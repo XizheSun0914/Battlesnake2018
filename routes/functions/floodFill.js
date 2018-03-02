@@ -10,7 +10,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 
 
 
-	createArray(board.width, board.height);
+	var grid = createArray(board.width, board.height);
 
 	for(var i = 0; i < grid.length; i++) {
 		for(var k = 0; k < grid[0].length; k++) {
