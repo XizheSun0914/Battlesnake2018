@@ -15,6 +15,19 @@ module.exports = exports = function (mySnake, enemies, board) {
 		}
 	}
 
+	for(var i = 0; i < grid.length; i++) {
+		for(var j = 0; j < grid[0].length; j++) {
+			if(contains(mySnake.body, i, j)) {
+				grid[i][j] = 1;
+			}
+			for(var k = 0; k < enemies.length; k++) {
+				if(contains(enemies.body, i, j)) {
+					grid[i][j] = 1;
+				}
+			}
+		}
+	}
+
 	//start floodfill at head
 	//fill(enemies, mySnake, board, openSpaces);
 	//var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
