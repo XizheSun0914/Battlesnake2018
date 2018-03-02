@@ -32,7 +32,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 	var goalLength = board.height*board.width/7;
 	var lowHealth = board.height*board.width/8;
 
-	if(mySnake.health < lowHealth || mySnake.length < goalLength) {
+	//if(mySnake.health < lowHealth || mySnake.length < goalLength) {
 		findFood(mySnake, enemies, board, decision);
 
 		//resorts to keepAlive if no routes to food
@@ -40,11 +40,11 @@ module.exports = exports = function (mySnake, enemies, board) {
 			console.log("failed to find a route to food");
 			keepAlive(mySnake, enemies, board, decision);
 		}
-	} else {
+	/*} else {
 		console.log("now being a predator");
 		//do some kind of predatory action that isn't findfood()
 		keepAlive(mySnake, enemies, board, decision);
-	}
+	}*/
 
 	//makes sure we aren't accidentally killing ourselves
 	watchYoSelf(mySnake, enemies, decision);

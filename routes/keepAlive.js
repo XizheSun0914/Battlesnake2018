@@ -28,6 +28,9 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		console.log("lets do some circles!");
 		chooseDirection(mySnake, firstChoice[1], decision, 2000);
 
+		//seems good up to here!
+	//-----------------------------------------
+
 	} else {
 
 		var nearbyTails = [];
