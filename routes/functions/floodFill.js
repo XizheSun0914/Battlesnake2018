@@ -56,7 +56,7 @@ var fill = function(enemies, mySnake, board, openSpaces) {
 			}
 		}
 	}
-	return openSpaces;
+	return;
 }
 
 /*var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, mySnake, stop) {
