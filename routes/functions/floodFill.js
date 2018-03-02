@@ -53,27 +53,22 @@ var fill = function(mySnake, grid, openSpaces, board) {
 		var temp = queue.shift();
 		var x = temp.x;
 		var y = temp.y;
-		console.log("checkpoint 3");
 		
 		if((grid[x][y]) == 0 || (x == mySnake.body[0].x && y == mySnake.body[0].y)) {
 			openSpaces.push(temp);
+			grid[x][y] = 3;
 			console.log(x + " " + y + " is empty!");
 
 			//I DONT FUCKING KNOW WHY THIS DOESNT WORK
 			if(x > 0) {
-				console.log("x can get smaller");
 				var left = new Point((x-1), y);
-				console.log("made point");
 				queue.push(left);
-				console.log("pushed onto queue");
 			}
 
 			if(x < board.width) {
-				console.log("x can get larger");
 				var right = new Point((x+1), y);
 				queue.push(right);
 			}
-			console.log("checkpoint 5");
 
 			if(y > 0) {
 				var up = new Point(x, (y-1));
@@ -86,7 +81,6 @@ var fill = function(mySnake, grid, openSpaces, board) {
 			}
 		}
 	}
-	console.log("checkpoint 6");
 	return;
 }
 
