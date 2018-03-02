@@ -7,16 +7,16 @@ var chooseDirection = require('./chooseDirection.js');
 //unless its our tail and we didnt just eat, cause itll move
 //and not to hit enemy snakes that are larger than us
 module.exports = exports = function(mySnake, enemies, decision) {
-	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y-1) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y-1) && mySnake.health != 100)) {
+	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y-1) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y-1) && mySnake.health != 100 && mySnake.length != 2)) {
 		decision.up -= 99999;
 	}
-	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y+1) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y+1) && mySnake.health != 100)) {
+	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y+1) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y+1) && mySnake.health != 100 && mySnake.length != 2)) {
 		decision.down -= 99999;
 	}
-	if(contains(mySnake.body, mySnake.body[0].x-1, mySnake.body[0].y) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x-1 && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y) && mySnake.health != 100)) {
+	if(contains(mySnake.body, mySnake.body[0].x-1, mySnake.body[0].y) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x-1 && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y) && mySnake.health != 100 && mySnake.length != 2)) {
 		decision.left -= 99999;
 	}
-	if(contains(mySnake.body, mySnake.body[0].x+1, mySnake.body[0].y) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x+1 && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y) && mySnake.health != 100)) {
+	if(contains(mySnake.body, mySnake.body[0].x+1, mySnake.body[0].y) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x+1 && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y) && mySnake.health != 100 && mySnake.length != 2)) {
 		decision.right -= 99999;
 	}
 
@@ -88,11 +88,6 @@ module.exports = exports = function(mySnake, enemies, decision) {
 		if(contains(enemies[i].body, mySnake.body[0].x, mySnake.body[0].y-1) && !((enemies[i].body[enemies[i].body.length-1].x == mySnake.body[0].x && enemies[i].body[enemies[i].body.length-1].y == mySnake.body[0].y-1) && enemies[i].health != 100)){
 			decision.up -= 99999;
 		}
-	}
-
-	//if not yet rendered dont go into tail
-	if(mySnake.length < 3) {
-		chooseDirection(mySnake, mySnake.body[mySnake.body.length-1], decision, -99999);
 	}
 
 	return;
