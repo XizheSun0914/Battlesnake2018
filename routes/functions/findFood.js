@@ -61,12 +61,10 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 
-	//enoughSpace(leftRoute, mySnake, enemies, board, decision);
-	//enoughSpace(rightRoute, mySnake, enemies, board, decision);
-	//enoughSpace(upRoute, mySnake, enemies, board, decision);
-	//enoughSpace(downRoute, mySnake, enemies, board, decision);
-
-	decision.down += 2000;
+	enoughSpace(leftRoute, mySnake, enemies, board, decision);
+	enoughSpace(rightRoute, mySnake, enemies, board, decision);
+	enoughSpace(upRoute, mySnake, enemies, board, decision);
+	enoughSpace(downRoute, mySnake, enemies, board, decision);
 
 	return;
 }
@@ -79,7 +77,6 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 		var temp = JSON.parse(JSON.stringify(mySnake));
 		temp.body.unshift(currentRoute);
 		temp.body.pop();
-		console.log("checkpoint 1");
 		var space = floodFill(temp, enemies, board);
 		console.log("room: " + space.length);
 
@@ -113,9 +110,9 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 				decision.down += 2000*(Math.pow((1/3), currentRoute.routes[k]));
 			}
 		}
-		console.log(currentRoute.x + " " + currentRoute.y + " passed floodfill criteria");
+		console.log(currentRoute.x + " " + currentRoute.y + " passed criteria");
 	} else {
-		console.log(currentRoute.x + " " + currentRoute.y + " failed floodfill criteria");
+		console.log(currentRoute.x + " " + currentRoute.y + " failed criteria");
 	}
 	return;
 }
