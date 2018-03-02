@@ -61,7 +61,7 @@ var fill = function(mySnake, grid, openSpaces) {
 				queue.push(left);
 			}
 
-			if(x =< board.width) {
+			if(x <= board.width) {
 				var right = new Point(x+1, y);
 				queue.push(right);
 			}
