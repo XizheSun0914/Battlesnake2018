@@ -60,7 +60,6 @@ var fill = function(mySnake, grid, openSpaces, board) {
 			grid[x][y] = 3;
 			console.log(x + " " + y + " is empty!");
 
-			//I DONT FUCKING KNOW WHY THIS DOESNT WORK
 			if(x > 0) {
 				var left = new Point((x-1), y);
 				queue.push(left);
@@ -73,7 +72,7 @@ var fill = function(mySnake, grid, openSpaces, board) {
 
 			if(y > 0) {
 				var up = new Point(x, (y-1));
-				queue.push(left);
+				queue.push(up);
 			}
 
 			if(y < board.height) {
