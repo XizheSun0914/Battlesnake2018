@@ -1,19 +1,19 @@
-var buildGrid = require('./buildGrid.js')
+//adjust early game values
+//just need to tweak values in checkSurround if it isn't getting the right results
+
 var contains = require('./contains.js')
 
 module.exports = exports = function (board, mySnake, enemies, food) {
 	var closedList = [];
 	var openList = [];
-	var grid = buildGrid(mySnake, board, enemies);
+	
+	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
+	openList.push(first);
 
-	console.log(grid);
-
-	var head = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
-	openList.push(head);
+	//------------------------------
 
 	while(openList.length != 0) {
 
-		//IMPORVE SPEED HERE BY ADDING TO A SORTED LIST OR HEAP
 		openList.sort(function(a,b) {	//sort openList based on total cost
 			return a.f - b.f;
 		});
@@ -32,7 +32,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
-				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, enemies, board, grid) && !(q.x+i == food.x && q.y+j == food.y))) {
+				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, enemies, mySnake, board) && !(q.x+i == food.x && q.y+j == food.y))) {
 					continue;
 				} else {
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
@@ -43,19 +43,16 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		for(var i = 0; i < successors.length; i++) {
 			//if on closedList, ignore
-			//MAYBE USE GRID SPACE = 3 FOR CLOSEDLIST
 			if(contains(closedList, successors[i].x, successors[i].y)) {
 				continue;
 			}
 
-			//MAYBE USE GRID SPACE = 4 FOR OPENLIST
 			//if not in openList, add it
 			if(!contains(openList, successors[i].x, successors[i].y)) {
 				openList.push(successors[i]);
 				continue;
 			}
 
-			//MAYBE USE GRID SPACE = 4 FOR OPENLIST
 			//if openList has same nodes cheaper than successor[i]: continue, else: push to openList
 			if(contains(openList, successors[i].x, successors[i].y)) {
 				var check = false;
@@ -72,17 +69,20 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			}
 		}
 	}
+	var sadness = [];	//return empty list if search failed
+	return sadness;
 }
+
+//--------------------------------------------------
 
 //checks if node is already covered by enemy or 
 //friendly snake or if outside board
-
-function isValid(x, y, enemies, board, grid) {
-	if(grid[x][y] == 1) {
+function isValid(x, y, enemies, mySnake, board) {
+	if(contains(mySnake.body, x, y)) {
 		return false;
 	}
 	for(var i = 0; i < enemies.length; i++) {
-		if(grid[x][y] == 2) {
+		if(contains(enemies[i].body, x, y)) {
 			return false;
 		}
 	}
@@ -121,8 +121,6 @@ var finishRoute = function (node, head) {
 }
 
 //changes h (cost to destination) based on the dangerous stuff on the way to the food
-//CAN IMPROVE WITH GRID INSTEAD OF CONTAINS FOR CHECKING IF MYSNAKE OR ENEMIES ARE NEARBY
-
 var checkSurround = function (x, y, enemies, mySnake) {
 	var price = 0;
 

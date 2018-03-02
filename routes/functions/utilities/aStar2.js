@@ -18,6 +18,8 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			return a.f - b.f;
 		});
 
+		console.log("checkpoint 1");
+
 		var q = openList.shift();
 		closedList.push(q);
 
@@ -26,13 +28,15 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			return finishRoute(q, first);
 		}
 
+		console.log("checkpoint 2");
+
 		var successors = [];
 
 		//create successors
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
-				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, enemies, board, grid) && !(q.x+i == food.x && q.y+j == food.y))) {
+				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, board, grid) && !(q.x+i == food.x && q.y+j == food.y))) {
 					continue;
 				} else {
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
@@ -40,6 +44,8 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				}
 			}
 		}
+
+		console.log("checkpoint 3");
 
 		for(var i = 0; i < successors.length; i++) {
 			//if on closedList, ignore
@@ -71,21 +77,21 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				}
 			}
 		}
+		console.log("checkpoint 4");
 	}
 }
 
 //checks if node is already covered by enemy or 
 //friendly snake or if outside board
 
-function isValid(x, y, enemies, board, grid) {
+function isValid(x, y, board, grid) {
 	if(grid[x][y] == 1) {
 		return false;
 	}
-	for(var i = 0; i < enemies.length; i++) {
-		if(grid[x][y] == 2) {
-			return false;
-		}
+	if(grid[x][y] == 2) {
+		return false;
 	}
+
 	if (x <= board.width && x >= 0 && y <= board.height && y >= 0) {
 		return true;
 	} else {
