@@ -78,7 +78,7 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 		var temp = JSON.parse(JSON.stringify(mySnake));
 		temp.body.unshift(currentRoute);
 		temp.body.pop();
-
+		console.log("checkpoint 1");
 		var space = floodFill(temp, enemies, board);
 		console.log("down room: " + space.length + "/" + board.height*board.width/3);
 
