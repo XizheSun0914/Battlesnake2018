@@ -56,9 +56,9 @@ var fill = function(mySnake, grid, openSpaces) {
 		var y = temp.y;
 		console.log("checkpoint 3");
 		
-		if( (grid[x][y]) == 0 || (x == mySnake.body[0].x && y == mySnake.body[0].y)) {
+		if((grid[x][y]) == 0 || (x == mySnake.body[0].x && y == mySnake.body[0].y)) {
 			openSpaces.push(temp);
-			console.log("checkpoint 4");
+			console.log(x + " " + y + " is empty!");
 
 			//I DONT FUCKING KNOW WHY THIS DOESNT WORK
 			if(x > 0) {
