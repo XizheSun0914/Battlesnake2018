@@ -56,7 +56,6 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 		//checks if i can reach my tail after getting food, and no enemy heads coming into area
 		var tailReachable = aStar(board, temp, enemies, temp.body[temp.length-1]);
-		console.log("checkpoint 1");
 		var enemiesInSpace = [];
 		for(var i = 0; i < enemies.length; i++) {
 			var checker = aStar(board, temp, enemies, enemies[i].body[0]);
@@ -68,12 +67,6 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		var space = floodFill(temp, enemies, board);
 
 		console.log("room: " + space.length);
-		if(tailReachable.length > 0) {
-			console.log("can reach tail inside!");
-		}
-		if(enemiesInSpace.length != 0) {
-			console.log("No go; theres an enemy head in the area!!");
-		}
 
 		//if theres more than enough space to fit; go for it, if i can get back to tail; go for it, or if absolutely desparate for food
 		//decreases each path value following each successful path

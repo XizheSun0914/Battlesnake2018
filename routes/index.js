@@ -7,8 +7,8 @@ router.post('/start', function (req, res) {
 
   // Response data
   var data = {
-    color: 'rgb(149, 165, 166)',
-    secondary_color: 'rgb(255, 5, 12)',
+    color: 'rgb(149,165,166)',
+    secondary_color: 'rgb(255,5,12)',
     name: 'stevie snake',
     head_url: 'http://interactive.nydailynews.com/project/trump-100-days/img/cutouts/steve-bannon.png',
     taunt: "treasonous!",
