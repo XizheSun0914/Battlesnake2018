@@ -7,11 +7,11 @@ module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
 	var check = false;
 
-	var grid = [];
+	var grid = [[],[]];
+
+
 
 	for(var i = 0; i < board.width; i++) {
-		var subGrid = [];
-		grid.push(subGrid);
 		for(var j = 0; j < board.height; j++) {
 			grid[i].push(0);
 			for(var k = 0; k < enemies.length; k++) {
