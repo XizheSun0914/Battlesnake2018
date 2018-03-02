@@ -62,9 +62,9 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		console.log("checkpoint 1");
 		var enemiesInSpace = [];
 		for(var i = 0; i < enemies.length; i++) {
-			var check = aStar(board, temp, enemies[i], enemies[i].body[0]);
-			if(check.length > 0) {
-				enemiesInSpace.push(check);
+			var checker = aStar(board, temp, enemies, enemies[i].body[0]);
+			if(checker.length > 0) {
+				enemiesInSpace.push(checker);
 			}
 		}
 		console.log("checkpoint 2");
