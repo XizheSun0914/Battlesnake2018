@@ -60,23 +60,24 @@ var fill = function(mySnake, grid, openSpaces) {
 			openSpaces.push(temp);
 			console.log("checkpoint 4");
 
-			if(x > -1) {
+			//I DONT FUCKING KNOW WHY THIS DOESNT WORK
+			if(x > 0) {
 				var left = new Point((x-1), y);
 				queue.push(left);
 			}
 
-			if(x < board.width+1) {
+			if(x < board.width) {
 				var right = new Point((x+1), y);
 				queue.push(right);
 			}
 			console.log("checkpoint 5");
 
-			if(y > -1) {
+			if(y > 0) {
 				var up = new Point(x, (y-1));
 				queue.push(left);
 			}
 
-			if(y < board.height+1) {
+			if(y < board.height) {
 				var down = new Point(x, (y+1));
 				queue.push(down);
 			}
