@@ -25,8 +25,6 @@ module.exports = exports = function (mySnake, enemies, board) {
 		}
 	}
 
-	console.log(grid);
-
 
 
 	//start floodfill at head
@@ -54,7 +52,7 @@ var fill = function(enemies, mySnake, board, openSpaces) {
 				check = false;
 			}
 		}
-		if(((!contains(mySnake, x, y)) && check) || (x == mySnake.body[0].x && y == mySnake.body[0].y)) {
+		if(((!contains(mySnake.body, x, y)) && check) || (x == mySnake.body[0].x && y == mySnake.body[0].y)) {
 			openSpaces.push(temp);
 
 			if(x > 0) {
