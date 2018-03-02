@@ -6,7 +6,10 @@ var contains = require('./contains.js')
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
 
-	var grid = createArray(board.width, board.height);
+	var grid = new Array(board.width);
+	for (var i = 0; i < board.width; i++) {
+	   grid[i] = new Array(board.height);
+	}
 
 	for(var i = 0; i < grid.length; i++) {
 		for(var k = 0; k < grid[0].length; k++) {
@@ -124,16 +127,14 @@ function Point(x, y) {
 	this.y = y;
 }
 
-function createArray(length) {
-    var arr = new Array(length || 0),
-        i = length;
+function CreateArray(rows) {
+  var arr = [];
 
-    if (arguments.length > 1) {
-        var args = Array.prototype.slice.call(arguments, 1);
-        while(i--) arr[length-1 - i] = createArray.apply(this, args);
-    }
+  for (var i=0;i<rows;i++) {
+     arr[i] = [];
+  }
 
-    return arr;
+  return arr;
 }
 
 /*//checks if any enemies or body parts are on the spot
