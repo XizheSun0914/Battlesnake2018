@@ -25,10 +25,8 @@ module.exports = exports = function (mySnake, enemies, board) {
 		}
 	}
 
-
-
 	//start floodfill at head
-	//fill(enemies, mySnake, board, openSpaces);
+	fill(enemies, mySnake, board, openSpaces);
 	//var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
 	//dfs(check, openSpaces, head, board.width, board.height, enemies, mySnake);
 
@@ -37,7 +35,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 
 }
 
-var fill = function(enemies, mySnake, board, openSpaces) {
+var fill = function(enemies, mySnake, grid, openSpaces) {
 	var queue = [];
 	queue.push(mySnake.body[0]);
 
@@ -46,13 +44,8 @@ var fill = function(enemies, mySnake, board, openSpaces) {
 		var temp = queue.shift();
 		var x = temp.x;
 		var y = temp.y;
-		var check = true;
-		for(var i = 0; i < enemies.length; i++) {
-			if(contains(enemies[i].body, x, y)) {
-				check = false;
-			}
-		}
-		if(((!contains(mySnake.body, x, y)) && check) || (x == mySnake.body[0].x && y == mySnake.body[0].y)) {
+		
+		if( (grid[x][y]) == 0 || (x == mySnake.body[0].x && y == mySnake.body[0].y)) {
 			openSpaces.push(temp);
 
 			if(x > 0) {
