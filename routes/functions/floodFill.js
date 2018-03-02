@@ -14,7 +14,6 @@ module.exports = exports = function (mySnake, enemies, board) {
 	for(var i = 0; i < grid.length; i++) {
 		for(var k = 0; k < grid[0].length; k++) {
 			grid[i][j] = 0;
-			console.log(grid[i][j]);
 		}
 	}
 
@@ -30,6 +29,8 @@ module.exports = exports = function (mySnake, enemies, board) {
 			}
 		}
 	}
+
+	console.log(grid);
 
 	//start floodfill at head
 	//fill(enemies, mySnake, board, openSpaces);
