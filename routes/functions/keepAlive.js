@@ -1,9 +1,9 @@
 //JUST MAKE SURE LASTSTAND IS WORKING
 
-var floodFill = require('./floodFill.js')
-var contains = require('./contains.js')
-var aStar = require('./aStar.js')
-var chooseDirection = require('./chooseDirection.js')
+var floodFill = require('./utilities/floodFill.js')
+var contains = require('./utilities/contains.js')
+var aStar = require('./utilities/aStar.js')
+var chooseDirection = require('./utilities/chooseDirection.js')
 var lastStand = require('./lastStand.js')
 
 //does flood fill to find how large the space is and where the walls are

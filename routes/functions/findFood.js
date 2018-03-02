@@ -1,5 +1,5 @@
-var aStar = require('./aStar.js')
-var floodFill = require('./floodFill.js')
+var aStar = require('./utilities/aStar.js')
+var floodFill = require('./utilities/floodFill.js')
 
 //uses A* algorithm to find good routes to food. Looks at best route to each peice of food
 // and decides which is the best based cost of route (lowest cost of destination.f)
@@ -61,10 +61,10 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 
-	enoughSpace(leftRoute, mySnake, enemies, board, decision);
-	enoughSpace(rightRoute, mySnake, enemies, board, decision);
-	enoughSpace(upRoute, mySnake, enemies, board, decision);
-	enoughSpace(downRoute, mySnake, enemies, board, decision);
+	//enoughSpace(leftRoute, mySnake, enemies, board, decision);
+	//enoughSpace(rightRoute, mySnake, enemies, board, decision);
+	//enoughSpace(upRoute, mySnake, enemies, board, decision);
+	//enoughSpace(downRoute, mySnake, enemies, board, decision);
 
 	return;
 }

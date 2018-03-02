@@ -1,10 +1,10 @@
 //edit lowhealth and goallength based on testing
 //add predatory actions
 
-var checkWalls = require('./functions/checkWalls.js')
+var checkWalls = require('./functions/utilities/checkWalls.js')
 var findFood = require('./functions/findFood.js')
 var keepAlive = require('./functions/keepAlive.js')
-var watchYoSelf = require('./functions/watchYoSelf.js')
+var watchYoSelf = require('./functions/utilities/watchYoSelf.js')
 
 // This function is the shell for deciding the move
 
