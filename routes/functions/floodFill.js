@@ -17,6 +17,8 @@ module.exports = exports = function (mySnake, enemies, board) {
 		}
 	}
 
+	console.log(grid);
+
 	for(var i = 0; i < grid.length; i++) {
 		for(var j = 0; j < grid[0].length; j++) {
 			if(contains(mySnake.body, i, j)) {
