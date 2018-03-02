@@ -49,7 +49,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 		var topRoute = routes.shift();
 
-		//acts as if the head is one forward and the tail is too
+		//acts as if the head is one forward and tail is too
 		var temp = JSON.parse(JSON.stringify(mySnake));
 		temp.body.unshift(topRoute[1]);
 		temp.body.pop();
@@ -77,7 +77,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		//CONSTRUCTION
 		//-----------------------------------------------
 		//if theres more than enough space to fit; go for it, if i can get back to tail; go for it, or if absolutely desparate for food
-		if(space.length*(2/3) > mySnake.length || (tailReachable.length > 0 && enemiesInSpace.length == 0) || (space.length*(4/3) > mySnake.length && mySnake.health < 10)) {
+		if(space.length*(2/3) > mySnake.length || (tailReachable.length > 0 && space.length > 1 && enemiesInSpace.length == 0) || (space.length*(4/3) > mySnake.length && mySnake.health < 10)) {
 		//-----------------------------------------------
 			console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " passed floodfill criteria");
 			console.log("my head is: " + mySnake.body[0].x + " " + mySnake.body[0].y);
