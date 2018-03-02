@@ -17,6 +17,11 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	var firstChoice = aStar(board, mySnake, enemies, mySnake.body[mySnake.body.length-1]);
 
+	//debugging
+	for(var j = 0; j < firstChoice.length; j++) {
+		console.log("move #" + j + ": " + firstChoice[j].x + " " + firstChoice[j].y);
+	}
+
 	//A* to tail if available and not hungry
 	if(firstChoice.length != 0 && (mySnake.health > 40)) {
 
