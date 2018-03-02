@@ -1,5 +1,4 @@
 var contains = require('./contains.js')
-var stop = false;
 
 //performs floodfill, returning a list of open spaces in the constrained area
 //cuts out early if takes up more than 1/3 of board for performance reasons
@@ -7,17 +6,18 @@ var stop = false;
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
 	var check = false;
+	var stop = false;
 
 	//start floodfill at head
 	var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
-	dfs(check, openSpaces, head, board.width, board.height, enemies, mySnake);
+	dfs(check, openSpaces, head, board.width, board.height, enemies, mySnake, stop);
 
 	//returns list of all coordinates in reach
 	return openSpaces;
 
 }
 
-var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, mySnake) {
+var dfs = function (check, openSpaces, node, boardWidth, boardHeight, enemies, mySnake, stop) {
 
 	if(stop) {
 		return false;
