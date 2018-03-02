@@ -61,7 +61,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		var tailReachable = aStar(board, temp, enemies, temp.body[temp.length-1]);
 		var enemiesInSpace = [];
 		for(var i = 0; i < enemies.length; i++) {
-			var check = aStar(board, temp, enemies[i], enemies[i].body[0])
+			var check = aStar(board, temp, enemies[i], enemies[i].body[0]);
 			if(check.length > 0) {
 				enemiesInSpace.push(check);
 			}
