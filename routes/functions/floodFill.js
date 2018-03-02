@@ -6,10 +6,6 @@ var contains = require('./contains.js')
 module.exports = exports = function (mySnake, enemies, board) {
 	var openSpaces = [];
 
-	var grid = [[],[]];
-
-
-
 	var grid = createArray(board.width, board.height);
 
 	for(var i = 0; i < grid.length; i++) {
