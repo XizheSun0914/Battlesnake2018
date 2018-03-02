@@ -37,6 +37,8 @@ module.exports = exports = function (mySnake, enemies, board) {
 	//start floodfill at head
 	fill(mySnake, grid, openSpaces, board);
 
+	console.log(openSpaces);
+
 	//returns list of all coordinates in reach
 	return openSpaces;
 
@@ -48,7 +50,7 @@ var fill = function(mySnake, grid, openSpaces, board) {
 	queue.push(head);
 	console.log("checkpoint 2");
 
-	while (queue.length > 0 || openSpaces.length > board.width*board.height/4) {
+	while (queue.length > 0) {
 		var temp = queue.shift();
 		var x = temp.x;
 		var y = temp.y;
