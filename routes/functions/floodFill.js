@@ -26,7 +26,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 			}
 			for(var k = 0; k < enemies.length; k++) {
 				if(contains(enemies[k].body, i, j)) {
-					grid[i][j] = 1;
+					grid[i][j] = 2;
 				}
 			}
 		}
@@ -45,16 +45,20 @@ module.exports = exports = function (mySnake, enemies, board) {
 }
 
 var fill = function(mySnake, grid, openSpaces) {
+	console.log("checkpoint 1");
 	var queue = [];
 	queue.push(mySnake.body[0]);
+	console.log("checkpoint 2");
 
 	while (queue.length > 0) {
 		var temp = queue.shift();
 		var x = temp.x;
 		var y = temp.y;
+		console.log("checkpoint 3");
 		
 		if( (grid[x][y]) == 0 || (x == mySnake.body[0].x && y == mySnake.body[0].y)) {
 			openSpaces.push(temp);
+			console.log("checkpoint 4");
 
 			if(x >= 0) {
 				var left = new Point(x-1, y);
@@ -65,6 +69,7 @@ var fill = function(mySnake, grid, openSpaces) {
 				var right = new Point(x+1, y);
 				queue.push(right);
 			}
+			console.log("checkpoint 5");
 
 			if(y >= 0) {
 				var up = new Point(x, y-1);
@@ -77,6 +82,7 @@ var fill = function(mySnake, grid, openSpaces) {
 			}
 		}
 	}
+	console.log("checkpoint 6");
 	return;
 }
 
