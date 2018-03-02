@@ -43,7 +43,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 	} else {
 		console.log("now being a predator");
 		//do some kind of predatory action that isn't findfood()
-		findFood(mySnake, enemies, board, decision);
+		keepAlive(mySnake, enemies, board, decision);
 	}
 
 	//makes sure we aren't accidentally killing ourselves
