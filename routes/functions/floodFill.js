@@ -10,14 +10,11 @@ module.exports = exports = function (mySnake, enemies, board) {
 
 
 
-	for(var i = 0; i < board.width; i++) {
-		for(var j = 0; j < board.height; j++) {
-			grid[i][j] = 0;
-		}
-	}
+	createArray(board.width, board.height);
 
 	for(var i = 0; i < grid.length; i++) {
 		for(var k = 0; k < grid[0].length; k++) {
+			grid[i][j] = 0;
 			console.log(grid[i][j]);
 		}
 	}
@@ -116,6 +113,18 @@ var fill = function(enemies, mySnake, grid, openSpaces) {
 function Point(x, y) {
 	this.x = x;
 	this.y = y;
+}
+
+function createArray(length) {
+    var arr = new Array(length || 0),
+        i = length;
+
+    if (arguments.length > 1) {
+        var args = Array.prototype.slice.call(arguments, 1);
+        while(i--) arr[length-1 - i] = createArray.apply(this, args);
+    }
+
+    return arr;
 }
 
 /*//checks if any enemies or body parts are on the spot
