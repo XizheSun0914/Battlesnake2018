@@ -1,6 +1,5 @@
 var aStar = require('./aStar.js')
 var floodFill = require('./floodFill.js')
-var contains = require('./contains.js')
 
 //uses A* algorithm to find good routes to food. Looks at best route to each peice of food
 // and decides which is the best based cost of route (lowest cost of destination.f)
