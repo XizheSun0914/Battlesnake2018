@@ -23,7 +23,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 				grid[i][j] = 1;
 			}
 			for(var k = 0; k < enemies.length; k++) {
-				if(contains(enemies.body, i, j)) {
+				if(contains(enemies[k].body, i, j)) {
 					grid[i][j] = 1;
 				}
 			}
