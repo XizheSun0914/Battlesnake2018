@@ -62,10 +62,12 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 
-	enoughSpace(leftRoute, mySnake, enemies, board, decision);
-	enoughSpace(rightRoute, mySnake, enemies, board, decision);
-	enoughSpace(upRoute, mySnake, enemies, board, decision);
-	enoughSpace(downRoute, mySnake, enemies, board, decision);
+	//enoughSpace(leftRoute, mySnake, enemies, board, decision);
+	//enoughSpace(rightRoute, mySnake, enemies, board, decision);
+	//enoughSpace(upRoute, mySnake, enemies, board, decision);
+	//enoughSpace(downRoute, mySnake, enemies, board, decision);
+
+	decision.down += 2000;
 
 	return;
 }
