@@ -49,7 +49,7 @@ var fill = function(mySnake, grid, openSpaces, board) {
 	queue.push(head);
 	console.log("checkpoint 2");
 
-	while (queue.length > 0) {
+	while (queue.length > 0 || openSpaces.length > board.width*board.height/4) {
 		var temp = queue.shift();
 		var x = temp.x;
 		var y = temp.y;
