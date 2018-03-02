@@ -30,7 +30,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
-				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, enemies, mySnake, board) && q.x+i != food.x && q.y+j != food.y)) {
+				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, enemies, mySnake, board) && !(q.x+i == food.x && q.y+j == food.y))) {
 					continue;
 				} else {
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
