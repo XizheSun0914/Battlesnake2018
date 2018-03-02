@@ -31,13 +31,10 @@ module.exports = exports = function (mySnake, enemies, board) {
 			}
 		}
 	}
-	console.log(grid);
 	//-------------------
 
 	//start floodfill at head
 	fill(mySnake, grid, openSpaces, board);
-
-	console.log(openSpaces);
 
 	//returns list of all coordinates in reach
 	return openSpaces;
@@ -80,16 +77,6 @@ var fill = function(mySnake, grid, openSpaces, board) {
 			}
 		}
 	}
-
-	console.log("not openSpace: ");
-	for(var k = 0; k < board.width; k++) {
-		for(var n = 0; n < board.height; n++) {
-			if(grid[k][n] != 3) {
-				console.log(k + " " + n);
-			}
-		}
-	}
-	console.log(grid);
 	return;
 }
 
