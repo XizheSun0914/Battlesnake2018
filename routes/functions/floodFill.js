@@ -62,11 +62,13 @@ var fill = function(mySnake, grid, openSpaces) {
 
 			//I DONT FUCKING KNOW WHY THIS DOESNT WORK
 			if(x > 0) {
+				console.log("x can get smaller");
 				var left = new Point((x-1), y);
 				queue.push(left);
 			}
 
 			if(x < board.width) {
+				console.log("x can get larger");
 				var right = new Point((x+1), y);
 				queue.push(right);
 			}
