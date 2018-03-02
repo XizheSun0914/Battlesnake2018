@@ -1,4 +1,5 @@
 //test to figure what amount of openSpace works best
+//maybe check how much of my body is in one plane ( ie x = 5 for 6 limbs so its okay to go in a smaller space)
 
 var aStar = require('./aStar.js')
 var floodFill = require('./floodFill.js')
