@@ -58,7 +58,6 @@ var fill = function(mySnake, grid, openSpaces, board) {
 		if((grid[x][y]) == 0 || (x == mySnake.body[0].x && y == mySnake.body[0].y && grid[x][y] == 1)) {
 			openSpaces.push(temp);
 			grid[x][y] = 3;
-			console.log(x + " " + y + " is empty!");
 
 			if(x > 0) {
 				var left = new Point((x-1), y);
@@ -78,6 +77,15 @@ var fill = function(mySnake, grid, openSpaces, board) {
 			if(y < board.height) {
 				var down = new Point(x, (y+1));
 				queue.push(down);
+			}
+		}
+	}
+
+	console.log("not openSpace: ");
+	for(var k = 0; k < board.width; k++) {
+		for(var n = 0; n < board.height; n++) {
+			if(grid[k][n] != 3) {
+				console.log(k + " " + n);
 			}
 		}
 	}
