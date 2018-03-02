@@ -13,7 +13,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 
 	for(var i = 0; i < grid.length; i++) {
 		for(var k = 0; k < grid[0].length; k++) {
-			grid[i][j] = 0;
+			grid[i][k] = 0;
 		}
 	}
 
