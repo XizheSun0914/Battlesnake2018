@@ -54,10 +54,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		temp.body.unshift(topRoute[1]);
 		temp.body.pop();
 
-		//CONSTRUCTION
-		//make sure this is good
 		//checks if i can reach my tail after getting food, and no enemy heads coming into area
-		//-----------------------------
 		var tailReachable = aStar(board, temp, enemies, temp.body[temp.length-1]);
 		console.log("checkpoint 1");
 		var enemiesInSpace = [];
@@ -67,20 +64,22 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 				enemiesInSpace.push(checker);
 			}
 		}
-		console.log("checkpoint 2");
-		//-----------------------------
 
 		var space = floodFill(temp, enemies, board);
 
 		console.log("room: " + space.length);
+		if(tailReachable.length > 0) {
+			console.log("can reach tail inside!");
+		}
+		if(enemiesInSpace.length != 0) {
+			console.log("No go; theres an enemy head in the area!!");
+		}
 
-		//CONSTRUCTION
-		//-----------------------------------------------
 		//if theres more than enough space to fit; go for it, if i can get back to tail; go for it, or if absolutely desparate for food
-		if(space.length*(2/3) > mySnake.length || (tailReachable.length > 0 && space.length > 1 && enemiesInSpace.length == 0) || (space.length*(4/3) > mySnake.length && mySnake.health < 10)) {
-		//-----------------------------------------------
+		//decreases each path value following each successful path
+		if(space.length > mySnake.length || (tailReachable.length > 0 && space.length > 1 && enemiesInSpace.length == 0) || (space.length*(4/3) > mySnake.length && mySnake.health < 15)) {
+			
 			console.log("direction: " + temp.body[0].x + " " + temp.body[0].y + " passed floodfill criteria");
-			console.log("my head is: " + mySnake.body[0].x + " " + mySnake.body[0].y);
 
 			if(temp.body[0].x > mySnake.body[0].x) {
 				decision.right += decreaseVal;
