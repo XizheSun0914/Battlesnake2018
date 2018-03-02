@@ -33,6 +33,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 	}
 
 	console.log(grid);
+	console.log(grid[7][8] + " " + grid[7][7]);
 
 	//start floodfill at head
 	//fill(enemies, mySnake, board, openSpaces);
