@@ -36,6 +36,8 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		for(var i = 0; i < enemies.length; i++) {
 			var temp = aStar(board, mySnake, enemies, enemies[i].body[enemies[i].body.length-1]);
 
+			console.log(temp.length);
+
 			//makes sure we arent going into a tail that isnt going to move
 			if(temp.length > 0 && !(temp.length == 2 && enemies[i].health == 100)) {
 				nearbyTails.push(temp);
