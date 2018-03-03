@@ -12,12 +12,12 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	var amountSpace = floodFill(mySnake, enemies, board);
 
 	//if early game, cannot use all resources so wait until
-	if(amountSpace.length > 144) {
+	/*if(amountSpace.length > 144) {
 		var choice = ifStart(mySnake, enemies, board, food);
 		var temp = aStar(board, mySnake, enemies, food[choice]);
 		chooseDirection(mySnake, temp[1], decision, 2000);
 		return;
-	}
+	}*/
 
 	for(var i = 0; i < food.length; i++) {
 		var temp = aStar(board, mySnake, enemies, food[i]);
