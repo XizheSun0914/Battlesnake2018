@@ -22,6 +22,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		var q = openList.shift();
 		closedList.push(q);
+		console.log(q.x + " " + q.y);
 
 		//if at destination, build route and finish
 		if(q.x == food.x && q.y == food.y) {
@@ -79,9 +80,9 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 					if(openList[j].x == successors[i].x && openList[j].y == successors[i].y && openList[j].f < successors[i].f) {
 						check = true;
 					}
-					console.log("checkpoint 3.65");
 				}
 				if(check) {
+					console.log("checkpoint 3.65");
 					continue;
 				} else {
 					openList.push(successors[i]);
