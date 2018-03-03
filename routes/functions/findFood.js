@@ -143,7 +143,7 @@ var ifStart = function(mySnake, enemies, board, food) {
 			firstChoice = i;
 		}
 	}
-	return i;
+	return firstChoice;
 }
 
 var findDist = function(me, goal) {
