@@ -85,12 +85,11 @@ function isValid(x, y, grid, board) {
 		return false;
 	}
 
-	if(grid[x][y] == 0) {
+	if(grid[x][y] != 0) {
 		console.log("yeet2");
-		return true;
+		return false;
 	} else {
 		console.log("yeet3");
-		return false;
 	}
 }
 
