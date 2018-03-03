@@ -23,6 +23,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		});
 
 		var q = openList.shift();
+		openGrid[q.x][q.y] = 0;
 		closedList.push(q);
 		grid[q.x][q.y] = 3;
 
