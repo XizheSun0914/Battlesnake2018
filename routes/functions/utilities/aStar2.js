@@ -33,7 +33,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
-				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, grid, board) && !(q.x+i == food.x && q.y+j == food.y))) {
+				if((i==0 && j==0) || (i != 0 && j != 0) || !(isValid(q.x+i, q.y+j, grid, board) && (q.x+i == food.x && q.y+j == food.y))) {
 					continue;
 				} else {
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
@@ -80,19 +80,19 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 //friendly snake or if outside board
 function isValid(x, y, grid, board) {
 	console.log("yeet1");
-	if(grid[x][y] == 0) {
-		console.log("yeet2");
-		return true;
-	} else {
-		console.log("yeet3");
-		return false;
-	}
-
 	if (x <= board.width && x >= 0 && y <= board.height && y >= 0) {
 		console.log("yeet4");
 		return true;
 	} else {
 		console.log("yeet5");
+		return false;
+	}
+
+	if(grid[x][y] == 0) {
+		console.log("yeet2");
+		return true;
+	} else {
+		console.log("yeet3");
 		return false;
 	}
 }
