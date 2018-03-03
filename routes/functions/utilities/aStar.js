@@ -18,10 +18,6 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 	while(openList.length != 0) {
 
-		openList.sort(function(a,b) {	//sort openList based on total cost
-			return a.f - b.f;
-		});
-
 		var q = openList.shift();
 		openGrid[q.x][q.y] = 0;
 		closedList.push(q);
@@ -52,7 +48,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 					continue;
 				}
 				var successor = new aNode(xCoord, yCoord, q.f, q, food, enemies, mySnake);
-				console.log(successor.x + " " + successor.y + " added to  openList");
+				console.log(successor.x + " " + successor.y + " added to  successors");
 				successors.push(successor);
 			}
 		}
@@ -69,7 +65,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			//if not in openList, add it
 			if(openGrid[successors[i].x][successors[i].y] != 4) {
 				openGrid[successors[i].x][successors[i].y] == 4;
-				openList.push(successors[i]);
+				addToList(openList, successors[i]);
 				continue;
 			}
 
@@ -91,7 +87,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 					continue;
 				} else {
 					openList.splice(spot, 1);
-					openList.push(successors[i]);
+					addToList(openList, successors[i]);
 					openGrid[successors[i].x][successors[i].y] == 4;
 				}
 			}
@@ -183,4 +179,13 @@ var checkSurround = function (x, y, enemies, mySnake) {
 		}
 	}
 	return price;
+}
+
+var addToList = function(list, item) {
+	for(var i = 0; i < list.length; i++) {
+		if(list[i].f > item.f) {
+			list.splice(i, 0, item);
+			return;
+		}
+	}
 }
