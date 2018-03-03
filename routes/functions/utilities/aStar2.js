@@ -41,7 +41,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 					continue;
 				} else {
 					console.log("success: " + successor.x + " " + successor.y);
-					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
+					var successor = new aNode((q.x+i), (q.y+j), q.f, q, food, enemies, mySnake);
 					successors.push(successor);
 				}
 			}
