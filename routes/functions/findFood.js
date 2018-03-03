@@ -1,5 +1,6 @@
 var aStar = require('./utilities/aStar.js')
 var floodFill = require('./utilities/floodFill.js')
+var chooseDirection = require('./utilities/chooseDirection.js');
 
 //uses A* algorithm to find good routes to food. Looks at best route to each peice of food
 // and decides which is the best based cost of route (lowest cost of destination.f)
@@ -32,6 +33,8 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	routes.sort(function(a, b) {
 		return a[a.length-1].f - b[b.length-1].f;
 	});
+
+	return chooseDirection(mySnake, routes[0][1], decision, 2000);
 
 	var leftRoute = new rPoint(mySnake.body[0].x-1, mySnake.body[0].y, "left");
 	var rightRoute = new rPoint(mySnake.body[0].x+1, mySnake.body[0].y, "right");
