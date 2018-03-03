@@ -6,6 +6,9 @@ var contains = require('./contains.js')
 module.exports = exports = function (board, mySnake, enemies, food) {
 	var closedList = [];
 	var openList = [];
+
+	var grid = buildGrid(mySnake, board, enemies);
+	console.log(grid);
 	
 	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
 	openList.push(first);
