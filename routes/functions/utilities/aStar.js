@@ -87,7 +87,6 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 function isValid(x, y, enemies, mySnake, board, grid) {
 	if (x <= board.width && x >= 0 && y <= board.height && y >= 0) {
 		console.log("inside board");
-		return true;
 	} else {
 		console.log("outside board");
 		return false;
