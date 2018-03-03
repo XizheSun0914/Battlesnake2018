@@ -47,6 +47,8 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			}
 		}
 
+		console.log("checkpoint 2");
+
 		for(var i = 0; i < successors.length; i++) {
 			//if on closedList, ignore
 			//MAYBE USE GRID SPACE = 3 FOR CLOSEDLIST
@@ -77,6 +79,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				}
 			}
 		}
+		console.log("checkpoint 3");
 	}
 }
 
