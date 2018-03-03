@@ -12,7 +12,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	var amountSpace = floodFill(mySnake.body[0], enemies, board);
 
-	if(board.turn < 60 && amountSpace > board.height*board.width/4) {
+	if(board.turn < 60 && amountSpace.length > board.height*board.width/4) {
 		var choice = ifStart(mySnake, enemies, board, food);
 		var temp = aStar(board, mySnake, enemies, food[choice]);
 		chooseDirection(mySnake, temp[1], decision, 2000);
