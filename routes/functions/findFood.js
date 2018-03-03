@@ -10,7 +10,9 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	var food = board.food;
 	var routes = [];
 
-	if(board.turn < 15) {
+	var amountSpace = floodFill(mySnake.body[0], enemies, board);
+
+	if(board.turn < 60 && amountSpace > board.height*board.width/4) {
 		var choice = ifStart(mySnake, enemies, board, food);
 		var temp = aStar(board, mySnake, enemies, food[choice]);
 		chooseDirection(mySnake, temp[1], decision, 2000);
@@ -72,10 +74,10 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 
-	//enoughSpace(leftRoute, mySnake, enemies, board, decision);
-	//enoughSpace(rightRoute, mySnake, enemies, board, decision);
-	//enoughSpace(upRoute, mySnake, enemies, board, decision);
-	//enoughSpace(downRoute, mySnake, enemies, board, decision);
+	enoughSpace(leftRoute, mySnake, enemies, board, decision);
+	enoughSpace(rightRoute, mySnake, enemies, board, decision);
+	enoughSpace(upRoute, mySnake, enemies, board, decision);
+	enoughSpace(downRoute, mySnake, enemies, board, decision);
 
 	return;
 }
@@ -91,7 +93,7 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 		var space = floodFill(temp, enemies, board);
 		console.log("room: " + space.length);
 
-		if(!(space.length > board.width*board.height/3)) {
+		if(!(space.length > board.width*board.height/4)) {
 			//checks if i can reach my tail after getting food, and no enemy heads coming into area
 			var tailReachable = aStar(board, temp, enemies, temp.body[temp.length-1]);
 			var enemiesInSpace = [];
