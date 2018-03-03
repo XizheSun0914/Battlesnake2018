@@ -127,7 +127,7 @@ var checkSurround = function (x, y, enemies, mySnake) {
 	//if early game, dont worry about enemies
 	var check = true;
 	for(var i = 0; i < enemies.length; i++) {
-		if(enemies[i].length > 7) {
+		if(enemies[i].length < 7) {
 			check = false;
 		}
 	}
