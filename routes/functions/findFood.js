@@ -44,9 +44,6 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		return a[a.length-1].f - b[b.length-1].f;
 	});
 
-	chooseDirection(mySnake, routes[0][1], decision, 2000);
-	return;
-
 	var leftRoute = new rPoint(mySnake.body[0].x-1, mySnake.body[0].y, "left");
 	var rightRoute = new rPoint(mySnake.body[0].x+1, mySnake.body[0].y, "right");
 	var upRoute = new rPoint(mySnake.body[0].x, mySnake.body[0].y-1, "up");
