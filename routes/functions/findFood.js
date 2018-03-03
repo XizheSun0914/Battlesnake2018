@@ -13,7 +13,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	if(board.turn < 15) {
 		var choice = ifStart(mySnake, enemies, board, food);
 		var temp = aStar(board, mySnake, enemies, food[choice]);
-		chooseDirection(mySnake, temp, decision, 2000);
+		chooseDirection(mySnake, temp[1], decision, 2000);
 		return;
 	}
 
