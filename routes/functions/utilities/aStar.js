@@ -23,10 +23,11 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		var q = openList.shift();
 		closedList.push(q);
+		grid[q.x][q.y] = 3;
 
 		//if at destination, build route and finish
 		if(q.x == food.x && q.y == food.y) {
-			console.log("finished route!")
+			console.log("finished route!");
 			return finishRoute(q, first);
 		}
 
@@ -56,7 +57,10 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		for(var i = 0; i < successors.length; i++) {
 			//if on closedList, ignore
-			if(contains(closedList, successors[i].x, successors[i].y)) {
+			var xCoord = successors[i].x;
+			var yCoord = successors[i].y;
+
+			if(grid[xCoord][yCoord] == 3) {
 				continue;
 			}
 
