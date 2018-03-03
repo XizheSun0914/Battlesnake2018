@@ -37,30 +37,20 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			for(var j = -1; j <= 1; j++) {
 				var xCoord = (q.x+i);
 				var yCoord = (q.y+j);
-				if(q.parent != null) {
-					console.log("parent: " + q.parent.x + " " + q.parent.y);
-				}
-				console.log(xCoord + " " + yCoord);
+
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
 				if(i==0 && j==0) {
-					console.log("thats me");
 					continue;
 				}
 				if(i != 0 && j != 0) {
-					console.log("thats no reachable");
 					continue;
 				}
 				if(!isValid(xCoord, yCoord, enemies, mySnake, board, grid) && !(xCoord == food.x && yCoord == food.y)){
-					console.log("not valid");
 					continue;
 				}
-				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(xCoord, yCoord, enemies, mySnake, board, grid) && !(xCoord == food.x && yCoord == food.y))) {
-					continue;
-				} else {
-					var successor = new aNode(xCoord, yCoord, q.f, q, food, enemies, mySnake);
-					console.log(successor.x + " " + successor.y + " added to  openList");
-					successors.push(successor);
-				}
+				var successor = new aNode(xCoord, yCoord, q.f, q, food, enemies, mySnake);
+				console.log(successor.x + " " + successor.y + " added to  openList");
+				successors.push(successor);
 			}
 		}
 
