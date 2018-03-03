@@ -36,9 +36,9 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			for(var j = -1; j <= 1; j++) {
 				var xCoord = (q.x+i);
 				var yCoord = (q.y+j);
-				console.log(xCoord + " " + yCoord);
+				console.log(xCoord + " " + yCoord + " == " + grid[x][y]);
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
-				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(xCoord, yCoord, enemies, mySnake, board) && !(q.x+i == food.x && q.y+j == food.y))) {
+				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(xCoord, yCoord, enemies, mySnake, board, grid) && !(q.x+i == food.x && q.y+j == food.y))) {
 					continue;
 				} else {
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
@@ -83,18 +83,20 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 //checks if node is already covered by enemy or 
 //friendly snake or if outside board
-function isValid(x, y, enemies, mySnake, board) {
-	if(contains(mySnake.body, x, y)) {
+function isValid(x, y, enemies, mySnake, board, grid) {
+	if(grid[x][y] == 1) {
+		console.log("my body there");
 		return false;
 	}
-	for(var i = 0; i < enemies.length; i++) {
-		if(contains(enemies[i].body, x, y)) {
-			return false;
-		}
+	if(grid[x][y] == 2) {
+		console.log("enemy body there");
+		return false;
 	}
 	if (x <= board.width && x >= 0 && y <= board.height && y >= 0) {
+		console.log("inside board");
 		return true;
 	} else {
+		console.log("outside board");
 		return false;
 	}
 }
