@@ -39,7 +39,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				var yCoord = (q.y+j);
 				console.log(xCoord + " " + yCoord + " == " + grid[xCoord][yCoord]);
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
-				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(xCoord, yCoord, enemies, mySnake, board, grid) && !(q.x+i == food.x && q.y+j == food.y))) {
+				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(xCoord, yCoord, enemies, mySnake, board, grid) && !(xCoord == food.x && yCoord == food.y))) {
 					continue;
 				} else {
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
