@@ -66,13 +66,14 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			}
 
 			//if not in openList, add it
-			if(!contains(openList, successors[i].x, successors[i].y)) {
+			if(openGrid[successors[i].x][successors[i].y] != 4) {
+				openGrid[successors[i].x][successors[i].y] == 4;
 				openList.push(successors[i]);
 				continue;
 			}
 
 			//if openList has same nodes cheaper than successor[i]: continue, else: push to openList
-			if(contains(openList, successors[i].x, successors[i].y)) {
+			if(openGrid[successors[i].x][successors[i].y] == 4) {
 				var check = false;
 				for(var j = 0; j < openList.length; j++) {
 					if(openList[j].x == successors[i].x && openList[j].y == successors[i].y && openList[j].f < successors[i].f) {
@@ -83,6 +84,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 					continue;
 				} else {
 					openList.push(successors[i]);
+					openGrid[successors[i].x][successors[i].y] == 4;
 				}
 			}
 		}
