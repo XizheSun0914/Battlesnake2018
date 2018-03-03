@@ -6,6 +6,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 	var openList = [];
 
 	var grid = buildGrid(mySnake, board, enemies);
+	console.log(grid);
 	
 	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
 	openList.push(first);
@@ -31,9 +32,8 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		//create successors
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
-				console.log("checkpoint fuck");
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
-				if((i==0 && j==0) || (i != 0 && j != 0) || ((x+i)<0 || (x+i)>board.width || (y+j)<0 || (y+j)>board.height) || ((grid[q.x+i][q.y+j] != 0) && !(q.x+i == food.x && q.y+j == food.y))) {
+				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, grid, board) && !(q.x+i == food.x && q.y+j == food.y))) {
 					continue;
 				} else {
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
@@ -78,15 +78,13 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 //checks if node is already covered by enemy or 
 //friendly snake or if outside board
-function isValid(x, y, enemies, mySnake, board) {
-	if(contains(mySnake.body, x, y)) {
+function isValid(x, y, grid, board) {
+	if(grid[x][y] == 0) {
+		return true;
+	} else {
 		return false;
 	}
-	for(var i = 0; i < enemies.length; i++) {
-		if(contains(enemies[i].body, x, y)) {
-			return false;
-		}
-	}
+	
 	if (x <= board.width && x >= 0 && y <= board.height && y >= 0) {
 		return true;
 	} else {
