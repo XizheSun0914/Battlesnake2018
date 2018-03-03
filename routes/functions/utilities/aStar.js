@@ -186,6 +186,7 @@ var addToList = function(list, item) {
 		if(list[i].f > item.f) {
 			list.splice(i, 0, item);
 			return;
+		}
 	}
 	list.push(item);
 	return;
