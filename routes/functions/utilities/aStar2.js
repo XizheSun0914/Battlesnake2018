@@ -15,7 +15,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		}
 	}
 	
-	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
+	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake, grid);
 	openList.push(first);
 
 	//------------------------------
@@ -43,7 +43,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, enemies, mySnake, board) && !(q.x+i == food.x && q.y+j == food.y))) {
 					continue;
 				} else {
-					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
+					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake, grid);
 					successors.push(successor);
 				}
 			}
@@ -106,11 +106,11 @@ function calc_h(x, y, dest) {
 	return (Math.abs(x - dest.x) + Math.abs(y - dest.y));
 }
 
-function aNode(x, y, g, parent, dest, enemies, mySnake) {
+function aNode(x, y, g, parent, dest, enemies, mySnake, grid) {
 	this.x = x;
 	this.y = y;
 	this.g = g + 1.0;
-	this.h = calc_h(this.x, this.y, dest) + checkSurround(x, y, enemies, mySnake);
+	this.h = calc_h(this.x, this.y, dest) + checkSurround(x, y, enemies, mySnake, grid);
 	this.parent = parent;
 	this.f = this.g + this.h;
 }
@@ -129,7 +129,7 @@ var finishRoute = function (node, head) {
 }
 
 //changes h (cost to destination) based on the dangerous stuff on the way to the food
-var checkSurround = function (x, y, enemies, mySnake) {
+var checkSurround = function (x, y, enemies, mySnake, grid) {
 	var price = 0;
 
 	//if early game, dont worry about enemies
@@ -147,11 +147,11 @@ var checkSurround = function (x, y, enemies, mySnake) {
 		for(var j = -1; j <= 1; j++) {
 			//check if where we want to go has an ememy head beside with equal or larger length nearby
 			// or for my body and other enemy snakes
-			if(contains(mySnake.body, x+i, y+j)) {
+			if(grid[x+i][y+j] == 1)) {
 				price++;
 			}
 			for(var k = 0; k < enemies.length; k++) {
-				if(contains(enemies[k].body, x+i, y+j)) {
+				if(grid[x+i][y+j])) {
 					price += 2;
 				}
 				if(enemies[k].body[0].x == x+i && enemies[k].body[0].y == y+j && enemies[k].length >= mySnake.length) {
