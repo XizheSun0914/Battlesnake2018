@@ -6,7 +6,7 @@ var contains = require('./contains.js')
 module.exports = exports = function (board, mySnake, enemies, food) {
 	var closedList = [];
 	var openList = [];
-	
+
 	var grid = buildGrid(mySnake, board, enemies);
 	var openGrid = buildGrid(mySnake, board, enemies);
 
@@ -117,7 +117,7 @@ function aNode(x, y, g, parent, dest, enemies, mySnake) {
 	this.x = x;
 	this.y = y;
 	this.g = g + 1.0;
-	this.h = calc_h(this.x, this.y, dest);// + checkSurround(x, y, enemies, mySnake);
+	this.h = calc_h(this.x, this.y, dest);
 	this.parent = parent;
 	this.f = this.g + this.h;
 }
@@ -133,41 +133,6 @@ var finishRoute = function (node, head) {
 	}
 	route.unshift(head);
 	return route;
-}
-
-//changes h (cost to destination) based on the dangerous stuff on the way to the food
-var checkSurround = function (x, y, enemies, mySnake) {
-	var price = 0;
-
-	//if early game, dont worry about enemies
-	var check = true;
-	for(var i = 0; i < enemies.length; i++) {
-		if(enemies[i].length < 7) {
-			check = false;
-		}
-	}
-	if(check) {
-		return price;
-	}
-
-	for(var i = -1; i <= 1; i++) {
-		for(var j = -1; j <= 1; j++) {
-			//check if where we want to go has an ememy head beside with equal or larger length nearby
-			// or for my body and other enemy snakes
-			if(contains(mySnake.body, x+i, y+j)) {
-				price++;
-			}
-			for(var k = 0; k < enemies.length; k++) {
-				if(contains(enemies[k].body, x+i, y+j)) {
-					price += 2;
-				}
-				if(enemies[k].body[0].x == x+i && enemies[k].body[0].y == y+j && enemies[k].length >= mySnake.length) {
-					price += 5;
-				}
-			}
-		}
-	}
-	return price;
 }
 
 var addToList = function(list, item) {
