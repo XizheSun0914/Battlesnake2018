@@ -90,6 +90,7 @@ function isValid(x, y, grid, board) {
 		return false;
 	} else {
 		console.log("yeet3");
+		return true;
 	}
 }
 
