@@ -76,7 +76,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	}
 
 	//if we wont be able to run without time out simply route without checking
-	if(amountSpace.length*food.length > 400) {
+	if(amountSpace.length*food.length > 400 && false) {
 		for(var k = 0; k < currentRoute.routes.length; k++) {
 			if(currentRoute.direction === "left"){
 				decision.left += 2000*(Math.pow((1/3), currentRoute.routes[k]));
