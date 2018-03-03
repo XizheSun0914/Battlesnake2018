@@ -44,15 +44,19 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 					continue;
 				}
 				if(i != 0 && j != 0) {
-					console.log("cant reach");
+					console.log("thats no reachable");
 					continue;
 				}
 				if(!isValid(xCoord, yCoord, enemies, mySnake, board, grid) && !(xCoord == food.x && yCoord == food.y)){
-					console.log("not empty");
+					console.log("not valid");
 					continue;
 				}
-				var successor = new aNode(xCoord, yCoord, q.f, q, food, enemies, mySnake);
-				successors.push(successor);
+				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(xCoord, yCoord, enemies, mySnake, board, grid) && !(xCoord == food.x && yCoord == food.y))) {
+					continue;
+				} else {
+					var successor = new aNode(xCoord, yCoord, q.f, q, food, enemies, mySnake);
+					successors.push(successor);
+				}
 			}
 		}
 
