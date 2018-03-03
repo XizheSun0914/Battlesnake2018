@@ -42,7 +42,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(xCoord, yCoord, enemies, mySnake, board, grid) && !(xCoord == food.x && yCoord == food.y))) {
 					continue;
 				} else {
-					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
+					var successor = new aNode(xCoord, yCoord, q.f, q, food, enemies, mySnake);
 					successors.push(successor);
 				}
 			}
