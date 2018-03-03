@@ -2,12 +2,12 @@
 //just need to tweak values in checkSurround if it isn't getting the right results
 var buildGrid = require('./buildGrid.js')
 var contains = require('./contains.js')
-var grid = buildGrid(mySnake, board, enemies);
 
 module.exports = exports = function (board, mySnake, enemies, food) {
 	var closedList = [];
 	var openList = [];
 	
+	var grid = buildGrid(mySnake, board, enemies);
 	console.log(grid);
 
 	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
@@ -34,8 +34,11 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 		//create successors
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
+				var xCoord = (q.x+i);
+				var yCoord = (q.y+j);
+				console.log(xCoord + " " + yCoord);
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
-				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, enemies, mySnake, board) && !(q.x+i == food.x && q.y+j == food.y))) {
+				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(xCoord, yCoord, enemies, mySnake, board) && !(q.x+i == food.x && q.y+j == food.y))) {
 					continue;
 				} else {
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
