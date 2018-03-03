@@ -42,7 +42,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				if(i != 0 && j != 0){
 					console.log("failure from not 0 and not 0: " + (q.x+i) + " " + (q.y+j));
 				}
-				if(!isValid(q.x+i, q.y+j, board, grid){
+				if(!isValid(q.x+i, q.y+j, board, grid)){
 					console.log("failure from isvalid: " + (q.x+i) + " " + (q.y+j));
 				}
 				if(!(q.x+i == food.x && q.y+j == food.y)) {
