@@ -2,14 +2,14 @@
 //just need to tweak values in checkSurround if it isn't getting the right results
 var buildGrid = require('./buildGrid.js')
 var contains = require('./contains.js')
+var grid = buildGrid(mySnake, board, enemies);
 
 module.exports = exports = function (board, mySnake, enemies, food) {
 	var closedList = [];
 	var openList = [];
-
-	var grid = buildGrid(mySnake, board, enemies);
-	console.log(grid);
 	
+	console.log(grid);
+
 	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
 	openList.push(first);
 
