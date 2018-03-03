@@ -1,4 +1,4 @@
-var aStar = require('./utilities/aStar2.js')
+var aStar = require('./utilities/aStar.js')
 var floodFill = require('./utilities/floodFill.js')
 
 //uses A* algorithm to find good routes to food. Looks at best route to each peice of food

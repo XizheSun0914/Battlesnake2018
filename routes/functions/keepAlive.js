@@ -2,7 +2,7 @@
 
 var floodFill = require('./utilities/floodFill.js')
 var contains = require('./utilities/contains.js')
-var aStar = require('./utilities/aStar2.js')
+var aStar = require('./utilities/aStar.js')
 var chooseDirection = require('./utilities/chooseDirection.js')
 var lastStand = require('./lastStand.js')
 
