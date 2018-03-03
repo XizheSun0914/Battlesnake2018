@@ -102,7 +102,7 @@ function aNode(x, y, g, parent, dest, enemies, mySnake) {
 	this.x = x;
 	this.y = y;
 	this.g = g + 1.0;
-	this.h = calc_h(this.x, this.y, dest) + checkSurround(x, y, enemies, mySnake);
+	this.h = calc_h(this.x, this.y, dest);// + checkSurround(x, y, enemies, mySnake);
 	this.parent = parent;
 	this.f = this.g + this.h;
 }
