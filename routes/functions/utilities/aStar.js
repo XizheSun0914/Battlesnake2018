@@ -61,7 +61,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 			if(grid[successors[i].x][successors[i].y] == 3) {
 				console.log(successors[i].x + " " + successors[i].y);
-				console.log("already on closedList")
+				console.log("already on closedList");
 				continue;
 			}
 
@@ -75,9 +75,14 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			//if openList has same nodes cheaper than successor[i]: continue, else: push to openList
 			if(openGrid[successors[i].x][successors[i].y] == 4) {
 				var check = false;
+
 				for(var j = 0; j < openList.length; j++) {
-					if(openList[j].x == successors[i].x && openList[j].y == successors[i].y && openList[j].f < successors[i].f) {
-						check = true;
+					if(openList[j].x == successors[i].x && openList[j].y == successors[i].y) {
+						if(openList[j].f < successors[i].f) {
+							check = true;
+						} else {
+							openList.splice(j, 1);
+						}
 					}
 				}
 				if(check) {
