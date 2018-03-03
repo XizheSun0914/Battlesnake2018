@@ -25,6 +25,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		//if at destination, build route and finish
 		if(q.x == food.x && q.y == food.y) {
+			console.log("yeet");
 			var temp = finishRoute(q, head);
 			console.log(temp);
 		}
@@ -85,7 +86,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				} else {
 					openList.push(successors[i]);
 				}
-				console.log("checkpoint 2.75");
+				console.log("checkpoint 3.75");
 			}
 		}
 		console.log("checkpoint 4");
