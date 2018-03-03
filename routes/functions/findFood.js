@@ -12,7 +12,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	var amountSpace = floodFill(mySnake, enemies, board);
 	console.log("space around: " + amountSpace.length);
 
-	//if early game, cannot use all resources so wait until
+	//if early game, cannot use all resources so wait until less area
 	if(amountSpace.length/food.length > 25) {
 		var choice = ifStart(mySnake, enemies, board, food);
 		var temp = aStar(board, mySnake, enemies, food[choice]);
@@ -76,7 +76,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	}
 
 	//if we wont be able to run without time out simply route without checking
-	if(amountSpace.length > 144) {
+	if(amountSpace.length/food.length > 14) {
 		for(var k = 0; k < currentRoute.routes.length; k++) {
 			if(currentRoute.direction === "left"){
 				decision.left += 2000*(Math.pow((1/3), currentRoute.routes[k]));
