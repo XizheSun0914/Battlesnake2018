@@ -13,7 +13,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	console.log("space around: " + amountSpace.length);
 
 	//if early game, cannot use all resources so wait until less area
-	if(amountSpace.length > 425 || amountSpace.length*food.length > 1000) {
+	if(amountSpace.length > 320 || amountSpace.length*food.length > 1000) {
 		var choice = ifStart(mySnake, enemies, board, food);
 		var temp = aStar(board, mySnake, enemies, food[choice]);
 		chooseDirection(mySnake, temp[1], decision, 2000);
