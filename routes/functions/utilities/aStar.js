@@ -1,6 +1,6 @@
 //adjust early game values
 //just need to tweak values in checkSurround if it isn't getting the right results
-
+var buildGrid = require('./buildGrid.js')
 var contains = require('./contains.js')
 
 module.exports = exports = function (board, mySnake, enemies, food) {
