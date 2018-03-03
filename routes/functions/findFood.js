@@ -86,7 +86,8 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 //makes a variable (temp) equal mySnake and push the direction we want to go onto the head
 //finds if i can reach my tail(safe) or if an enemy head is in the space(dangerous)
 var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
-	console.log(currentRoute.routes.length);
+	console.log("yeet1");
+	console.log("yeet: " + currentRoute.routes.length);
 	if(currentRoute.routes.length != 0) {
 		var temp = JSON.parse(JSON.stringify(mySnake));
 		temp.body.unshift(currentRoute);
