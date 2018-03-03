@@ -17,9 +17,6 @@ module.exports = exports = function (mySnake, enemies, board) {
 }
 
 var fill = function(mySnake, grid, openSpaces, board) {
-	if(openSpaces.length > 400) {
-		return;
-	}
 	var queue = [];
 	var head = new Point(mySnake.body[0].x, mySnake.body[0].y);
 	queue.push(head);
