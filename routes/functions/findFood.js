@@ -74,10 +74,25 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 
-	enoughSpace(leftRoute, mySnake, enemies, board, decision);
-	enoughSpace(rightRoute, mySnake, enemies, board, decision);
-	enoughSpace(upRoute, mySnake, enemies, board, decision);
-	enoughSpace(downRoute, mySnake, enemies, board, decision);
+	//added
+	//-----------------
+	for(var k = 0; k < currentRoute.routes.length; k++) {
+		if(currentRoute.direction === "left"){
+			decision.left += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+		} else if (currentRoute.direction === "right"){
+			decision.right += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+		} else if (currentRoute.direction === "up"){
+			decision.up += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+		} else if (currentRoute.direction === "down"){
+			decision.down += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+		}
+	}
+	//----------------
+
+	//enoughSpace(leftRoute, mySnake, enemies, board, decision);
+	//enoughSpace(rightRoute, mySnake, enemies, board, decision);
+	//enoughSpace(upRoute, mySnake, enemies, board, decision);
+	//enoughSpace(downRoute, mySnake, enemies, board, decision);
 
 	return;
 }
