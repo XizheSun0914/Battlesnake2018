@@ -75,19 +75,21 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			//if openList has same nodes cheaper than successor[i]: continue, else: push to openList
 			if(openGrid[successors[i].x][successors[i].y] == 4) {
 				var check = false;
+				var spot = 0;
 
 				for(var j = 0; j < openList.length; j++) {
 					if(openList[j].x == successors[i].x && openList[j].y == successors[i].y) {
 						if(openList[j].f < successors[i].f) {
 							check = true;
 						} else {
-							openList.splice(j, 1);
+							spot = j;
 						}
 					}
 				}
 				if(check) {
 					continue;
 				} else {
+					openList.splice(spot, 1);
 					openList.push(successors[i]);
 					openGrid[successors[i].x][successors[i].y] == 4;
 				}
