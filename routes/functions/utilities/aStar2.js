@@ -27,12 +27,14 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			var temp = finishRoute(q, head);
 			return temp;
 		}
+		console.log("checkpoint 1");
 
 		var successors = [];
 
 		//create successors
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
+				console.log(q.x+i + " " + q.y+j);
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
 				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, board, grid) && !(q.x+i == food.x && q.y+j == food.y))) {
 					console.log("failure: " + (q.x+i) + " " + (q.y+j));
