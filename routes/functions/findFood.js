@@ -12,7 +12,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 
 	console.log("yeet1");
 
-	var amountSpace = floodFill(mySnake.body[0], enemies, board);
+	var amountSpace = floodFill(mySnake, enemies, board);
 	console.log("yeet2");
 
 	if(board.turn < 60 && amountSpace.length > board.height*board.width/4) {
