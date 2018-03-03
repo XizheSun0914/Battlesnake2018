@@ -112,6 +112,7 @@ function isValid(x, y, enemies, mySnake, board, grid) {
 		console.log("enemy body there");
 		return false;
 	}
+	return true;
 }
 
 //creates h based on cost to start and to finish from node along with dangers surrounding
