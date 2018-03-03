@@ -55,6 +55,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 					continue;
 				} else {
 					var successor = new aNode(xCoord, yCoord, q.f, q, food, enemies, mySnake);
+					console.log(successor.x + " " + successor.y + " added to openList");
 					successors.push(successor);
 				}
 			}
