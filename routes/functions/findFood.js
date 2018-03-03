@@ -9,19 +9,13 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	
 	var food = board.food;
 	var routes = [];
-
-	console.log("yeet1");
-
 	var amountSpace = floodFill(mySnake, enemies, board);
-	console.log("yeet2");
 
-	if(board.turn < 60 && amountSpace.length > board.height*board.width/4) {
+	//if early game, cannot use all resources so wait until
+	if(amountSpace.length > 144) {
 		var choice = ifStart(mySnake, enemies, board, food);
-		console.log("yeet3");
 		var temp = aStar(board, mySnake, enemies, food[choice]);
-		console.log("yeet4");
 		chooseDirection(mySnake, temp[1], decision, 2000);
-		console.log("yeet5");
 		return;
 	}
 
