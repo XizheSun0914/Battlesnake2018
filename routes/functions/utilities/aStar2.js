@@ -151,7 +151,7 @@ var checkSurround = function (x, y, enemies, mySnake, grid) {
 				price++;
 			}
 			for(var k = 0; k < enemies.length; k++) {
-				if(grid[x+i][y+j]) {
+				if(grid[x+i][y+j] == 2) {
 					price += 2;
 				}
 				if(enemies[k].body[0].x == x+i && enemies[k].body[0].y == y+j && enemies[k].length >= mySnake.length) {
