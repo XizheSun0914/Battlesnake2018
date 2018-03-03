@@ -15,7 +15,6 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 	openList.push(first);
 
 	//------------------------------
-
 	while(openList.length != 0) {
 
 		var q = openList.shift();
@@ -48,7 +47,6 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 					continue;
 				}
 				var successor = new aNode(xCoord, yCoord, q.f, q, food, enemies, mySnake);
-				console.log(successor.x + " " + successor.y + " added to  successors");
 				successors.push(successor);
 			}
 		}
@@ -57,8 +55,6 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			//if on closedList, ignore
 
 			if(grid[successors[i].x][successors[i].y] == 3) {
-				console.log(successors[i].x + " " + successors[i].y);
-				console.log("already on closedList");
 				continue;
 			}
 
@@ -102,18 +98,13 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 //checks if node is already covered by enemy or 
 //friendly snake or if outside board
 function isValid(x, y, enemies, mySnake, board, grid) {
-	if (x <= board.width && x >= 0 && y <= board.height && y >= 0) {
-		console.log("inside board");
-	} else {
-		console.log("outside board");
+	if (!(x <= board.width && x >= 0 && y <= board.height && y >= 0)) {
 		return false;
 	}
 	if(grid[x][y] == 1) {
-		console.log("my body there");
 		return false;
 	}
 	if(grid[x][y] == 2) {
-		console.log("enemy body there");
 		return false;
 	}
 	return true;
