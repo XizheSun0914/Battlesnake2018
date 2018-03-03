@@ -50,6 +50,9 @@ var makeEnemies = function (mySnake, input) {
     if(JSON.stringify(snek) === JSON.stringify(mySnake)) {
       continue;
     } else {
+      if(snek.health < 1) {
+        continue;
+      }
       enemies.push(snek);
     }
   }
