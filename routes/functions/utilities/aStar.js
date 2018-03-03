@@ -9,7 +9,6 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 	
 	var grid = buildGrid(mySnake, board, enemies);
 	var openGrid = buildGrid(mySnake, board, enemies);
-	console.log(grid);
 
 	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
 	openList.push(first);
@@ -24,7 +23,6 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		//if at destination, build route and finish
 		if(q.x == food.x && q.y == food.y) {
-			console.log("finished route!");
 			return finishRoute(q, first);
 		}
 
