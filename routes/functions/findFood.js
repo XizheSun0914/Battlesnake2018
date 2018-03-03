@@ -10,6 +10,13 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	var food = board.food;
 	var routes = [];
 
+	if(board.turn < 15) {
+		var choice = ifStart(mySnake, enemies, board, food);
+		var temp = aStar(board, mySnake, enemies, food[choice]);
+		chooseDirection(mySnake, temp, decision, 2000);
+		return;
+	}
+
 	for(var i = 0; i < food.length; i++) {
 		var temp = aStar(board, mySnake, enemies, food[i]);
 		// if there is no route to the food, ignore
@@ -34,7 +41,8 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		return a[a.length-1].f - b[b.length-1].f;
 	});
 
-	return chooseDirection(mySnake, routes[0][1], decision, 2000);
+	chooseDirection(mySnake, routes[0][1], decision, 2000);
+	return;
 
 	var leftRoute = new rPoint(mySnake.body[0].x-1, mySnake.body[0].y, "left");
 	var rightRoute = new rPoint(mySnake.body[0].x+1, mySnake.body[0].y, "right");
@@ -126,4 +134,18 @@ function rPoint(x, y, direction) {
 	this.routes = [];
 	this.check = false;
 	this.direction = direction;
+}
+
+function ifStart = function (mySnake, enemies, board, food) {
+	var firstChoice = 0;
+	for(var i = 1; i < food.length; i++) {
+		if(findDistance(mySnake.body[0], food[firstChoice]) > findDistance(mySnake.body[0], food[i])) {
+			firstChoice = i;
+		}
+	}
+	return i;
+}
+
+function findDist(me, goal) {
+	return (Math.abs(me.x-goal.x) + Math.abs(me.y-goal.y));
 }
