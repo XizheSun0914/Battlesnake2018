@@ -57,11 +57,9 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		for(var i = 0; i < successors.length; i++) {
 			//if on closedList, ignore
-			var xCoord = successors[i].x;
-			var yCoord = successors[i].y;
 
-			if(grid[xCoord][yCoord] == 3) {
-				console.log(xCoord + " " + yCoord);
+			if(grid[successors[i].x][successors[i].y] == 3) {
+				console.log(successors[i].x + " " + successors[i].y);
 				console.log("already on closedList")
 				continue;
 			}
