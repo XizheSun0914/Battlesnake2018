@@ -139,7 +139,7 @@ function rPoint(x, y, direction) {
 function ifStart = function (mySnake, enemies, board, food) {
 	var firstChoice = 0;
 	for(var i = 1; i < food.length; i++) {
-		if(findDistance(mySnake.body[0], food[firstChoice]) > findDistance(mySnake.body[0], food[i])) {
+		if(findDist(mySnake.body[0], food[firstChoice]) > findDist(mySnake.body[0], food[i])) {
 			firstChoice = i;
 		}
 	}
