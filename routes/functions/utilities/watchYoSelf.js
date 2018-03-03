@@ -7,21 +7,18 @@ var chooseDirection = require('./chooseDirection.js');
 //unless its our tail and we didnt just eat, cause itll move
 //and not to hit enemy snakes that are larger than us
 module.exports = exports = function(mySnake, enemies, decision, board) {
-	if(board.turn == 2) {
-		chooseDirection(mySnake, mySnake.body[1], decision, -99999);
-	} else {
-		if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y-1) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y-1) && mySnake.health != 100)) {
-			decision.up -= 99999;
-		}
-		if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y+1) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y+1) && mySnake.health != 100)) {
-			decision.down -= 99999;
-		}
-		if(contains(mySnake.body, mySnake.body[0].x-1, mySnake.body[0].y) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x-1 && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y) && mySnake.health != 100)) {
-			decision.left -= 99999;
-		}
-		if(contains(mySnake.body, mySnake.body[0].x+1, mySnake.body[0].y) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x+1 && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y) && mySnake.health != 100)) {
-			decision.right -= 99999;
-		}
+
+	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y-1) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y-1) && mySnake.health != 100)) {
+		decision.up -= 99999;
+	}
+	if(contains(mySnake.body, mySnake.body[0].x, mySnake.body[0].y+1) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y+1) && mySnake.health != 100)) {
+		decision.down -= 99999;
+	}
+	if(contains(mySnake.body, mySnake.body[0].x-1, mySnake.body[0].y) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x-1 && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y) && mySnake.health != 100)) {
+		decision.left -= 99999;
+	}
+	if(contains(mySnake.body, mySnake.body[0].x+1, mySnake.body[0].y) && !((mySnake.body[mySnake.body.length-1].x == mySnake.body[0].x+1 && mySnake.body[mySnake.body.length-1].y == mySnake.body[0].y) && mySnake.health != 100)) {
+		decision.right -= 99999;
 	}
 
 	var desparate = false;
