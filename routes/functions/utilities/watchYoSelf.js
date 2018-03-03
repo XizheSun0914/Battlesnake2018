@@ -21,6 +21,7 @@ module.exports = exports = function(mySnake, enemies, decision, board) {
 	}
 
 	var desparate = false;
+	console.log("running watchyoself");
 
 	if(mySnake.health < 10) {
 		desparate = true;

@@ -4,6 +4,7 @@ var contains = require('./contains.js')
 //tries to not get up in other functions grills, only redirects if absolutely necessary
 
 module.exports = exports = function (mySnake, board, decision)  {
+	console.log("running checkswalls");
 	//top left corner
 	if(mySnake.body[0].x == 0 && mySnake.body[0].y == 0){
 		if(contains(mySnake.body, 1, 0)) {
