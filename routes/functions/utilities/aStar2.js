@@ -157,11 +157,11 @@ var checkSurround = function (x, y, enemies, mySnake, grid) {
 		for(var j = -1; j <= 1; j++) {
 			//check if where we want to go has an ememy head beside with equal or larger length nearby
 			// or for my body and other enemy snakes
-			if(grid[x+i][y+j] == 1)) {
+			if(grid[x+i][y+j] == 1) {
 				price++;
 			}
 			for(var k = 0; k < enemies.length; k++) {
-				if(grid[x+i][y+j] == 2)) {
+				if(grid[x+i][y+j] == 2) {
 					price += 2;
 				}
 				if(enemies[k].body[0].x == x+i && enemies[k].body[0].y == y+j && enemies[k].length >= mySnake.length) {
