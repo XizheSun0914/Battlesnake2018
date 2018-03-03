@@ -37,7 +37,9 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			for(var j = -1; j <= 1; j++) {
 				var xCoord = (q.x+i);
 				var yCoord = (q.y+j);
-				console.log("parent: " + q.parent.x + " " + q.parent.y);
+				if(q.parent != null) {
+					console.log("parent: " + q.parent.x + " " + q.parent.y);
+				}
 				console.log(xCoord + " " + yCoord + " == " + grid[xCoord][yCoord]);
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
 				if(i==0 && j==0) {
