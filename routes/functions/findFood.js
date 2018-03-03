@@ -12,12 +12,12 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	var amountSpace = floodFill(mySnake, enemies, board);
 
 	//if early game, cannot use all resources so wait until
-	/*if(amountSpace.length > 144) {
+	if(amountSpace.length > 400) {
 		var choice = ifStart(mySnake, enemies, board, food);
 		var temp = aStar(board, mySnake, enemies, food[choice]);
 		chooseDirection(mySnake, temp[1], decision, 2000);
 		return;
-	}*/
+	}
 
 	for(var i = 0; i < food.length; i++) {
 		var temp = aStar(board, mySnake, enemies, food[i]);
@@ -74,26 +74,25 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 
-	//added
-	//-----------------
-	for(var k = 0; k < currentRoute.routes.length; k++) {
-		if(currentRoute.direction === "left"){
-			decision.left += 2000*(Math.pow((1/3), currentRoute.routes[k]));
-		} else if (currentRoute.direction === "right"){
-			decision.right += 2000*(Math.pow((1/3), currentRoute.routes[k]));
-		} else if (currentRoute.direction === "up"){
-			decision.up += 2000*(Math.pow((1/3), currentRoute.routes[k]));
-		} else if (currentRoute.direction === "down"){
-			decision.down += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+	//if we wont be able to run without time out simply route without checking
+	if(amountSpace > 144) {
+		for(var k = 0; k < currentRoute.routes.length; k++) {
+			if(currentRoute.direction === "left"){
+				decision.left += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+			} else if (currentRoute.direction === "right"){
+				decision.right += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+			} else if (currentRoute.direction === "up"){
+				decision.up += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+			} else if (currentRoute.direction === "down"){
+				decision.down += 2000*(Math.pow((1/3), currentRoute.routes[k]));
+			}
 		}
+	} else {
+		enoughSpace(leftRoute, mySnake, enemies, board, decision);
+		enoughSpace(rightRoute, mySnake, enemies, board, decision);
+		enoughSpace(upRoute, mySnake, enemies, board, decision);
+		enoughSpace(downRoute, mySnake, enemies, board, decision);
 	}
-	//----------------
-
-	//enoughSpace(leftRoute, mySnake, enemies, board, decision);
-	//enoughSpace(rightRoute, mySnake, enemies, board, decision);
-	//enoughSpace(upRoute, mySnake, enemies, board, decision);
-	//enoughSpace(downRoute, mySnake, enemies, board, decision);
-
 	return;
 }
 
