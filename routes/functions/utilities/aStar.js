@@ -67,7 +67,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			}
 
 			//if not in openList, add it
-			if(openGrid[successors[i].x][successors[i].y] != 4) {
+			if(openGrid[successors[i].x][successors[i].y] == 0 ) {
 				openGrid[successors[i].x][successors[i].y] == 4;
 				openList.push(successors[i]);
 				continue;
