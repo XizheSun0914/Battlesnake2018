@@ -136,7 +136,7 @@ function rPoint(x, y, direction) {
 	this.direction = direction;
 }
 
-function ifStart = function (mySnake, enemies, board, food) {
+var ifStart = function(mySnake, enemies, board, food) {
 	var firstChoice = 0;
 	for(var i = 1; i < food.length; i++) {
 		if(findDist(mySnake.body[0], food[firstChoice]) > findDist(mySnake.body[0], food[i])) {
@@ -146,6 +146,6 @@ function ifStart = function (mySnake, enemies, board, food) {
 	return i;
 }
 
-function findDist(me, goal) {
+var findDist = function(me, goal) {
 	return (Math.abs(me.x-goal.x) + Math.abs(me.y-goal.y));
 }
