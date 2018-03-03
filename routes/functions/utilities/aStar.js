@@ -26,6 +26,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 
 		//if at destination, build route and finish
 		if(q.x == food.x && q.y == food.y) {
+			console.log("finished route!")
 			return finishRoute(q, first);
 		}
 
