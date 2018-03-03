@@ -76,7 +76,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	}
 
 	//if we wont be able to run without time out simply route without checking
-	if(amountSpace.length*food.length > 400 && false) {
+	/*if(amountSpace.length*food.length > 400 && false) {
 		for(var k = 0; k < currentRoute.routes.length; k++) {
 			if(currentRoute.direction === "left"){
 				decision.left += 2000*(Math.pow((1/3), currentRoute.routes[k]));
@@ -88,12 +88,12 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 				decision.down += 2000*(Math.pow((1/3), currentRoute.routes[k]));
 			}
 		}
-	} else {
+	} else {*/
 		enoughSpace(leftRoute, mySnake, enemies, board, decision);
 		enoughSpace(rightRoute, mySnake, enemies, board, decision);
 		enoughSpace(upRoute, mySnake, enemies, board, decision);
 		enoughSpace(downRoute, mySnake, enemies, board, decision);
-	}
+	//}
 	return;
 }
 
