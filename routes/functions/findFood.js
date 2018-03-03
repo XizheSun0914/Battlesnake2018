@@ -10,7 +10,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	var food = board.food;
 	var routes = [];
 	var amountSpace = floodFill(mySnake, enemies, board);
-	console.log("space around: " + amountSpace);
+	console.log("space around: " + amountSpace.length);
 
 	//if early game, cannot use all resources so wait until
 	if(amountSpace.length > 400) {
