@@ -79,18 +79,18 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 //checks if node is already covered by enemy or 
 //friendly snake or if outside board
 function isValid(x, y, grid, board) {
-	console.log("yeet1");
-	if (!(x <= board.width && x >= 0 && y <= board.height && y >= 0)) {
-		console.log("yeet4");
+	if(grid[x][y] == 1) {
 		return false;
 	}
 
-	if(grid[x][y] != 0) {
-		console.log("yeet2");
+	if(grid[x][y] == 2) {
 		return false;
-	} else {
-		console.log("yeet3");
+	}
+
+	if (x <= board.width && x >= 0 && y <= board.height && y >= 0) {
 		return true;
+	} else {
+		return false;
 	}
 }
 
