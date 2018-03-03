@@ -2,97 +2,18 @@ var buildGrid = require('./buildGrid.js')
 var contains = require('./contains.js')
 
 module.exports = exports = function (board, mySnake, enemies, food) {
-	var closedList = [];
-	var openList = [];
-	var grid = buildGrid(mySnake, board, enemies);
-
-	console.log(grid);
-
-	var head = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
-	openList.push(head);
-
-	while(openList.length != 0) {
-
-		//IMPORVE SPEED HERE BY ADDING TO A SORTED LIST OR HEAP
-		openList.sort(function(a,b) {	//sort openList based on total cost
-			return a.f - b.f;
-		});
-
-		var q = openList.shift();
-		closedList.push(q);
-		console.log(q.x + " " + q.y);
-
-		//if at destination, build route and finish
-		if(q.x == food.x && q.y == food.y) {
-			var temp = finishRoute(q, head);
-			return temp;
-		}
-		console.log("checkpoint 1");
-
-		var successors = [];
-
-		//create successors
-		for(var i = -1; i <= 1; i++) {
-			for(var j = -1; j <= 1; j++) {
-				console.log((q.x+i) + " " + (q.y+j));
-				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
-				if(i==0 && j==0){
-					console.log("failure at 0 and 0: " + (q.x+i) + " " + (q.y+j));
-				}
-				if(i != 0 && j != 0){
-					console.log("failure from not 0 and not 0: " + (q.x+i) + " " + (q.y+j));
-				}
-				if(!isValid(q.x+i, q.y+j, board, grid)){
-					console.log("failure from isvalid: " + (q.x+i) + " " + (q.y+j));
-				}
-				if(!(q.x+i == food.x && q.y+j == food.y)) {
-					console.log("failure from equally food: " + (q.x+i) + " " + (q.y+j));
-				}
-				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, board, grid) && !(q.x+i == food.x && q.y+j == food.y))) {
-					console.log("failure: " + (q.x+i) + " " + (q.y+j));
-					continue;
-				} else {
-					console.log("success: " + successor.x + " " + successor.y);
-					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
-					successors.push(successor);
-				}
+	var closedSpace = []
+	for(var i = 0; i < board.width; i++) {
+		for(var j = 0; j < board.height; j++) {
+			if(!isValid(i, j, board, grid)) {
+				console.log(i + " " + j + "not empty here");
+				var temp = new aNode(i, j, 10, null, food, enemies, mySnake, grid);
+				closedSpace.push(temp);
 			}
 		}
-
-		console.log("checkpoint 2");
-
-		for(var i = 0; i < successors.length; i++) {
-			//if on closedList, ignore
-			//MAYBE USE GRID SPACE = 3 FOR CLOSEDLIST
-			if(contains(closedList, successors[i].x, successors[i].y)) {
-				continue;
-			}
-
-			//MAYBE USE GRID SPACE = 4 FOR OPENLIST
-			//if not in openList, add it
-			if(!contains(openList, successors[i].x, successors[i].y)) {
-				openList.push(successors[i]);
-				continue;
-			}
-
-			//MAYBE USE GRID SPACE = 4 FOR OPENLIST
-			//if openList has same nodes cheaper than successor[i]: continue, else: push to openList
-			if(contains(openList, successors[i].x, successors[i].y)) {
-				var check = false;
-				for(var j = 0; j < openList.length; j++) {
-					if(openList[j].x == successors[i].x && openList[j].y == successors[i].y && openList[j].f < successors[i].f) {
-						check = true;
-					}
-				}
-				if(check) {
-					continue;
-				} else {
-					openList.push(successors[i]);
-				}
-			}
-		}
-		console.log("checkpoint 3");
 	}
+	console.log(closedSpace);
+	return closedSpace;
 }
 
 //checks if node is already covered by enemy or 
