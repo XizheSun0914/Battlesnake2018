@@ -18,41 +18,32 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 			return a.f - b.f;
 		});
 
-		console.log("checkpoint 1");
-
 		var q = openList.shift();
 		closedList.push(q);
 		console.log(q.x + " " + q.y);
 
 		//if at destination, build route and finish
 		if(q.x == food.x && q.y == food.y) {
-			console.log("yeet");
 			var temp = finishRoute(q, head);
-			console.log(temp);
+			return temp;
 		}
-
-		console.log("checkpoint 2");
 
 		var successors = [];
 
 		//create successors
 		for(var i = -1; i <= 1; i++) {
 			for(var j = -1; j <= 1; j++) {
-				console.log("checkpoint 2.25");
 				//if we cant reach, skip. unless its our goal (say we're chasing an enemy tail or my tail)
 				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, board, grid) && !(q.x+i == food.x && q.y+j == food.y))) {
-					console.log("checkpoint 2.50");
+					console.log("failure: " + (q.x+i) + " " + (q.y+j));
 					continue;
 				} else {
-					console.log("checkpoint 2.65");
+					console.log("success: " + successor.x + " " + successor.y);
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
 					successors.push(successor);
-					console.log("checkpoint 2.75");
 				}
 			}
 		}
-
-		console.log("checkpoint 3");
 
 		for(var i = 0; i < successors.length; i++) {
 			//if on closedList, ignore
@@ -61,16 +52,12 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				continue;
 			}
 
-			console.log("checkpoint 3.25");
-
 			//MAYBE USE GRID SPACE = 4 FOR OPENLIST
 			//if not in openList, add it
 			if(!contains(openList, successors[i].x, successors[i].y)) {
 				openList.push(successors[i]);
 				continue;
 			}
-
-			console.log("checkpoint 3.50");
 
 			//MAYBE USE GRID SPACE = 4 FOR OPENLIST
 			//if openList has same nodes cheaper than successor[i]: continue, else: push to openList
@@ -82,15 +69,12 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 					}
 				}
 				if(check) {
-					console.log("checkpoint 3.65");
 					continue;
 				} else {
 					openList.push(successors[i]);
 				}
-				console.log("checkpoint 3.75");
 			}
 		}
-		console.log("checkpoint 4");
 	}
 }
 
