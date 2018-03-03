@@ -41,6 +41,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 					console.log("checkpoint 2.50");
 					continue;
 				} else {
+					console.log("checkpoint 2.65");
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
 					successors.push(successor);
 					console.log("checkpoint 2.75");
