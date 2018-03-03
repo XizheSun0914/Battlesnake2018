@@ -36,7 +36,9 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 				if((i==0 && j==0) || (i != 0 && j != 0) || (!isValid(q.x+i, q.y+j, grid, board) && !(q.x+i == food.x && q.y+j == food.y))) {
 					continue;
 				} else {
+					console.log("success!");
 					var successor = new aNode(q.x+i, q.y+j, q.f, q, food, enemies, mySnake);
+					console.log("success at: " + successor.x + " " + successor.y);
 					successors.push(successor);
 				}
 			}
