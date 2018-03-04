@@ -11,13 +11,13 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	for(var i = 0; i < enemies.length; i++) {
 		heads[i] = enemies[i].body[0];
 	}
-	
+
 	var routes = [];
 	var amountSpace = floodFill(mySnake, enemies, board);
 	console.log("space around: " + amountSpace.length);
 
 	//if early game, cannot use all resources so wait until less area
-	if(amountSpace.length > 280 || amountSpace.length*heads.length > 1000) {
+	if(amountSpace.length > 180 || amountSpace.length*heads.length > 1000) {
 		var choice = ifStart(mySnake, enemies, board, heads);
 		var temp = aStar(board, mySnake, enemies, heads[choice]);
 		chooseDirection(mySnake, temp[1], decision, 2000);
