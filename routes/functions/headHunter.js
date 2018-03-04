@@ -11,7 +11,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	for(var i = 0; i < enemies.length; i++) {
 		heads[i] = enemies[i].body[0];
 	}
-	food
+	
 	var routes = [];
 	var amountSpace = floodFill(mySnake, enemies, board);
 	console.log("space around: " + amountSpace.length);
