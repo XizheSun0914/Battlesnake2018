@@ -13,7 +13,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	console.log("space around: " + amountSpace.length);
 
 	//if early game, cannot use all resources so wait until less area
-	if(amountSpace.length > 280 || amountSpace.length*food.length > 1000) {
+	if(amountSpace.length > 160 || amountSpace.length*food.length > 1000) {
 		var choice = ifStart(mySnake, enemies, board, food);
 		var temp = aStar(board, mySnake, enemies, food[choice]);
 		chooseDirection(mySnake, temp[1], decision, 2000);
@@ -72,25 +72,10 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 
-	/*if(amountSpace > 100) {
-		for(var k = 0; k < currentRoute.routes.length; k++) {
-			if(currentRoute.direction === "left"){
-				decision.left += 2000*(Math.pow((1/3), currentRoute.routes[k]));
-			} else if (currentRoute.direction === "right"){
-				decision.right += 2000*(Math.pow((1/3), currentRoute.routes[k]));
-			} else if (currentRoute.direction === "up"){
-				decision.up += 2000*(Math.pow((1/3), currentRoute.routes[k]));
-			} else if (currentRoute.direction === "down"){
-				decision.down += 2000*(Math.pow((1/3), currentRoute.routes[k]));
-			}
-		}
-		return;
-	} else {*/
-		enoughSpace(leftRoute, mySnake, enemies, board, decision);
-		enoughSpace(rightRoute, mySnake, enemies, board, decision);
-		enoughSpace(upRoute, mySnake, enemies, board, decision);
-		enoughSpace(downRoute, mySnake, enemies, board, decision);
-	//}
+	enoughSpace(leftRoute, mySnake, enemies, board, decision);
+	enoughSpace(rightRoute, mySnake, enemies, board, decision);
+	enoughSpace(upRoute, mySnake, enemies, board, decision);
+	enoughSpace(downRoute, mySnake, enemies, board, decision);
 	return;
 }
 
