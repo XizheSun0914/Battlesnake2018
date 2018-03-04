@@ -5,7 +5,6 @@ var checkWalls = require('./functions/utilities/checkWalls.js')
 var findFood = require('./functions/findFood.js')
 var keepAlive = require('./functions/keepAlive.js')
 var watchYoSelf = require('./functions/utilities/watchYoSelf.js')
-var headHunter = require('./functions/headHunter.js')
 
 // This function is the shell for deciding the move
 
@@ -36,15 +35,7 @@ module.exports = exports = function (mySnake, enemies, board) {
 	}
 
 	if(mySnake.health > 50 && mySnake.length > maxLength+1) {
-
-		console.log("now being a predator");
-		headHunter(mySnake, enemies, board, decision);
-
-		if(decision.up == 0 && decision.down == 0 && decision.left == 0 && decision.right == 0) {
-			console.log("failed to find a route to food");
-			keepAlive(mySnake, enemies, board, decision);
-		}
-
+		keepAlive(mySnake, enemies, board, decision);
 	} else {
 		findFood(mySnake, enemies, board, decision);
 

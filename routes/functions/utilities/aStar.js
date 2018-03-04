@@ -13,7 +13,7 @@ module.exports = exports = function (board, mySnake, enemies, food) {
 	var first = new aNode(mySnake.body[0].x, mySnake.body[0].y, -1, null, food, enemies, mySnake);
 	openList.push(first);
 
-	//------------------------------
+
 	while(openList.length != 0) {
 
 		var q = openList.shift();
