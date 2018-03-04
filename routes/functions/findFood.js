@@ -13,7 +13,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 	console.log("space around: " + amountSpace.length);
 
 	//if early game, cannot use all resources so wait until less area
-	if(amountSpace.length > 120 || amountSpace.length*food.length > 1000) {
+	if(amountSpace.length > 280 || amountSpace.length*food.length > 1000) {
 		var choice = ifStart(mySnake, enemies, board, food);
 		var temp = aStar(board, mySnake, enemies, food[choice]);
 		chooseDirection(mySnake, temp[1], decision, 2000);
@@ -106,7 +106,7 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 		var space = floodFill(temp, enemies, board);
 		console.log("room: " + space.length);
 
-		if(!(space.length > 35)) {
+		if((space.length < 35)) {
 			//checks if i can reach my tail after getting food, and no enemy heads coming into area
 			var tailReachable = aStar(board, temp, enemies, temp.body[temp.length-1]);
 			var enemiesInSpace = [];
