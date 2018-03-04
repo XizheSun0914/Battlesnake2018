@@ -72,7 +72,7 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 		}
 	}
 
-	if(amountSpace > 100) {
+	/*if(amountSpace > 100) {
 		for(var k = 0; k < currentRoute.routes.length; k++) {
 			if(currentRoute.direction === "left"){
 				decision.left += 2000*(Math.pow((1/3), currentRoute.routes[k]));
@@ -85,12 +85,12 @@ module.exports = exports = function(mySnake, enemies, board, decision) {
 			}
 		}
 		return;
-	} else {
+	} else {*/
 		enoughSpace(leftRoute, mySnake, enemies, board, decision);
 		enoughSpace(rightRoute, mySnake, enemies, board, decision);
 		enoughSpace(upRoute, mySnake, enemies, board, decision);
 		enoughSpace(downRoute, mySnake, enemies, board, decision);
-	}
+	//}
 	return;
 }
 
@@ -106,7 +106,7 @@ var enoughSpace = function(currentRoute, mySnake, enemies, board, decision) {
 		var space = floodFill(temp, enemies, board);
 		console.log("room: " + space.length);
 
-		if(!(space.length > board.width*board.height/4)) {
+		if(!(space.length > 35)) {
 			//checks if i can reach my tail after getting food, and no enemy heads coming into area
 			var tailReachable = aStar(board, temp, enemies, temp.body[temp.length-1]);
 			var enemiesInSpace = [];
