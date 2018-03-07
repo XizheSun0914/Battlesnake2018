@@ -1,3 +1,8 @@
+# spoder-snek
+
+Built on boilerplate node.js snake. 
+Final version before competition started, will use this guy as a learning experience for next year.
+
 # battlesnake-node(js)
 
 A simple [BattleSnake AI](https://battlesnake.io) written in Javascript for NodeJS.
@@ -64,4 +69,3 @@ View/stream server logs:
 ```shell
 heroku logs --tail
 ```
-# spoder-snek
