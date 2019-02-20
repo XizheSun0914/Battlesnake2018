@@ -33,7 +33,8 @@ module.exports = exports = function (mySnake, enemies, board) {
 			maxLength = enemies[i].length;
 		}
 	}
-
+	
+	//decides between finding food and staying alive based on current health
 	if(mySnake.health > 50 && mySnake.length > maxLength+1) {
 		keepAlive(mySnake, enemies, board, decision);
 	} else {
