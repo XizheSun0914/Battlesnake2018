@@ -15,8 +15,8 @@ Built on boilerplate node.js snake supplied by battlesnake team.
 Fork and clone this repo:
 
 ```shell
-git clone git@github.com:sendwithus/battlesnake-node.git
-cd battlesnake-node
+git clone git@github.com:cbmathieson/Battlesnake2018.git
+cd Battlesnake2018
 ```
 
 Install the client dependencies:
