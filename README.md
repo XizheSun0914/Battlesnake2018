@@ -1,19 +1,14 @@
-# spoder-snek
+# Battlesnake 2018 Contestant
 
-Built on boilerplate node.js snake. 
-Final version before competition started, will use this guy as a learning experience for next year.
+Came short of beginner division finals; 2nd place in semi-finals due to time out (my fault of course). 
+Built on boilerplate node.js snake supplied by battlesnake team. 
 
-# battlesnake-node(js)
+## What I've learned from this experience
 
-A simple [BattleSnake AI](https://battlesnake.io) written in Javascript for NodeJS.
-
-To get started you'll need a working NodeJS development environment, and at least read the Heroku docs on [deploying a NodeJS app](https://devcenter.heroku.com/articles/getting-started-with-nodejs).
-
-If you haven't setup a NodeJS development environment before, read [how to get started with NodeJS](http://nodejs.org/documentation/tutorials/). You'll also need [npm](https://www.npmjs.com/) for easy JS dependency management.
-
-This client uses [Express4](http://expressjs.com/en/4x/api.html) for easy route management, read up on the docs to learn more about reading incoming JSON params, writing responses, etc.
-
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+> Inneffieciently implemented algorithms do not scale well!
+> Testing NEEDS to be thorough.
+> Parsing JSON code from an incoming server in javascript.
+> A better understanding of A* and Floodfill algorithms.
 
 ## Running the AI locally
 
