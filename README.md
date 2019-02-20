@@ -5,10 +5,10 @@ Built on boilerplate node.js snake supplied by battlesnake team.
 
 ## What I've learned from this experience
 
-> Inneffieciently implemented algorithms do not scale well!
-> Testing NEEDS to be thorough.
-> Parsing JSON code from an incoming server in javascript.
-> A better understanding of A* and Floodfill algorithms.
+- Inneffieciently implemented algorithms do not scale well!
+- Testing NEEDS to be thorough.
+- Parsing JSON code from an incoming server in javascript.
+- A better understanding of A* and Floodfill algorithms.
 
 ## Running the AI locally
 
