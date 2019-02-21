@@ -10,6 +10,11 @@ Built on boilerplate node.js snake supplied by battlesnake team.
 - Parsing JSON code from an incoming server in javascript.
 - A better understanding of A* and Floodfill algorithms.
 
+## Results:
+
+![](round1.gif)
+![](round2.gif)
+
 ## Running the AI locally
 
 Fork and clone this repo:
