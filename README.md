@@ -12,7 +12,11 @@ Built on boilerplate node.js snake supplied by battlesnake team.
 
 ## Results:
 
+(steve in light blue)
+
+### Round 1:
 ![](round1.gif)
+### Round 2:
 ![](round2.gif)
 
 ## Running the AI locally
